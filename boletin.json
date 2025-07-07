@@ -1,0 +1,7 @@
+{
+  "activo": true,
+  "version": "1",
+  "tipo": "aviso",
+  "icono": "fa-bullhorn",
+  "mensaje": "¡Bienvenido al nuevo boletín informativo de REDECOL E.S.P.! Revisa aquí noticias, avisos y alertas importantes."
+}

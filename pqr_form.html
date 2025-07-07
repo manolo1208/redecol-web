@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Peticiones, Quejas y Recursos - REDECOL E.S.P.</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 text-gray-800">
+
+    <div class="container mx-auto px-4 py-12 max-w-3xl lg:max-w-4xl">
+        <h1 class="text-3xl font-bold mb-6 text-center">Peticiones, Quejas y Recursos (PQR)</h1>
+
+        <form id="formularioPQR" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+            <!-- Datos Personales -->
+            <h2 class="text-xl font-semibold mb-4">Datos del Peticionario</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                <div>
+                    <label class="block text-sm font-medium mb-1" for="nombre">Nombre Completo:</label>
+                    <input type="text" id="nombre" name="nombre" required
+                        class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium mb-1" for="cedula">Cédula de Ciudadanía:</label>
+                    <input type="text" id="cedula" name="cedula" required
+                        class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium mb-1" for="correo">Correo Electrónico:</label>
+                    <input type="email" id="correo" name="correo" required
+                        class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium mb-1" for="telefono">Teléfono de Contacto:</label>
+                    <input type="tel" id="telefono" name="telefono" required
+                        class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500">
+                </div>
+                <div class="md:col-span-2">
+                    <label class="block text-sm font-medium mb-1" for="direccion">Dirección:</label>
+                    <input type="text" id="direccion" name="direccion" required
+                        class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500">
+                </div>
+            </div>
+
+            <!-- Tipo de Solicitud -->
+            <h2 class="text-xl font-semibold mb-4">Tipo de Solicitud</h2>
+            <div class="mb-4">
+                <select id="tipoSolicitud" name="tipoSolicitud" required
+                    class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500">
+                    <option value="">Seleccione una opción</option>
+                    <option value="Petición">Petición</option>
+                    <option value="Queja">Queja</option>
+                    <option value="Recurso">Recurso</option>
+                </select>
+            </div>
+
+            <!-- Descripción -->
+            <h2 class="text-xl font-semibold mb-4">Descripción de la Solicitud</h2>
+            <div class="mb-4">
+                <textarea id="descripcion" name="descripcion" rows="7" placeholder="Escriba su mensaje aquí..."
+                    required
+                    class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500"></textarea>
+            </div>
+
+            <!-- Código de Radicación -->
+            <div class="mb-4">
+                <strong>Código de Radicación:</strong> <span id="codigoRadicacion"
+                    class="font-mono bg-gray-200 px-2 py-1 rounded">PENDIENTE</span>
+            </div>
+
+            <!-- Botón de Enviar -->
+            <div class="flex justify-center">
+                <button type="submit"
+                    class="bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-2 px-8 rounded focus:outline-none focus:ring-2 focus:ring-yellow-400">
+                    Enviar Solicitud
+                </button>
+            </div>
+        </form>
+
+        <!-- Mensaje de Confirmación -->
+        <div id="mensajeConfirmacion" class="hidden bg-green-100 text-green-700 p-4 rounded shadow text-center">
+            ✅ Su solicitud ha sido enviada exitosamente.  
+            <br><strong>Código de Radicación:</strong> <span id="confirmacionCodigo"></span>
+        </div>
+    </div>
+
+    <script>
+        function generarCodigoRadicacion() {
+            const fecha = new Date();
+            const año = fecha.getFullYear().toString().slice(-2);
+            const mes = String(fecha.getMonth() + 1).padStart(2, '0');
+            const dia = String(fecha.getDate()).padStart(2, '0');
+            const hora = String(fecha.getHours()).padStart(2, '0');
+            const minutos = String(fecha.getMinutes()).padStart(2, '0');
+            const segundos = String(fecha.getSeconds()).padStart(2, '0');
+            return `PQR-${año}${mes}${dia}-${hora}${minutos}${segundos}`;
+        }
+
+        document.getElementById("formularioPQR").addEventListener("submit", function (e) {
+            e.preventDefault();
+
+            // Obtener valores del formulario
+            const nombre = document.getElementById("nombre").value;
+            const cedula = document.getElementById("cedula").value;
+            const correo = document.getElementById("correo").value;
+            const telefono = document.getElementById("telefono").value;
+            const direccion = document.getElementById("direccion").value;
+            const tipoSolicitud = document.getElementById("tipoSolicitud").value;
+            const descripcion = document.getElementById("descripcion").value;
+
+            if (!nombre || !cedula || !correo || !telefono || !direccion || !tipoSolicitud || !descripcion) {
+                alert("Por favor complete todos los campos.");
+                return;
+            }
+
+            // Generar código de radicación
+            const codigoRadicacion = generarCodigoRadicacion();
+            document.getElementById("codigoRadicacion").textContent = codigoRadicacion;
+
+            // Mostrar mensaje de confirmación
+            document.getElementById("mensajeConfirmacion").classList.remove("hidden");
+            document.getElementById("confirmacionCodigo").textContent = codigoRadicacion;
+
+            // Construir cuerpo del correo
+            const asunto = encodeURIComponent(`[PQR] ${tipoSolicitud} - ${codigoRadicacion}`);
+            const cuerpoCorreo = encodeURIComponent(
+                `Nueva Solicitud de PQR\n` +
+                `===========================\n\n` +
+                `Código de Radicación: ${codigoRadicacion}\n` +
+                `Nombre: ${nombre}\n` +
+                `Cédula: ${cedula}\n` +
+                `Correo: ${correo}\n` +
+                `Teléfono: ${telefono}\n` +
+                `Dirección: ${direccion}\n\n` +
+                `Tipo de Solicitud: ${tipoSolicitud}\n\n` +
+                `Descripción:\n${descripcion}`
+            );
+
+            // Abrir cliente de correo predeterminado
+            window.location.href = `mailto:pqr.redecol@outlook.com?subject=${asunto}&body=${cuerpoCorreo}`;
+
+            // Limpiar formulario
+            document.getElementById("formularioPQR").reset();
+        });
+    </script>
+</body>
+</html>

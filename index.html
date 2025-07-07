@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>REDECOL E.S.P. – Servicio Público de Aseo</title>
+  <!-- Tailwind CSS & Font Awesome -->
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Indicadores de Toneladas Recuperadas – REDECOL</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <!-- Paleta corporativa -->
+  <style>
+    :root{
+      --primary-blue:#1e3a8a;
+      --secondary-blue:#3b82f6;
+      --light-blue:#eff6ff;
+      --accent-blue:#60a5fa;
+      --green-primary:#15803d;
+      --green-secondary:#22c55e;
+    }
+    .bg-primary-blue{background:var(--primary-blue)}
+    .bg-secondary-blue{background:var(--secondary-blue)}
+    .bg-light-blue{background:var(--light-blue)}
+    .text-primary-blue{color:var(--primary-blue)}
+    .text-secondary-blue{color:var(--secondary-blue)}
+    .border-primary-blue{border-color:var(--primary-blue)}
+    .text-green-primary{color:var(--green-primary)}
+    .bg-green-primary{background:var(--green-primary)}
+    .bg-green-secondary{background:var(--green-secondary)}
+
+    .hero-gradient{background:linear-gradient(135deg,var(--primary-blue) 0%,var(--secondary-blue) 100%)}
+    .card-hover{transition:transform .3s,box-shadow .3s}
+    .card-hover:hover{transform:translateY(-5px);box-shadow:0 10px 25px rgba(0,0,0,.15)}
+    .logo-container{width:60px;height:60px;background:#fff;border-radius:8px;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 4px rgba(0,0,0,.1);overflow:hidden;}
+    .photo-item{border:2px dashed var(--accent-blue);border-radius:8px;padding:10px;text-align:center;background:var(--light-blue);height:200px;display:flex;align-items:center;justify-content:center;overflow:hidden;position:relative;}
+    .photo-item img{max-width:100%;max-height:180px;object-fit:contain;}
+    .section-divider{height:4px;background:linear-gradient(90deg,var(--primary-blue),var(--secondary-blue));border-radius:2px;margin:0 auto;width:80px}
+    html{scroll-behavior:smooth}
+    
+    /* Estilos para el boletín */
+    .boletin-slide-down {
+      animation: slideDown 0.5s ease-out;
+    }
+    
+    @keyframes slideDown {
+      from {
+        transform: translateY(-100%);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+    
+    .pdf-download-btn {
+      display: inline-flex;
+      align-items: center;
+      background: var(--primary-blue);
+      color: white;
+      padding: 12px 24px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    
+    .pdf-download-btn:hover {
+      background: var(--secondary-blue);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    }
+    
+    .pdf-download-btn i {
+      margin-right: 8px;
+    }
+  </style>
+</head>
+<body class="bg-gray-50 font-sans leading-normal tracking-normal">
+
+
+<!-- ========== BOLETÍN AMPLIO Y LLAMATIVO ========== -->
+<div id="boletin" class="hidden fixed top-0 left-0 right-0 z-[9999] bg-yellow-200 border-b-4 border-yellow-400 text-yellow-900 px-10 py-6 shadow-xl text-center font-bold text-xl md:text-2xl flex items-center justify-center space-x-6">
+  <span class="text-3xl animate-pulse">🚨</span>
+  <span id="mensajeBoletin" class="flex-1 max-w-5xl">
+    Retraso en la recolección de residuos en la zona norte – Nueva fecha: 8 de julio
+  </span>
+  <button onclick="document.getElementById('boletin').classList.add('hidden')" class="text-3xl font-extrabold hover:text-red-600 transition">×</button>
+</div>
+
+<script>
+  window.addEventListener('DOMContentLoaded', () => {
+    const boletin = document.getElementById('boletin');
+    const mensaje = document.getElementById('mensajeBoletin');
+    const header = document.getElementById('main-header');
+
+    mensaje.textContent = '🚨 Retraso en la recolección de residuos en la zona norte – Nueva fecha: 8 de julio';
+    boletin.classList.remove('hidden');
+
+    // Empuja el encabezado hacia abajo mientras el boletín está visible
+    header.style.marginTop = '80px';
+
+    // Oculta el boletín después de 20 segundos (opcional)
+    setTimeout(() => {
+      boletin.classList.add('hidden');
+      header.style.marginTop = '0';
+    }, 40000);
+  });
+</script>
+
+
+
+  <!-- ========== HEADER ========== -->
+  <header class="bg-white shadow-lg sticky top-0 z-40" id="main-header">
+    <div class="container mx-auto flex items-center justify-between p-4">
+      <div class="flex items-center space-x-3">
+      <div class="logo-container">
+  <img src="img/logo-redecol.png" alt="Logo REDECOL" class="w-full h-full object-contain" />
+</div>
+        <div>
+          <h1 class="text-xl font-bold text-primary-blue">REDECOL E.S.P.</h1>
+          <p class="text-xs text-gray-600">Servicio Público de Aseo</p>
+        </div>
+      </div>
+
+      <!-- Menú desktop -->
+      <nav class="hidden md:block">
+        <ul class="flex space-x-6 text-gray-700">
+          <li><a href="#inicio" class="hover:text-primary-blue">Inicio</a></li>
+          <li><a href="#servicios" class="hover:text-primary-blue">Servicios</a></li>
+          <li><a href="#indicadores" class="hover:text-primary-blue">Indicadores</a></li>
+          <li><a href="#galeria" class="hover:text-primary-blue">Galería</a></li>
+          <li><a href="#tarifas" class="hover:text-primary-blue">Tarifas</a></li>
+          <li><a href="#rutas" class="hover:text-primary-blue">Rutas</a></li>
+          <li><a href="#pqr" class="hover:text-primary-blue">PQR</a></li>
+          <li><a href="#comercial" class="hover:text-primary-blue">Comercial</a></li>
+          <li><a href="#contacto" class="hover:text-primary-blue">Contacto</a></li>
+        </ul>
+      </nav>
+
+      <!-- Botón menú móvil -->
+      <button id="mobileMenuBtn" class="md:hidden text-primary-blue">
+        <i class="fas fa-bars text-xl"></i>
+      </button>
+    </div>
+
+    <!-- Menú móvil -->
+    <div id="mobileMenu" class="hidden md:hidden bg-white border-t border-gray-200">
+      <nav class="px-4 py-2 space-y-2">
+        <a href="#inicio" class="block py-2 text-gray-700 hover:text-primary-blue">Inicio</a>
+        <a href="#servicios" class="block py-2 text-gray-700 hover:text-primary-blue">Servicios</a>
+        <a href="#indicadores" class="block py-2 text-gray-700 hover:text-primary-blue">Indicadores</a>
+        <a href="#galeria" class="block py-2 text-gray-700 hover:text-primary-blue">Galería</a>
+        <a href="#tarifas" class="block py-2 text-gray-700 hover:text-primary-blue">Tarifas</a>
+        <a href="#rutas" class="block py-2 text-gray-700 hover:text-primary-blue">Rutas</a>
+        <a href="#pqr" class="block py-2 text-gray-700 hover:text-primary-blue">PQR</a>
+        <a href="#comercial" class="block py-2 text-gray-700 hover:text-primary-blue">Comercial</a>
+        <a href="#contacto" class="block py-2 text-gray-700 hover:text-primary-blue">Contacto</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ========== INICIO ========== -->
+  <section id="inicio" class="py-20 hero-gradient text-center">
+    <div class="container mx-auto px-4">
+      <h2 class="text-5xl text-white font-bold mb-6">Bienvenido a REDECOL E.S.P.</h2>
+      <p class="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">Tu prestador oficial de servicios de aseo complementario en aprovechamiento de residuos sólidos en Barrancabermeja, Santander.</p>
+      <div class="flex justify-center space-x-4">
+        <a href="#servicios" class="bg-white text-primary-blue px-6 py-3 rounded-lg font-semibold hover:bg-blue-50 transition">Nuestros servicios</a>
+        <a href="#contacto" class="border-2 border-white text-white px-6 py-3 rounded-lg font-semibold hover:bg-white hover:text-primary-blue transition">Contactar</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== QUIÉNES SOMOS ========== -->
+  <section class="py-16 bg-white" id="quienes">
+    <div class="container mx-auto px-4">
+      <h2 class="text-4xl font-bold mb-4 text-center text-primary-blue">Quiénes somos</h2>
+      <div class="section-divider mb-8"></div>
+      <p class="text-lg mb-12 text-gray-700 text-center max-w-4xl mx-auto">REDECOL E.S.P. es una organización de recicladores de oficio, creada en el año 2001 y  acogida al decreto 596 de 2016 derrogado por el régimen de regularización (Decreto 1381 de 2024), autorizada por la Superintendencia de Servicios Públicos para prestar el servicio público de aseo complementario – aprovechamiento en Barrancabermeja, Santander.</p>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <!-- Misión -->
+        <div class="bg-light-blue p-8 rounded-lg card-hover">
+          <div class="flex items-center mb-4">
+            <i class="fas fa-bullseye text-3xl text-primary-blue mr-4"></i>
+            <h3 class="text-2xl font-bold text-primary-blue">Misión</h3>
+          </div>
+          <p class="text-gray-700">Garantizar un servicio eficiente y sostenible de recolección, separación y aprovechamiento de residuos sólidos en beneficio de la comunidad.</p>
+        </div>
+
+        <!-- Visión -->
+        <div class="bg-light-blue p-8 rounded-lg card-hover">
+          <div class="flex items-center mb-4">
+            <i class="fas fa-eye text-3xl text-primary-blue mr-4"></i>
+            <h3 class="text-2xl font-bold text-primary-blue">Visión</h3>
+          </div>
+          <p class="text-gray-700">Liderar el sector de reciclaje y aprovechamiento en Barrancabermeja, promoviendo prácticas ambientales responsables y la inclusión social de los recicladores de oficio.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== SERVICIOS ========== -->
+  <section id="servicios" class="py-16 bg-gray-50">
+    <div class="container mx-auto px-4">
+      <h2 class="text-4xl font-bold mb-4 text-center text-primary-blue">Nuestros servicios</h2>
+      <div class="section-divider mb-12"></div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- Recolección -->
+        <div class="bg-white p-8 rounded-lg shadow-lg card-hover text-center">
+          <i class="fas fa-recycle text-4xl text-secondary-blue mb-4"></i>
+          <h3 class="text-xl font-bold text-primary-blue mb-2">Recolección selectiva</h3>
+          <p class="text-gray-700">Recolección diferenciada de residuos sólidos aprovechables.</p>
+        </div>
+
+        <!-- Sensibilización -->
+        <div class="bg-white p-8 rounded-lg shadow-lg card-hover text-center">
+          <i class="fas fa-chalkboard-teacher text-4xl text-secondary-blue mb-4"></i>
+          <h3 class="text-xl font-bold text-primary-blue mb-2">Sensibilización y capacitación</h3>
+          <p class="text-gray-700">Programas educativos que promueven la separación en la fuente y buenas prácticas ambientales.</p>
+        </div>
+
+        <!-- Certificación -->
+        <div class="bg-white p-8 rounded-lg shadow-lg card-hover text-center">
+          <i class="fas fa-certificate text-4xl text-secondary-blue mb-4"></i>
+          <h3 class="text-xl font-bold text-primary-blue mb-2">Certificación de residuos</h3>
+          <p class="text-gray-700">Clasificación, pesaje y registro de residuos con trazabilidad garantizada.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <body class="bg-gray-100 text-gray-800">
+
+  <section id="indicadores" class="py-16 bg-white">
+    <div class="container mx-auto px-4">
+      <h2 class="text-4xl font-bold mb-4 text-center text-green-700">Indicadores de Toneladas Recuperadas</h2>
+      <div class="section-divider mb-12 mx-auto h-1 w-24 bg-green-600"></div>
+
+      <!-- Total recuperado -->
+      <div class="text-center mb-8">
+        <p class="text-lg font-semibold">Total toneladas recuperadas en Barrancabermeja:</p>
+        <p id="totalToneladas" class="text-5xl font-bold text-green-400">0.00 tn</p>
+      </div>
+
+      <!-- Gráfica por material -->
+      <div class="bg-white p-6 rounded shadow mb-10">
+        <canvas id="graficaMateriales" height="120"></canvas>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    // Datos por material (puedes modificar estos valores cuando lo necesites)
+    const datosPorMaterial = {
+      "Cartón": 7.5,
+      "PET": 4.2,
+      "Vidrio": 8.7,
+      "Papel": 9.4,
+      "Maderables": 11.1,
+      "Pasta": 10.8,
+      "Plástico": 21.9,
+      "Plegadiza": 3.5,
+      "Tetra Pack": 0.7,
+      "Acrílico": 0.4,
+      "Plastificado": 0.3,
+      "Kraf": 0.2
+    };
+
+    // Sumar total
+    const totalToneladas = Object.values(datosPorMaterial).reduce((a, b) => a + b, 0);
+    document.getElementById('totalToneladas').textContent = totalToneladas.toFixed(2) + ' tn';
+
+    // Crear gráfica
+    const ctx = document.getElementById('graficaMateriales');
+    new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: Object.keys(datosPorMaterial),
+        datasets: [{
+          label: 'Toneladas recuperadas por material',
+          data: Object.values(datosPorMaterial),
+          backgroundColor: '#4ade80'
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: { display: false },
+          title: {
+            display: true,
+            text: 'Distribución de materiales recuperados'
+          }
+        },
+        scales: {
+          y: {
+            beginAtZero: true,
+            title: {
+              display: true,
+              text: 'Toneladas'
+            }
+          }
+        }
+      }
+    });
+  </script>
+</body>
+</html>
+
+
+
+  <!-- ========== GALERÍA ========== -->
+     <title>Galería de Servicios – REDECOL</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 text-gray-600">
+
+  <div class="max-w-6xl mx-auto px-4 py-10">
+    <h1 class="text-4xl font-bold text-center text-blue-800 mb-8">Galería de Servicios</h1>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+      <div class="rounded overflow-hidden shadow hover:shadow-lg transition">
+        <img src="servicio1.png" alt="Servicio 1" class="w-full object-cover h-64">
+      </div>
+      <div class="rounded overflow-hidden shadow hover:shadow-lg transition">
+        <img src="servicio2.png" alt="Servicio 2" class="w-full object-cover h-64">
+      </div>
+      <div class="rounded overflow-hidden shadow hover:shadow-lg transition">
+        <img src="servicio3.png" alt="Servicio 3" class="w-full object-cover h-64">
+      </div>
+      <div class="rounded overflow-hidden shadow hover:shadow-lg transition">
+        <img src="servicio4.png" alt="Servicio 4" class="w-full object-cover h-64">
+      </div>
+      <div class="rounded overflow-hidden shadow hover:shadow-lg transition">
+        <img src="servicio5.png" alt="Servicio 5" class="w-full object-cover h-64">
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
+
+  <!-- ========== TARIFAS ========== -->
+  <section id="tarifas" class="py-16 bg-white">
+    <div class="container mx-auto px-4">
+      <h2 class="text-4xl font-bold mb-4 text-center text-primary-blue">Tarifas del servicio de aseo</h2>
+      <div class="section-divider mb-12"></div>
+
+      <div class="overflow-x-auto">
+        <table class="min-w-full bg-white rounded-lg shadow-md">
+          <thead class="bg-primary-blue text-white">
+            <tr>
+              <th class="py-3 px-6 text-left">Tipo de usuario</th>
+              <th class="py-3 px-6 text-left">Tarifa mensual (COP)</th>
+              <th class="py-3 px-6 text-left">Incluye</th>
+            </tr>
+          </thead>
+          <tbody class="text-gray-700">
+            <tr class="border-t hover:bg-gray-50">
+              <td class="py-3 px-6 font-semibold">Residencial</td>
+              <td class="py-3 px-6 text-green-600 font-bold">$15.000</td>
+              <td class="py-3 px-6">Recolección y aprovechamiento</td>
+            </tr>
+            <tr class="border-t hover:bg-gray-50">
+              <td class="py-3 px-6 font-semibold">Comercial</td>
+              <td class="py-3 px-6 text-green-600 font-bold">$40.000</td>
+              <td class="py-3 px-6">Recolección, transporte y aprovechamiento</td>
+            </tr>
+            <tr class="border-t hover:bg-gray-50">
+              <td class="py-3 px-6 font-semibold">Industrial</td>
+              <td class="py-3 px-6 text-blue-600 font-bold">Consultar</td>
+              <td class="py-3 px-6">Servicio personalizado</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== RUTAS Y HORARIOS ========== -->
+  <section id="rutas" class="py-16 bg-gray-50">
+    <div class="container mx-auto px-4">
+      <h2 class="text-4xl font-bold mb-4 text-center text-primary-blue">Rutas y horarios</h2>
+      <div class="section-divider mb-12"></div>
+
+      <div class="overflow-x-auto mb-8">
+        <table class="min-w-full bg-white rounded-lg shadow-md text-center">
+          <thead class="bg-primary-blue text-white">
+            <tr>
+              <th class="py-3 px-4">Ruta</th>
+              <th class="py-3 px-4">Días</th>
+              <th class="py-3 px-4">Hora inicio</th>
+              <th class="py-3 px-4">Zona de cobertura</th>
+            </tr>
+          </thead>
+          <tbody class="text-gray-800">
+            <tr class="border-t hover:bg-gray-50">
+              <td class="py-3 px-4 font-bold text-primary-blue">BA</td>
+              <td class="py-3 px-4">Lun–Mié–Vie</td>
+              <td class="py-3 px-4">07:00 AM</td>
+              <td class="py-3 px-4">Zona Norte</td>
+            </tr>
+            <tr class="border-t hover:bg-gray-50">
+              <td class="py-3 px-4 font-bold text-primary-blue">BB</td>
+              <td class="py-3 px-4">Mar–Jue–Sáb</td>
+              <td class="py-3 px-4">07:00 AM</td>
+              <td class="py-3 px-4">Zona Sur</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+     <!-- Botón de descarga de PDF de rutas -->
+<div class="text-center mb-8">
+  <a href="docs/rutas_y_horarios.pdf" download class="pdf-download-btn">
+    <i class="fas fa-file-pdf"></i>
+    Descargar PDF de rutas
+  </a>
+</div>
+
+
+      <!-- Mapa interactivo funcional -->
+<div class="bg-white p-6 rounded-lg shadow-lg">
+  <h3 class="text-2xl font-bold text-primary-blue mb-4 text-center">Mapa de Rutas</h3>
+  <div class="relative w-full" style="padding-top: 56.25%;">
+    <iframe src="mapas/BA.html" class="absolute inset-0 w-full h-full border rounded-lg shadow" title="Mapa ruta BA" loading="lazy"></iframe>
+  </div>
+</div>
+
+<section id="pqr" class="py-16 bg-white">
+  <div class="container mx-auto px-4">
+    <h2 class="text-4xl font-bold mb-4 text-center text-primary-blue">PQRS y reclamos</h2>
+    <div class="section-divider mb-12"></div>
+
+    <div class="max-w-4xl mx-auto">
+      <div class="bg-light-blue p-8 rounded-lg shadow-lg">
+        <h3 class="text-2xl font-bold text-primary-blue mb-6 text-center">
+          <i class="fas fa-comments mr-2"></i>
+          
+<!-- ========== Formulario de PQRS ========== -->
+
+
+     <h3 class="text-2xl font-bold text-primary-blue mb-6">Formulario de PQRS</h3>
+
+<form id="pqrForm" method="POST" action="https://formsubmit.co/pqr.redecol@outlook.com" class="space-y-6">
+
+  <!-- Configuración oculta de FormSubmit -->
+  <input type="hidden" name="_subject" value="Nueva PQRS desde la web de REDECOL">
+  <input type="hidden" name="_captcha" value="false">
+  <input type="hidden" name="_template" value="table">
+  <input type="hidden" name="_next" value="https://redecol.com.co/gracias.html">
+
+  <!-- Código de radicado oculto -->
+  <input type="hidden" name="codigo_radicado" id="codigoOculto">
+
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div>
+      <label class="block text-sm font-medium text-gray-700 mb-2">Nombre completo *</label>
+      <input type="text" name="nombre" id="nombre" required class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-blue">
+    </div>
+    <div>
+      <label class="block text-sm font-medium text-gray-700 mb-2">Teléfono *</label>
+      <input type="tel" name="telefono" id="telefono" required class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-blue">
+    </div>
+  </div>
+
+  <div>
+    <label class="block text-sm font-medium text-gray-700 mb-2">Correo electrónico *</label>
+    <input type="email" name="correo" id="correo" required class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-blue">
+  </div>
+
+  <div>
+    <label class="block text-sm font-medium text-gray-700 mb-2">Tipo de solicitud *</label>
+    <select name="tipo_solicitud" id="tipoSolicitud" required class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-blue">
+      <option value="">Selecciona una opción</option>
+      <option value="Petición">Petición</option>
+      <option value="Queja">Queja</option>
+      <option value="Reclamo">Reclamo</option>
+      <option value="Sugerencia">Sugerencia</option>
+    </select>
+  </div>
+
+  <div>
+    <label class="block text-sm font-medium text-gray-700 mb-2">Dirección del servicio</label>
+    <input type="text" name="direccion" id="direccion" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-blue">
+  </div>
+
+  <div>
+    <label class="block text-sm font-medium text-gray-700 mb-2">Descripción detallada *</label>
+    <textarea name="descripcion" id="descripcion" required rows="5" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-blue" placeholder="Describe tu solicitud de manera detallada..."></textarea>
+  </div>
+
+  <!-- Código visible de radicado -->
+  <div class="bg-white text-center py-4 px-6 rounded-lg shadow border">
+    <p class="text-gray-600">Código de Radicación:</p>
+    <strong id="codigoRadicacion" class="text-lg font-mono bg-gray-200 px-3 py-1 inline-block rounded">PENDIENTE</strong>
+  </div>
+
+  <!-- Confirmación visual (opcional) -->
+  <div id="mensajeConfirmacion" class="hidden bg-green-100 text-green-700 text-center p-4 rounded">
+    ✅ Su solicitud ha sido enviada exitosamente. <br>
+    <strong>Código:</strong> <span id="confirmacionCodigo"></span>
+  </div>
+
+  <div class="text-center">
+    <button type="submit" class="bg-primary-blue hover:bg-secondary-blue text-white font-bold py-3 px-8 rounded-lg transition">
+      <i class="fas fa-paper-plane mr-2"></i>
+      Enviar solicitud
+    </button>
+  </div>
+</form>
+
+<!-- SCRIPT: Generar código de radicado -->
+<script>
+  document.getElementById("pqrForm").addEventListener("submit", function () {
+    const codigo = generarCodigoRadicacion();
+    document.getElementById("codigoRadicacion").textContent = codigo;
+    document.getElementById("codigoOculto").value = codigo;
+    document.getElementById("confirmacionCodigo").textContent = codigo;
+    document.getElementById("mensajeConfirmacion").classList.remove("hidden");
+  });
+
+  function generarCodigoRadicacion() {
+    const f = new Date();
+    return `PQR-${f.getFullYear().toString().slice(-2)}${String(f.getMonth() + 1).padStart(2, '0')}${String(f.getDate()).padStart(2, '0')}-${String(f.getHours()).padStart(2, '0')}${String(f.getMinutes()).padStart(2, '0')}${String(f.getSeconds()).padStart(2, '0')}`;
+  }
+</script>
+ 
+  
+   <!-- ========== COMERCIAL ========== -->
+
+<section id="comercial" class="py-16 bg-gray-50">
+  <div class="container mx-auto px-4">
+    <h2 class="text-4xl font-bold mb-4 text-center text-primary-blue">Sección Comercial</h2>
+    <div class="section-divider mb-12"></div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+
+      <!-- Contrato de Condiciones Uniformes -->
+      <div class="bg-white p-6 rounded-lg shadow-lg card-hover text-center">
+        <h3 class="text-2xl font-bold text-primary-blue mb-4">Contrato de Condiciones Uniformes</h3>
+        <p class="text-gray-600 mb-4">Consulta el documento oficial con los términos y condiciones del servicio público de aseo.</p>
+        <a href="docs/CONTRATO_CONDICIONES_UNIFORME.pdf" target="_blank" class="pdf-download-btn">
+          <i class="fas fa-file-pdf"></i> Ver Contrato PDF
+        </a>
+      </div>
+
+      <!-- Portafolio REDECOL 2024 -->
+      <div class="bg-white p-6 rounded-lg shadow-lg card-hover text-center">
+        <h3 class="text-2xl font-bold text-primary-blue mb-4">Portafolio REDECOL 2024</h3>
+        <p class="text-gray-600 mb-4">Conoce nuestra oferta de servicios, objetivos y alcance institucional.</p>
+        <a href="docs/PORTAFOLIO_REDECOL_2024.pdf" target="_blank" class="pdf-download-btn">
+          <i class="fas fa-file-pdf"></i> Ver Portafolio PDF
+        </a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+  <!-- ========== CONTACTO ========== -->
+  <section id="contacto" class="py-16 bg-primary-blue">
+    <div class="container mx-auto px-4 text-white">
+      <h2 class="text-4xl font-bold mb-4 text-center">Información de contacto</h2>
+      <div class="w-20 h-1 bg-white mx-auto mb-12"></div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div class="bg-white p-8 rounded-lg shadow-lg text-gray-800"><div class="flex items-center mb-6"><i class="fas fa-envelope text-3xl text-primary-blue mr-4"></i><h3 class="text-2xl font-bold text-primary-blue">Correos electrónicos</h3></div><div class="space-y-3"><p class="flex items-center"><i class="fas fa-at text-secondary-blue mr-2"></i><a href="mailto:pqr.redecol@outlook.com" class="text-secondary-blue hover:text-primary-blue transition">pqr.redecol@outlook.com</a></p><p class="flex items-center"><i class="fas fa-at text-secondary-blue mr-2"></i><a href="mailto:adm.redecol@outlook.com" class="text-secondary-blue hover:text-primary-blue transition">adm.redecol@outlook.com</a></p></div></div>
+        <div class="bg-white p-8 rounded-lg shadow-lg text-gray-800"><div class="flex items-center mb-6"><i class="fas fa-phone text-3xl text-primary-blue mr-4"></i><h3 class="text-2xl font-bold text-primary-blue">Teléfonos</h3></div><div class="space-y-3 mb-6"><p class="flex items-center"><i class="fas fa-mobile-alt text-secondary-blue mr-2"></i><span class="text-gray-700">320 268 6047</span></p><p class="flex items-center"><i class="fas fa-mobile-alt text-secondary-blue mr-2"></i><span class="text-gray-700">312 338 7813</span></p></div><h3 class="text-2xl font-bold text-primary-blue mb-2">Oficina de atención</h3><p>Carrera 33 # 32‑21, Barrio Belén<br>Barrancabermeja – Santander</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="bg-gray-800 text-white py-8">
+    <div class="container mx-auto px-4 flex flex-col md:flex-row justify-between items-center"><p class="text-gray-300 mb-4 md:mb-0">© 2025 REDECOL E.S.P. – Todos los derechos reservados</p><div class="flex space-x-6"><a href="#" class="text-gray-300 hover:text-white transition">Términos y condiciones</a><a href="#" class="text-gray-300 hover:text-white transition">Política de privacidad</a></div></div>
+  </footer>
+
+  <!-- ========== SCRIPTS ========== -->
+  <script>
+    // ===================== BOLETÍN DINÁMICO =====================
+    fetch('boletin.json').then(r=>r.ok?r.json():null).then(d=>{
+      if(!d||!d.activo)return;if(localStorage.getItem('boletinVersion')===String(d.version))return;
+      const box=document.getElementById('boletin');
+      const color={alerta:'bg-red-600',aviso:'bg-yellow-500',info:'bg-blue-600'}[d.tipo]||'bg-blue-600';
+      box.className=color+' text-white text-center py-3 px-6 font-semibold flex items-center justify-between';
+      box.innerHTML=`<div class='flex-1 text-left'><i class='fas ${d.icono||'fa-info-circle'} mr-2'></i>${d.mensaje}</div><button id='cerrarBoletin' class='text-white hover:text-gray-300 ml-4'><i class='fas fa-times'></i></button>`;
+      box.classList.remove('hidden');
+      document.getElementById('cerrarBoletin').onclick=()=>{box.style.display='none';localStorage.setItem('boletinVersion',String(d.version));};
+    }).catch(()=>{});
+
+    // ====================== OTROS SCRIPTS =======================
+    document.getElementById('mobileMenuBtn').addEventListener('click',()=>document.getElementById('mobileMenu').classList.toggle('hidden'));
+  </script>
+</body>
+</html>

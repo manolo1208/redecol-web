@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Indicadores de Toneladas Recuperadas – REDECOL</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="bg-gray-100 text-gray-800">
+
+  <section id="indicadores" class="py-16 bg-white">
+    <div class="container mx-auto px-4">
+      <h2 class="text-4xl font-bold mb-4 text-center text-green-700">Indicadores de Toneladas Recuperadas</h2>
+      <div class="section-divider mb-12 mx-auto h-1 w-24 bg-green-600"></div>
+
+      <!-- Total recuperado -->
+      <div class="text-center mb-8">
+        <p class="text-lg font-semibold">Total toneladas recuperadas en Barrancabermeja:</p>
+        <p id="totalToneladas" class="text-5xl font-bold text-green-400">0.00 tn</p>
+      </div>
+
+      <!-- Gráfica por material -->
+      <div class="bg-white p-6 rounded shadow mb-10">
+        <canvas id="graficaMateriales" height="120"></canvas>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    // Datos por material (puedes modificar estos valores cuando lo necesites)
+    const datosPorMaterial = {
+      "Cartón": 7.5,
+      "PET": 4.2,
+      "Vidrio": 8.7,
+      "Papel": 9.4,
+      "Maderables": 11.1,
+      "Pasta": 10.8,
+      "Plástico": 21.9,
+      "Plegadiza": 3.5,
+      "Tetra Pack": 0.7,
+      "Acrílico": 0.4,
+      "Plastificado": 0.3,
+      "Kraf": 0.2
+    };
+
+    // Sumar total
+    const totalToneladas = Object.values(datosPorMaterial).reduce((a, b) => a + b, 0);
+    document.getElementById('totalToneladas').textContent = totalToneladas.toFixed(2) + ' tn';
+
+    // Crear gráfica
+    const ctx = document.getElementById('graficaMateriales');
+    new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: Object.keys(datosPorMaterial),
+        datasets: [{
+          label: 'Toneladas recuperadas por material',
+          data: Object.values(datosPorMaterial),
+          backgroundColor: '#4ade80'
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: { display: false },
+          title: {
+            display: true,
+            text: 'Distribución de materiales recuperados'
+          }
+        },
+        scales: {
+          y: {
+            beginAtZero: true,
+            title: {
+              display: true,
+              text: 'Toneladas'
+            }
+          }
+        }
+      }
+    });
+  </script>
+</body>
+</html>
+
