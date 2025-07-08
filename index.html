@@ -89,7 +89,7 @@
 <div id="boletin" class="hidden fixed top-0 left-0 right-0 z-[9999] bg-yellow-200 border-b-4 border-yellow-400 text-yellow-900 px-10 py-6 shadow-xl text-center font-bold text-xl md:text-2xl flex items-center justify-center space-x-6">
   <span class="text-3xl animate-pulse">🚨</span>
   <span id="mensajeBoletin" class="flex-1 max-w-5xl">
-    Señor usuario esta pagina se esta actualizando si presenta errores intenta por favor mas tarde
+    🚨 Señor usuario esta pagina se esta actualizando si presenta errores intenta por favor mas tarde
   </span>
   <button onclick="document.getElementById('boletin').classList.add('hidden')" class="text-3xl font-extrabold hover:text-red-600 transition">×</button>
 </div>
@@ -106,7 +106,7 @@
     // Empuja el encabezado hacia abajo mientras el boletín está visible
     header.style.marginTop = '80px';
 
-    // Oculta el boletín después de 20 segundos (opcional)
+    // Oculta el boletín después de 60 segundos (opcional)
     setTimeout(() => {
       boletin.classList.add('hidden');
       header.style.marginTop = '0';
