@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ruta GP</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"/>
+    <style>
+        #map { height: 100vh; width: 100%; margin: 0; }
+        body { margin: 0; }
+    </style>
+</head>
+<body>
+    <div id="map"></div>
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script>
+        const map = L.map('map').setView([7.0652, -73.8541], 13);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '© OpenStreetMap contributors'
+        }).addTo(map);
+
+        const barrios = [
+            "Sector comercial", "Colombia", "El Recreo", "Uribe Uribe", "Torcoroma",
+            "Pueblo Nuevo", "Parnaso", "Villa Luz", "La Libertad", "La Floresta", "La Esperanza"
+        ];
+
+        barrios.forEach((barrio) => {
+            const lat = 7.0652 + (Math.random() - 0.5) * 0.02;
+            const lon = -73.8541 + (Math.random() - 0.5) * 0.02;
+            L.marker([lat, lon]).addTo(map).bindPopup(`<b>${barrio}</b>`);
+        });
+    </script>
+</body>
+</html>
