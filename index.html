@@ -44,7 +44,7 @@
     
     /* Estilos para el boletín */
     .boletin-slide-down {
-      animation: slideDown 0.5s ease-out;
+      animation: slideDown 15s ease-out;
     }
     
     @keyframes slideDown {
@@ -207,6 +207,57 @@
     </div>
   </section>
 
+<!-- ========== NOTICIAS ========== -->
+<section id="noticias" class="py-16 bg-light-blue">
+  <div class="container mx-auto px-4">
+    <h2 class="text-4xl font-bold mb-4 text-center text-primary-blue">Noticias y Actualizaciones</h2>
+    <div class="section-divider mb-12"></div>
+
+    <!-- Contenedor de noticias -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+      <!-- Noticia 1 -->
+      <div class="bg-white rounded-lg shadow-lg overflow-hidden card-hover">
+        <img src="img/noticia1.jpg" alt="Noticia 1" class="w-full h-56 object-cover">
+        <div class="p-6">
+          <h3 class="text-xl font-bold text-primary-blue mb-2">Campaña de reciclaje escolar 2025</h3>
+          <p class="text-gray-700 mb-4">REDECOL E.S.P. lanza su nueva campaña educativa en colegios para fomentar la separación en la fuente y el aprovechamiento responsable de residuos.</p>
+          <a href="#" class="text-secondary-blue font-semibold hover:underline">Leer más →</a>
+        </div>
+      </div>
+
+      <!-- Noticia 2 -->
+      <div class="bg-white rounded-lg shadow-lg overflow-hidden card-hover">
+        <img src="img/noticia2.jpg" alt="Noticia 2" class="w-full h-56 object-cover">
+        <div class="p-6">
+          <h3 class="text-xl font-bold text-primary-blue mb-2">Reconocimiento ambiental 2025</h3>
+          <p class="text-gray-700 mb-4">El municipio de Barrancabermeja reconoce a REDECOL por su compromiso en la gestión ambiental y el fortalecimiento de los recicladores de oficio.</p>
+          <a href="#" class="text-secondary-blue font-semibold hover:underline">Leer más →</a>
+        </div>
+      </div>
+
+      <!-- Noticia 3 -->
+      <div class="bg-white rounded-lg shadow-lg overflow-hidden card-hover">
+        <img src="img/noticia3.jpg" alt="Noticia 3" class="w-full h-56 object-cover">
+        <div class="p-6">
+          <h3 class="text-xl font-bold text-primary-blue mb-2">Nueva ruta de aprovechamiento</h3>
+          <p class="text-gray-700 mb-4">Se habilita la nueva ruta de aprovechamiento para la zona nororiental de la ciudad, ampliando la cobertura del servicio público de aseo.</p>
+          <a href="#" class="text-secondary-blue font-semibold hover:underline">Leer más →</a>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Botón de ver más -->
+    <div class="text-center mt-12">
+      <a href="noticias.html" class="bg-primary-blue text-white px-8 py-3 rounded-lg font-semibold hover:bg-secondary-blue transition">
+        Ver todas las noticias
+      </a>
+    </div>
+  </div>
+</section>
+
+  
   <!-- ========== SERVICIOS ========== -->
   <section id="servicios" class="py-16 bg-gray-50">
     <div class="container mx-auto px-4">
@@ -676,3 +727,4 @@
   </script>
 </body>
 </html>
+
