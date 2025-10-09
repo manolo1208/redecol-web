@@ -86,12 +86,24 @@
 
 
 <!-- ========== BOLETÍN AMPLIO Y LLAMATIVO ========== -->
-<div id="boletin" class="hidden fixed top-0 left-0 right-0 z-[9999] bg-yellow-200 border-b-4 border-yellow-400 text-yellow-900 px-10 py-6 shadow-xl text-center font-bold text-xl md:text-2xl flex items-center justify-center space-x-6">
-  <span class="text-3xl animate-pulse">🚨</span>
-  <span id="mensajeBoletin" class="flex-1 max-w-5xl">
-    🚨 Señor usuario recuerde hoy estaremos realizando la ruta de aprovechamiento comunas 1,2,3 y 5
+
+<!-- 🚨 BOLETÍN DE ALERTA AMPLIADO -->
+<div id="boletin" class="hidden fixed top-0 left-0 right-0 z-[9999] 
+    bg-yellow-300 border-b-8 border-yellow-500 
+    text-yellow-900 px-12 py-10 shadow-2xl 
+    text-center font-extrabold text-2xl md:text-3xl 
+    flex items-center justify-center space-x-8 transition-all duration-700">
+  
+  <span class="text-5xl animate-pulse">🚨</span>
+  
+  <span id="mensajeBoletin" class="flex-1 max-w-6xl leading-snug">
+    🚨 Señor usuario recuerde hoy estaremos realizando la ruta de aprovechamiento comunas 1, 2, 3 y 5
   </span>
-  <button onclick="document.getElementById('boletin').classList.add('hidden')" class="text-3xl font-extrabold hover:text-red-600 transition">×</button>
+
+  <button onclick="document.getElementById('boletin').classList.add('hidden')" 
+          class="text-5xl font-extrabold hover:text-red-700 transition">
+    ×
+  </button>
 </div>
 
 <script>
@@ -100,20 +112,22 @@
     const mensaje = document.getElementById('mensajeBoletin');
     const header = document.getElementById('main-header');
 
-    mensaje.textContent = '🚨 esta pagina se esta actualizando – Nueva fecha: 8 de julio';
+    // 🟨 Texto del boletín
+    mensaje.textContent = '🚨 Esta página se está actualizando – Nueva fecha: 8 de julio';
+
+    // Mostrar boletín
     boletin.classList.remove('hidden');
 
-    // Empuja el encabezado hacia abajo mientras el boletín está visible
-    header.style.marginTop = '80px';
+    // Empuja el encabezado hacia abajo mientras está visible
+    header.style.marginTop = '140px';
 
-    // Oculta el boletín después de 60 segundos (opcional)
+    // ⏱ Tiempo visible: 90 segundos (puedes cambiarlo)
     setTimeout(() => {
       boletin.classList.add('hidden');
       header.style.marginTop = '0';
-    }, 40000);
+    }, 90000); // 90000 ms = 90 segundos
   });
 </script>
-
 
 
   <!-- ========== HEADER ========== -->
@@ -726,5 +740,6 @@
   </script>
 </body>
 </html>
+
 
 
