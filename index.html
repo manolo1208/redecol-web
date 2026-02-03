@@ -244,33 +244,39 @@
       <!-- Contenedor de noticias -->
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
 
-        <!-- Noticia 1 -->
+        <!-- Noticia 1: Campaña Escolar -->
         <div class="bg-white rounded-lg shadow-lg overflow-hidden card-hover">
-          <img src="img/noticia1.jpg" alt="Noticia 1" class="w-full h-56 object-cover">
+          <img src="img/noticia1.jpg" alt="Campaña de reciclaje escolar" class="w-full h-56 object-cover">
           <div class="p-6">
             <h3 class="text-xl font-bold text-primary-blue mb-2">Campaña de reciclaje escolar 2025</h3>
             <p class="text-gray-700 mb-4">REDECOL E.S.P. lanza su nueva campaña educativa en colegios para fomentar la separación en la fuente y el aprovechamiento responsable de residuos.</p>
-            <a href="#" class="text-secondary-blue font-semibold hover:underline">Leer más →</a>
+            <button onclick="abrirModal('modalCampanaEscolar')" class="text-secondary-blue font-semibold hover:underline cursor-pointer">
+              Leer más →
+            </button>
           </div>
         </div>
 
-        <!-- Noticia 2 -->
+        <!-- Noticia 2: Reconocimiento Ambiental -->
         <div class="bg-white rounded-lg shadow-lg overflow-hidden card-hover">
-          <img src="img/noticia2.jpg" alt="Noticia 2" class="w-full h-56 object-cover">
+          <img src="img/noticia2.jpg" alt="Reconocimiento ambiental" class="w-full h-56 object-cover">
           <div class="p-6">
             <h3 class="text-xl font-bold text-primary-blue mb-2">Reconocimiento ambiental 2025</h3>
             <p class="text-gray-700 mb-4">El municipio de Barrancabermeja reconoce a REDECOL por su compromiso en la gestión ambiental y el fortalecimiento de los recicladores de oficio.</p>
-            <a href="#" class="text-secondary-blue font-semibold hover:underline">Leer más →</a>
+            <button onclick="abrirModal('modalReconocimiento')" class="text-secondary-blue font-semibold hover:underline cursor-pointer">
+              Leer más →
+            </button>
           </div>
         </div>
 
-        <!-- Noticia 3 -->
+        <!-- Noticia 3: Nueva Ruta -->
         <div class="bg-white rounded-lg shadow-lg overflow-hidden card-hover">
-          <img src="img/noticia3.jpg" alt="Noticia 3" class="w-full h-56 object-cover">
+          <img src="img/noticia3.jpg" alt="Nueva ruta de aprovechamiento" class="w-full h-56 object-cover">
           <div class="p-6">
             <h3 class="text-xl font-bold text-primary-blue mb-2">Nueva ruta de aprovechamiento</h3>
             <p class="text-gray-700 mb-4">Se habilita la nueva ruta de aprovechamiento para la zona nororiental de la ciudad, ampliando la cobertura del servicio público de aseo.</p>
-            <a href="#" class="text-secondary-blue font-semibold hover:underline">Leer más →</a>
+            <button onclick="abrirModal('modalNuevaRuta')" class="text-secondary-blue font-semibold hover:underline cursor-pointer">
+              Leer más →
+            </button>
           </div>
         </div>
 
@@ -731,11 +737,11 @@
           <div class="space-y-3">
             <p class="flex items-center">
               <i class="fas fa-at text-secondary-blue mr-2"></i>
-              <a href="mailto:pqr.redecol@outlook.com" class="text-secondary-blue hover:text-primary-blue transition">pqr.redecol@outlook.com</a>
+              <a href="/cdn-cgi/l/email-protection#47373635693522232224282b072832332b28282c6924282a" class="text-secondary-blue hover:text-primary-blue transition"><span class="__cf_email__" data-cfemail="1e6e6f6c306c7b7a7b7d71725e716b6a72717175307d7173">[email&#160;protected]</span></a>
             </p>
             <p class="flex items-center">
               <i class="fas fa-at text-secondary-blue mr-2"></i>
-              <a href="mailto:adm.redecol@outlook.com" class="text-secondary-blue hover:text-primary-blue transition">adm.redecol@outlook.com</a>
+              <a href="/cdn-cgi/l/email-protection#c2a3a6afecb0a7a6a7a1adae82adb7b6aeadada9eca1adaf" class="text-secondary-blue hover:text-primary-blue transition"><span class="__cf_email__" data-cfemail="2746434a095542434244484b674852534b48484c0944484a">[email&#160;protected]</span></a>
             </p>
           </div>
         </div>
@@ -825,8 +831,293 @@
     </div>
   </div>
 
+  <!-- ========== MODALES DE NOTICIAS ========== -->
+
+  <!-- Modal 1: Campaña Escolar con Galería -->
+  <div id="modalCampanaEscolar" class="modal">
+    <div class="modal-content" style="max-width: 900px;">
+      <span class="modal-close" onclick="cerrarModal('modalCampanaEscolar')">&times;</span>
+      
+      <h2 class="text-3xl font-bold text-primary-blue mb-4">
+        <i class="fas fa-graduation-cap mr-2"></i>
+        Campaña de Reciclaje Escolar 2025
+      </h2>
+      
+      <div class="text-gray-700 space-y-4 mb-6">
+        <p class="text-lg">
+          REDECOL E.S.P. ha lanzado su campaña educativa 2025 en instituciones educativas de Barrancabermeja, 
+          con el objetivo de crear conciencia ambiental desde temprana edad.
+        </p>
+        
+        <div class="bg-blue-50 p-4 rounded">
+          <h3 class="font-bold text-primary-blue mb-2">Objetivos de la campaña:</h3>
+          <ul class="list-disc list-inside space-y-1">
+            <li>Educar sobre separación en la fuente</li>
+            <li>Promover la cultura del reciclaje</li>
+            <li>Reducir residuos en colegios</li>
+            <li>Involucrar a la comunidad educativa</li>
+          </ul>
+        </div>
+      </div>
+
+      <h3 class="text-2xl font-bold text-primary-blue mb-4">Galería de la Campaña</h3>
+      
+      <!-- Galería de imágenes -->
+      <div class="grid grid-cols-2 md:grid-cols-3 gap-4 mb-6">
+        <div class="rounded overflow-hidden shadow-lg">
+          <img src="img/campana1.jpg" alt="Campaña escolar 1" class="w-full h-48 object-cover" 
+               onerror="this.src='https://via.placeholder.com/400x300/3b82f6/ffffff?text=Campaña+Escolar+1'">
+        </div>
+        <div class="rounded overflow-hidden shadow-lg">
+          <img src="img/campana2.jpg" alt="Campaña escolar 2" class="w-full h-48 object-cover"
+               onerror="this.src='https://via.placeholder.com/400x300/3b82f6/ffffff?text=Campaña+Escolar+2'">
+        </div>
+        <div class="rounded overflow-hidden shadow-lg">
+          <img src="img/campana3.jpg" alt="Campaña escolar 3" class="w-full h-48 object-cover"
+               onerror="this.src='https://via.placeholder.com/400x300/3b82f6/ffffff?text=Campaña+Escolar+3'">
+        </div>
+        <div class="rounded overflow-hidden shadow-lg">
+          <img src="img/campana4.jpg" alt="Campaña escolar 4" class="w-full h-48 object-cover"
+               onerror="this.src='https://via.placeholder.com/400x300/3b82f6/ffffff?text=Campaña+Escolar+4'">
+        </div>
+        <div class="rounded overflow-hidden shadow-lg">
+          <img src="img/campana5.jpg" alt="Campaña escolar 5" class="w-full h-48 object-cover"
+               onerror="this.src='https://via.placeholder.com/400x300/3b82f6/ffffff?text=Campaña+Escolar+5'">
+        </div>
+        <div class="rounded overflow-hidden shadow-lg">
+          <img src="img/campana6.jpg" alt="Campaña escolar 6" class="w-full h-48 object-cover"
+               onerror="this.src='https://via.placeholder.com/400x300/3b82f6/ffffff?text=Campaña+Escolar+6'">
+        </div>
+      </div>
+
+      <div class="text-center">
+        <button onclick="cerrarModal('modalCampanaEscolar')" 
+                class="bg-primary-blue text-white px-6 py-2 rounded-lg hover:bg-secondary-blue transition">
+          Cerrar
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal 2: Reconocimiento Ambiental -->
+  <div id="modalReconocimiento" class="modal">
+    <div class="modal-content" style="max-width: 800px;">
+      <span class="modal-close" onclick="cerrarModal('modalReconocimiento')">&times;</span>
+      
+      <h2 class="text-3xl font-bold text-primary-blue mb-4">
+        <i class="fas fa-award mr-2"></i>
+        Reconocimiento Ambiental 2025
+      </h2>
+      
+      <div class="text-gray-700 space-y-4 mb-6">
+        <p class="text-lg">
+          El municipio de Barrancabermeja ha otorgado un reconocimiento especial a REDECOL E.S.P. 
+          por su destacado compromiso en la gestión ambiental y el fortalecimiento de los recicladores de oficio.
+        </p>
+        
+        <div class="bg-green-50 p-6 rounded-lg">
+          <h3 class="font-bold text-green-700 text-xl mb-3">Logros Destacados</h3>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="flex items-start">
+              <i class="fas fa-check-circle text-green-600 mt-1 mr-2"></i>
+              <div>
+                <strong>78.7 toneladas</strong> de material reciclado en 2024
+              </div>
+            </div>
+            <div class="flex items-start">
+              <i class="fas fa-check-circle text-green-600 mt-1 mr-2"></i>
+              <div>
+                <strong>50+ recicladores</strong> formalizados
+              </div>
+            </div>
+            <div class="flex items-start">
+              <i class="fas fa-check-circle text-green-600 mt-1 mr-2"></i>
+              <div>
+                <strong>15 colegios</strong> participantes en campañas
+              </div>
+            </div>
+            <div class="flex items-start">
+              <i class="fas fa-check-circle text-green-600 mt-1 mr-2"></i>
+              <div>
+                <strong>98%</strong> de satisfacción de usuarios
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Imagen del reconocimiento -->
+        <div class="mt-6">
+          <img src="img/reconocimiento2025.jpg" alt="Reconocimiento 2025" 
+               class="w-full rounded-lg shadow-lg"
+               onerror="this.src='https://via.placeholder.com/800x400/22c55e/ffffff?text=Reconocimiento+Ambiental+2025'">
+        </div>
+
+        <div class="bg-blue-50 p-4 rounded mt-4">
+          <p class="font-semibold text-primary-blue mb-2">
+            <i class="fas fa-quote-left mr-2"></i>
+            Palabras del Director
+          </p>
+          <p class="text-gray-700 italic">
+            "Este reconocimiento es un reflejo del trabajo conjunto con nuestra comunidad de recicladores 
+            y el compromiso de Barrancabermeja con un futuro más sostenible. Seguiremos trabajando 
+            para consolidar la economía circular en nuestra región."
+          </p>
+        </div>
+
+        <!-- Documentos relacionados -->
+        <div class="mt-6">
+          <h3 class="font-bold text-primary-blue mb-3">Documentos Relacionados</h3>
+          <div class="space-y-2">
+            <a href="docs/reconocimiento_2025.pdf" target="_blank" 
+               class="flex items-center text-secondary-blue hover:text-primary-blue transition">
+              <i class="fas fa-file-pdf mr-2"></i>
+              Certificado de Reconocimiento (PDF)
+            </a>
+            <a href="docs/informe_ambiental_2024.pdf" target="_blank" 
+               class="flex items-center text-secondary-blue hover:text-primary-blue transition">
+              <i class="fas fa-file-pdf mr-2"></i>
+              Informe de Gestión Ambiental 2024 (PDF)
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="text-center mt-6">
+        <button onclick="cerrarModal('modalReconocimiento')" 
+                class="bg-primary-blue text-white px-6 py-2 rounded-lg hover:bg-secondary-blue transition">
+          Cerrar
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal 3: Nueva Ruta de Aprovechamiento -->
+  <div id="modalNuevaRuta" class="modal">
+    <div class="modal-content" style="max-width: 900px;">
+      <span class="modal-close" onclick="cerrarModal('modalNuevaRuta')">&times;</span>
+      
+      <h2 class="text-3xl font-bold text-primary-blue mb-4">
+        <i class="fas fa-route mr-2"></i>
+        Nueva Ruta de Aprovechamiento - Zona Nororiental
+      </h2>
+      
+      <div class="text-gray-700 space-y-4 mb-6">
+        <p class="text-lg">
+          REDECOL E.S.P. amplía su cobertura con la habilitación de una nueva ruta de aprovechamiento 
+          para la zona nororiental de Barrancabermeja, beneficiando a más de 5,000 hogares.
+        </p>
+        
+        <div class="bg-blue-50 p-6 rounded-lg">
+          <h3 class="font-bold text-primary-blue text-xl mb-3">Detalles de la Nueva Ruta</h3>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <p><strong>Código de Ruta:</strong> BA-NOR-01</p>
+              <p><strong>Días de servicio:</strong> Martes y Viernes</p>
+              <p><strong>Horario:</strong> 6:00 AM - 2:00 PM</p>
+            </div>
+            <div>
+              <p><strong>Zona de cobertura:</strong> Zona Nororiental</p>
+              <p><strong>Barrios cubiertos:</strong> 12 barrios</p>
+              <p><strong>Inicio de operación:</strong> 15 de febrero 2026</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Mapa de la ruta -->
+        <div class="mt-6">
+          <h3 class="text-xl font-bold text-primary-blue mb-3">Mapa de la Ruta</h3>
+          <div class="relative w-full bg-gray-200 rounded-lg overflow-hidden" style="padding-top: 56.25%;">
+            <iframe src="mapas/BA-NOR-01.html" 
+                    class="absolute inset-0 w-full h-full border-0" 
+                    title="Mapa nueva ruta nororiental" 
+                    loading="lazy">
+            </iframe>
+          </div>
+        </div>
+
+        <!-- Barrios cubiertos -->
+        <div class="mt-6">
+          <h3 class="font-bold text-primary-blue mb-3">Barrios Cubiertos por la Ruta</h3>
+          <div class="grid grid-cols-2 md:grid-cols-3 gap-3">
+            <div class="bg-white p-3 rounded shadow flex items-center">
+              <i class="fas fa-map-marker-alt text-secondary-blue mr-2"></i>
+              <span>Villa Hermosa</span>
+            </div>
+            <div class="bg-white p-3 rounded shadow flex items-center">
+              <i class="fas fa-map-marker-alt text-secondary-blue mr-2"></i>
+              <span>El Progreso</span>
+            </div>
+            <div class="bg-white p-3 rounded shadow flex items-center">
+              <i class="fas fa-map-marker-alt text-secondary-blue mr-2"></i>
+              <span>San Rafael</span>
+            </div>
+            <div class="bg-white p-3 rounded shadow flex items-center">
+              <i class="fas fa-map-marker-alt text-secondary-blue mr-2"></i>
+              <span>Galán</span>
+            </div>
+            <div class="bg-white p-3 rounded shadow flex items-center">
+              <i class="fas fa-map-marker-alt text-secondary-blue mr-2"></i>
+              <span>La Floresta</span>
+            </div>
+            <div class="bg-white p-3 rounded shadow flex items-center">
+              <i class="fas fa-map-marker-alt text-secondary-blue mr-2"></i>
+              <span>Versalles</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Documentos descargables -->
+        <div class="mt-6 bg-light-blue p-4 rounded">
+          <h3 class="font-bold text-primary-blue mb-3">
+            <i class="fas fa-download mr-2"></i>
+            Documentos Descargables
+          </h3>
+          <div class="space-y-2">
+            <a href="docs/ruta_nororiental_mapa.pdf" download 
+               class="flex items-center text-secondary-blue hover:text-primary-blue transition">
+              <i class="fas fa-file-pdf mr-2"></i>
+              Mapa detallado de la ruta (PDF)
+            </a>
+            <a href="docs/ruta_nororiental_horarios.pdf" download 
+               class="flex items-center text-secondary-blue hover:text-primary-blue transition">
+              <i class="fas fa-file-pdf mr-2"></i>
+              Horarios y frecuencias (PDF)
+            </a>
+            <a href="docs/guia_separacion_fuente.pdf" download 
+               class="flex items-center text-secondary-blue hover:text-primary-blue transition">
+              <i class="fas fa-file-pdf mr-2"></i>
+              Guía de separación en la fuente (PDF)
+            </a>
+          </div>
+        </div>
+
+        <!-- Instrucciones para residentes -->
+        <div class="mt-6 bg-green-50 p-4 rounded">
+          <h3 class="font-bold text-green-700 mb-3">
+            <i class="fas fa-info-circle mr-2"></i>
+            Instrucciones para Residentes
+          </h3>
+          <ol class="list-decimal list-inside space-y-2 text-gray-700">
+            <li>Separe sus residuos aprovechables (plástico, papel, cartón, vidrio, metal)</li>
+            <li>Coloque los materiales en una bolsa o recipiente aparte</li>
+            <li>Saque sus residuos antes de las 6:00 AM los días martes y viernes</li>
+            <li>Asegúrese de que los materiales estén limpios y secos</li>
+            <li>No mezcle residuos aprovechables con residuos ordinarios</li>
+          </ol>
+        </div>
+      </div>
+
+      <div class="text-center mt-6">
+        <button onclick="cerrarModal('modalNuevaRuta')" 
+                class="bg-primary-blue text-white px-6 py-2 rounded-lg hover:bg-secondary-blue transition">
+          Cerrar
+        </button>
+      </div>
+    </div>
+  </div>
+
   <!-- ========== SCRIPTS ========== -->
-  <script>
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
     // Script para generar código de radicación
     document.getElementById("pqrForm").addEventListener("submit", function () {
       const codigo = generarCodigoRadicacion();
@@ -861,19 +1152,4 @@
     window.addEventListener('click', function(event) {
       if (event.target.classList.contains('modal')) {
         event.target.classList.remove('active');
-        document.body.style.overflow = 'auto';
-      }
-    });
-
-    // Cerrar modal con tecla ESC
-    document.addEventListener('keydown', function(event) {
-      if (event.key === 'Escape') {
-        document.querySelectorAll('.modal').forEach(modal => {
-          modal.classList.remove('active');
-        });
-        document.body.style.overflow = 'auto';
-      }
-    });
-  </script>
-</body>
-</html>
+        d
