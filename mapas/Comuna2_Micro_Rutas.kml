@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+  <Document>
+    <name>Micro Rutas Comuna 2 - Barrancabermeja</name>
+    <description>
+    Sistema de Micro Rutas de Aprovechamiento
+    COMUNA 2 - Barrancabermeja, Santander
+    
+    Todas las rutas finalizan en: Carrera 33 (Punto de Acopio)
+    Coordenadas: 7.080153, -73.846347
+    
+    🚩 = Punto de inicio de ruta
+    🏁 = Punto final (Carrera 33)
+    ─── = Trazado de la ruta
+    </description>
+    <Style id="inicio">
+      <IconStyle>
+        <Icon>
+          <href>http://maps.google.com/mapfiles/kml/paddle/blu-circle.png</href>
+        </Icon>
+        <scale>1.2</scale>
+      </IconStyle>
+    </Style>
+    <Style id="fin">
+      <IconStyle>
+        <Icon>
+          <href>http://maps.google.com/mapfiles/kml/paddle/red-stars.png</href>
+        </Icon>
+        <scale>1.5</scale>
+      </IconStyle>
+    </Style>
+    <Style id="linea1">
+      <LineStyle>
+        <color>ff0000ff</color>
+        <width>4</width>
+      </LineStyle>
+    </Style>
+    <Style id="linea2">
+      <LineStyle>
+        <color>ff00ff00</color>
+        <width>4</width>
+      </LineStyle>
+    </Style>
+    <Style id="linea3">
+      <LineStyle>
+        <color>ffff0000</color>
+        <width>4</width>
+      </LineStyle>
+    </Style>
+    <Folder>
+      <name>COMUNA 2 - Micro Rutas de Aprovechamiento</name>
+      <Placemark>
+        <name>🏁 CARRERA 33 - PUNTO FINAL COMÚN</name>
+        <description>
+    &lt;b&gt;⭐ PUNTO DE ACOPIO - DESTINO FINAL DE TODAS LAS RUTAS&lt;/b&gt;&lt;br/&gt;&lt;br/&gt;
+    &lt;b&gt;Ubicación:&lt;/b&gt; Carrera 33, Barrancabermeja&lt;br/&gt;
+    &lt;b&gt;Coordenadas:&lt;/b&gt; 7.080153, -73.846347&lt;br/&gt;&lt;br/&gt;
+    &lt;b&gt;Todas las 3 micro rutas de Comuna 2 finalizan aquí&lt;/b&gt;
+    </description>
+        <styleUrl>#fin</styleUrl>
+        <Point>
+          <coordinates>-73.846347,7.080153,0</coordinates>
+        </Point>
+      </Placemark>
+      <Folder>
+        <name>MR-C2-01: Zona Aguas Claras</name>
+        <description>
+        &lt;b&gt;Barrios cubiertos:&lt;/b&gt;&lt;br/&gt;
+        Aguas Claras, Ciudad Bolívar, Torcoroma&lt;br/&gt;&lt;br/&gt;
+        &lt;b&gt;Horario:&lt;/b&gt; 07:00 - 11:00&lt;br/&gt;
+        &lt;b&gt;Días:&lt;/b&gt; Lunes-Miércoles-Viernes&lt;br/&gt;
+        &lt;b&gt;Distancia:&lt;/b&gt; 1.67 km&lt;br/&gt;
+        &lt;b&gt;Vehículo:&lt;/b&gt; Triciclo
+        </description>
+        <Placemark>
+          <name>🚩 INICIO: Aguas Claras</name>
+          <description>
+        &lt;b&gt;Micro Ruta:&lt;/b&gt; MR-C2-01: Zona Aguas Claras&lt;br/&gt;
+        &lt;b&gt;Comuna:&lt;/b&gt; 2&lt;br/&gt;
+        &lt;b&gt;Punto de inicio:&lt;/b&gt; Aguas Claras&lt;br/&gt;&lt;br/&gt;
+        &lt;b&gt;Barrios en esta ruta:&lt;/b&gt;&lt;br/&gt;
+        Aguas Claras, Ciudad Bolívar, Torcoroma&lt;br/&gt;&lt;br/&gt;
+        &lt;b&gt;Horario:&lt;/b&gt; 07:00 - 11:00&lt;br/&gt;
+        &lt;b&gt;Frecuencia:&lt;/b&gt; Lunes-Miércoles-Viernes&lt;br/&gt;
+        &lt;b&gt;Distancia total:&lt;/b&gt; 1.67 km&lt;br/&gt;
+        &lt;b&gt;Vehículo asignado:&lt;/b&gt; Triciclo&lt;br/&gt;&lt;br/&gt;
+        &lt;b&gt;Destino:&lt;/b&gt; Carrera 33 (Punto de Acopio)
+        </description>
+          <styleUrl>#inicio</styleUrl>
+          <Point>
+            <coordinates>-73.85,7.075,0</coordinates>
+          </Point>
+        </Placemark>
+        <Placemark>
+          <name>─── Recorrido C2-01</name>
+          <description>
+        &lt;b&gt;Trazado de ruta desde Aguas Claras hasta Carrera 33&lt;/b&gt;&lt;br/&gt;
+        Distancia: 1.67 km
+        </description>
+          <styleUrl>#linea1</styleUrl>
+          <LineString>
+            <tessellate>1</tessellate>
+            <coordinates>-73.85,7.075,0 -73.85166666666667,7.077333333333333,0 -73.846347,7.080153,0</coordinates>
+          </LineString>
+        </Placemark>
+      </Folder>
+      <Folder>
+        <name>MR-C2-02: Zona Galán Gómez</name>
+        <description>
+        &lt;b&gt;Barrios cubiertos:&lt;/b&gt;&lt;br/&gt;
+        Galán Gómez, Parnaso, Villa Luz&lt;br/&gt;&lt;br/&gt;
+        &lt;b&gt;Horario:&lt;/b&gt; 07:00 - 11:00&lt;br/&gt;
+        &lt;b&gt;Días:&lt;/b&gt; Martes-Jueves-Sábado&lt;br/&gt;
+        &lt;b&gt;Distancia:&lt;/b&gt; 1.9 km&lt;br/&gt;
+        &lt;b&gt;Vehículo:&lt;/b&gt; Triciclo
+        </description>
+        <Placemark>
+          <name>🚩 INICIO: Galán Gómez</name>
+          <description>
+        &lt;b&gt;Micro Ruta:&lt;/b&gt; MR-C2-02: Zona Galán Gómez&lt;br/&gt;
+        &lt;b&gt;Comuna:&lt;/b&gt; 2&lt;br/&gt;
+        &lt;b&gt;Punto de inicio:&lt;/b&gt; Galán Gómez&lt;br/&gt;&lt;br/&gt;
+        &lt;b&gt;Barrios en esta ruta:&lt;/b&gt;&lt;br/&gt;
+        Galán Gómez, Parnaso, Villa Luz&lt;br/&gt;&lt;br/&gt;
+        &lt;b&gt;Horario:&lt;/b&gt; 07:00 - 11:00&lt;br/&gt;
+        &lt;b&gt;Frecuencia:&lt;/b&gt; Martes-Jueves-Sábado&lt;br/&gt;
+        &lt;b&gt;Distancia total:&lt;/b&gt; 1.9 km&lt;br/&gt;
+        &lt;b&gt;Vehículo asignado:&lt;/b&gt; Triciclo&lt;br/&gt;&lt;br/&gt;
+        &lt;b&gt;Destino:&lt;/b&gt; Carrera 33 (Punto de Acopio)
+        </description>
+          <styleUrl>#inicio</styleUrl>
+          <Point>
+            <coordinates>-73.853,7.073,0</coordinates>
+          </Point>
+        </Placemark>
+        <Placemark>
+          <name>─── Recorrido C2-02</name>
+          <description>
+        &lt;b&gt;Trazado de ruta desde Galán Gómez hasta Carrera 33&lt;/b&gt;&lt;br/&gt;
+        Distancia: 1.9 km
+        </description>
+          <styleUrl>#linea2</styleUrl>
+          <LineString>
+            <tessellate>1</tessellate>
+            <coordinates>-73.853,7.073,0 -73.85199999999999,7.074333333333333,0 -73.846347,7.080153,0</coordinates>
+          </LineString>
+        </Placemark>
+      </Folder>
+      <Folder>
+        <name>MR-C2-03: Zona Olaya Herrera</name>
+        <description>
+        &lt;b&gt;Barrios cubiertos:&lt;/b&gt;&lt;br/&gt;
+        Olaya Herrera, Pueblo Nuevo, Uribe Uribe&lt;br/&gt;&lt;br/&gt;
+        &lt;b&gt;Horario:&lt;/b&gt; 11:30 - 15:30&lt;br/&gt;
+        &lt;b&gt;Días:&lt;/b&gt; Lunes-Miércoles-Viernes&lt;br/&gt;
+        &lt;b&gt;Distancia:&lt;/b&gt; 2.06 km&lt;br/&gt;
+        &lt;b&gt;Vehículo:&lt;/b&gt; Triciclo
+        </description>
+        <Placemark>
+          <name>🚩 INICIO: Olaya Herrera</name>
+          <description>
+        &lt;b&gt;Micro Ruta:&lt;/b&gt; MR-C2-03: Zona Olaya Herrera&lt;br/&gt;
+        &lt;b&gt;Comuna:&lt;/b&gt; 2&lt;br/&gt;
+        &lt;b&gt;Punto de inicio:&lt;/b&gt; Olaya Herrera&lt;br/&gt;&lt;br/&gt;
+        &lt;b&gt;Barrios en esta ruta:&lt;/b&gt;&lt;br/&gt;
+        Olaya Herrera, Pueblo Nuevo, Uribe Uribe&lt;br/&gt;&lt;br/&gt;
+        &lt;b&gt;Horario:&lt;/b&gt; 11:30 - 15:30&lt;br/&gt;
+        &lt;b&gt;Frecuencia:&lt;/b&gt; Lunes-Miércoles-Viernes&lt;br/&gt;
+        &lt;b&gt;Distancia total:&lt;/b&gt; 2.06 km&lt;br/&gt;
+        &lt;b&gt;Vehículo asignado:&lt;/b&gt; Triciclo&lt;br/&gt;&lt;br/&gt;
+        &lt;b&gt;Destino:&lt;/b&gt; Carrera 33 (Punto de Acopio)
+        </description>
+          <styleUrl>#inicio</styleUrl>
+          <Point>
+            <coordinates>-73.855,7.076,0</coordinates>
+          </Point>
+        </Placemark>
+        <Placemark>
+          <name>─── Recorrido C2-03</name>
+          <description>
+        &lt;b&gt;Trazado de ruta desde Olaya Herrera hasta Carrera 33&lt;/b&gt;&lt;br/&gt;
+        Distancia: 2.06 km
+        </description>
+          <styleUrl>#linea3</styleUrl>
+          <LineString>
+            <tessellate>1</tessellate>
+            <coordinates>-73.855,7.076,0 -73.855,7.0760000000000005,0 -73.846347,7.080153,0</coordinates>
+          </LineString>
+        </Placemark>
+      </Folder>
+    </Folder>
+  </Document>
+</kml>

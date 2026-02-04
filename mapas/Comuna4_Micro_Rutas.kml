@@ -1,0 +1,386 @@
+<?xml version="1.0" encoding="utf-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+  <Document>
+    <name>Micro Rutas Comuna 4 - Barrancabermeja</name>
+    <description>
+    Sistema de Micro Rutas de Aprovechamiento
+    COMUNA 4 - Barrancabermeja, Santander
+    
+    42 barrios organizados en 7 micro rutas
+    Todas las rutas finalizan en: Carrera 33 (Punto de Acopio)
+    Coordenadas: 7.080153, -73.846347
+    
+    🚩 = Punto de inicio de ruta
+    🏁 = Punto final (Carrera 33)
+    ─── = Trazado de la ruta
+    </description>
+    <Style id="inicio">
+      <IconStyle>
+        <Icon>
+          <href>http://maps.google.com/mapfiles/kml/paddle/orange-circle.png</href>
+        </Icon>
+        <scale>1.2</scale>
+      </IconStyle>
+    </Style>
+    <Style id="fin">
+      <IconStyle>
+        <Icon>
+          <href>http://maps.google.com/mapfiles/kml/paddle/red-stars.png</href>
+        </Icon>
+        <scale>1.5</scale>
+      </IconStyle>
+    </Style>
+    <Style id="linea1">
+      <LineStyle>
+        <color>ff0000ff</color>
+        <width>4</width>
+      </LineStyle>
+    </Style>
+    <Style id="linea2">
+      <LineStyle>
+        <color>ff00ff00</color>
+        <width>4</width>
+      </LineStyle>
+    </Style>
+    <Style id="linea3">
+      <LineStyle>
+        <color>ffff0000</color>
+        <width>4</width>
+      </LineStyle>
+    </Style>
+    <Style id="linea4">
+      <LineStyle>
+        <color>ff00ffff</color>
+        <width>4</width>
+      </LineStyle>
+    </Style>
+    <Style id="linea5">
+      <LineStyle>
+        <color>ffff00ff</color>
+        <width>4</width>
+      </LineStyle>
+    </Style>
+    <Style id="linea6">
+      <LineStyle>
+        <color>ffffff00</color>
+        <width>4</width>
+      </LineStyle>
+    </Style>
+    <Style id="linea7">
+      <LineStyle>
+        <color>ff808080</color>
+        <width>4</width>
+      </LineStyle>
+    </Style>
+    <Folder>
+      <name>COMUNA 4 - Micro Rutas de Aprovechamiento</name>
+      <Placemark>
+        <name>🏁 CARRERA 33 - PUNTO FINAL COMÚN</name>
+        <description>
+    &lt;b&gt;⭐ PUNTO DE ACOPIO - DESTINO FINAL DE TODAS LAS RUTAS&lt;/b&gt;&lt;br/&gt;&lt;br/&gt;
+    &lt;b&gt;Ubicación:&lt;/b&gt; Carrera 33, Barrancabermeja&lt;br/&gt;
+    &lt;b&gt;Coordenadas:&lt;/b&gt; 7.080153, -73.846347&lt;br/&gt;&lt;br/&gt;
+    &lt;b&gt;Todas las 7 micro rutas de Comuna 4 finalizan aquí&lt;/b&gt;
+    </description>
+        <styleUrl>#fin</styleUrl>
+        <Point>
+          <coordinates>-73.846347,7.080153,0</coordinates>
+        </Point>
+      </Placemark>
+      <Folder>
+        <name>MR-C4-01: Zona J.V.C. Asentamiento Human</name>
+        <description>
+        &lt;b&gt;Barrios cubiertos (6):&lt;/b&gt;&lt;br/&gt;
+        J.V.C. Asentamiento Humano Nuevo Milenio Sur, J.V.C Miradores De La Ceiba, J.V.C. Urbanización 2000, Planada Del Cerro, Bosques De La Cira, Bosques De La Cira II&lt;br/&gt;&lt;br/&gt;
+        &lt;b&gt;Horario:&lt;/b&gt; 06:30 - 11:00&lt;br/&gt;
+        &lt;b&gt;Días:&lt;/b&gt; Lunes-Miércoles-Viernes&lt;br/&gt;
+        &lt;b&gt;Distancia:&lt;/b&gt; 5.07 km&lt;br/&gt;
+        &lt;b&gt;Vehículo:&lt;/b&gt; Camión
+        </description>
+        <Placemark>
+          <name>🚩 INICIO: J.V.C. Asentamiento Humano Nuevo Mi</name>
+          <description>
+        &lt;b&gt;Micro Ruta:&lt;/b&gt; MR-C4-01: Zona J.V.C. Asentamiento Human&lt;br/&gt;
+        &lt;b&gt;Comuna:&lt;/b&gt; 4&lt;br/&gt;
+        &lt;b&gt;Punto de inicio:&lt;/b&gt; J.V.C. Asentamiento Humano Nuevo Milenio Sur&lt;br/&gt;&lt;br/&gt;
+        &lt;b&gt;Barrios en esta ruta (6):&lt;/b&gt;&lt;br/&gt;
+        J.V.C. Asentamiento Humano Nuevo Milenio Sur, J.V.C Miradores De La Ceiba, J.V.C. Urbanización 2000, Planada Del Cerro, Bosques De La Cira, Bosques De La Cira II&lt;br/&gt;&lt;br/&gt;
+        &lt;b&gt;Horario:&lt;/b&gt; 06:30 - 11:00&lt;br/&gt;
+        &lt;b&gt;Frecuencia:&lt;/b&gt; Lunes-Miércoles-Viernes&lt;br/&gt;
+        &lt;b&gt;Distancia total:&lt;/b&gt; 5.07 km&lt;br/&gt;
+        &lt;b&gt;Vehículo asignado:&lt;/b&gt; Camión&lt;br/&gt;&lt;br/&gt;
+        &lt;b&gt;Destino:&lt;/b&gt; Carrera 33 (Punto de Acopio)
+        </description>
+          <styleUrl>#inicio</styleUrl>
+          <Point>
+            <coordinates>-73.839,7.05,0</coordinates>
+          </Point>
+        </Placemark>
+        <Placemark>
+          <name>─── Recorrido C4-01</name>
+          <description>
+        &lt;b&gt;Trazado de ruta desde J.V.C. Asentamiento Humano Nuevo Milenio Sur hasta Carrera 33&lt;/b&gt;&lt;br/&gt;
+        Distancia: 5.07 km
+        </description>
+          <styleUrl>#linea1</styleUrl>
+          <LineString>
+            <tessellate>1</tessellate>
+            <coordinates>-73.839,7.05,0 -73.8395,7.0515,0 -73.846347,7.080153,0</coordinates>
+          </LineString>
+        </Placemark>
+      </Folder>
+      <Folder>
+        <name>MR-C4-02: Zona Prados Del Cincuentenario</name>
+        <description>
+        &lt;b&gt;Barrios cubiertos (6):&lt;/b&gt;&lt;br/&gt;
+        Prados Del Cincuentenario, J.V.C. Villa Olímpica, J.V.C. Urbanización Villa Sandra, Autoconstrucción VII Etapa Cincuentenario, J.V.C. Villa Del Cincuentenario, Santa Bárbara&lt;br/&gt;&lt;br/&gt;
+        &lt;b&gt;Horario:&lt;/b&gt; 06:30 - 11:00&lt;br/&gt;
+        &lt;b&gt;Días:&lt;/b&gt; Martes-Jueves-Sábado&lt;br/&gt;
+        &lt;b&gt;Distancia:&lt;/b&gt; 4.8 km&lt;br/&gt;
+        &lt;b&gt;Vehículo:&lt;/b&gt; Camión
+        </description>
+        <Placemark>
+          <name>🚩 INICIO: Prados Del Cincuentenario</name>
+          <description>
+        &lt;b&gt;Micro Ruta:&lt;/b&gt; MR-C4-02: Zona Prados Del Cincuentenario&lt;br/&gt;
+        &lt;b&gt;Comuna:&lt;/b&gt; 4&lt;br/&gt;
+        &lt;b&gt;Punto de inicio:&lt;/b&gt; Prados Del Cincuentenario&lt;br/&gt;&lt;br/&gt;
+        &lt;b&gt;Barrios en esta ruta (6):&lt;/b&gt;&lt;br/&gt;
+        Prados Del Cincuentenario, J.V.C. Villa Olímpica, J.V.C. Urbanización Villa Sandra, Autoconstrucción VII Etapa Cincuentenario, J.V.C. Villa Del Cincuentenario, Santa Bárbara&lt;br/&gt;&lt;br/&gt;
+        &lt;b&gt;Horario:&lt;/b&gt; 06:30 - 11:00&lt;br/&gt;
+        &lt;b&gt;Frecuencia:&lt;/b&gt; Martes-Jueves-Sábado&lt;br/&gt;
+        &lt;b&gt;Distancia total:&lt;/b&gt; 4.8 km&lt;br/&gt;
+        &lt;b&gt;Vehículo asignado:&lt;/b&gt; Camión&lt;br/&gt;&lt;br/&gt;
+        &lt;b&gt;Destino:&lt;/b&gt; Carrera 33 (Punto de Acopio)
+        </description>
+          <styleUrl>#inicio</styleUrl>
+          <Point>
+            <coordinates>-73.843,7.053,0</coordinates>
+          </Point>
+        </Placemark>
+        <Placemark>
+          <name>─── Recorrido C4-02</name>
+          <description>
+        &lt;b&gt;Trazado de ruta desde Prados Del Cincuentenario hasta Carrera 33&lt;/b&gt;&lt;br/&gt;
+        Distancia: 4.8 km
+        </description>
+          <styleUrl>#linea2</styleUrl>
+          <LineString>
+            <tessellate>1</tessellate>
+            <coordinates>-73.843,7.053,0 -73.84383333333334,7.053333333333334,0 -73.846347,7.080153,0</coordinates>
+          </LineString>
+        </Placemark>
+      </Folder>
+      <Folder>
+        <name>MR-C4-03: Zona Altos Del Cincuentenario</name>
+        <description>
+        &lt;b&gt;Barrios cubiertos (6):&lt;/b&gt;&lt;br/&gt;
+        Altos Del Cincuentenario, Cincuentenario Vi Etapa Sector El Madrigal, Limonar, Los Mandarinos, Altos Del Cañaveral, Los Almendros&lt;br/&gt;&lt;br/&gt;
+        &lt;b&gt;Horario:&lt;/b&gt; 07:30 - 12:00&lt;br/&gt;
+        &lt;b&gt;Días:&lt;/b&gt; Lunes-Miércoles-Viernes&lt;br/&gt;
+        &lt;b&gt;Distancia:&lt;/b&gt; 4.67 km&lt;br/&gt;
+        &lt;b&gt;Vehículo:&lt;/b&gt; Triciclo
+        </description>
+        <Placemark>
+          <name>🚩 INICIO: Altos Del Cincuentenario</name>
+          <description>
+        &lt;b&gt;Micro Ruta:&lt;/b&gt; MR-C4-03: Zona Altos Del Cincuentenario&lt;br/&gt;
+        &lt;b&gt;Comuna:&lt;/b&gt; 4&lt;br/&gt;
+        &lt;b&gt;Punto de inicio:&lt;/b&gt; Altos Del Cincuentenario&lt;br/&gt;&lt;br/&gt;
+        &lt;b&gt;Barrios en esta ruta (6):&lt;/b&gt;&lt;br/&gt;
+        Altos Del Cincuentenario, Cincuentenario Vi Etapa Sector El Madrigal, Limonar, Los Mandarinos, Altos Del Cañaveral, Los Almendros&lt;br/&gt;&lt;br/&gt;
+        &lt;b&gt;Horario:&lt;/b&gt; 07:30 - 12:00&lt;br/&gt;
+        &lt;b&gt;Frecuencia:&lt;/b&gt; Lunes-Miércoles-Viernes&lt;br/&gt;
+        &lt;b&gt;Distancia total:&lt;/b&gt; 4.67 km&lt;br/&gt;
+        &lt;b&gt;Vehículo asignado:&lt;/b&gt; Triciclo&lt;br/&gt;&lt;br/&gt;
+        &lt;b&gt;Destino:&lt;/b&gt; Carrera 33 (Punto de Acopio)
+        </description>
+          <styleUrl>#inicio</styleUrl>
+          <Point>
+            <coordinates>-73.84,7.055,0</coordinates>
+          </Point>
+        </Placemark>
+        <Placemark>
+          <name>─── Recorrido C4-03</name>
+          <description>
+        &lt;b&gt;Trazado de ruta desde Altos Del Cincuentenario hasta Carrera 33&lt;/b&gt;&lt;br/&gt;
+        Distancia: 4.67 km
+        </description>
+          <styleUrl>#linea3</styleUrl>
+          <LineString>
+            <tessellate>1</tessellate>
+            <coordinates>-73.84,7.055,0 -73.83916666666666,7.0553333333333335,0 -73.846347,7.080153,0</coordinates>
+          </LineString>
+        </Placemark>
+      </Folder>
+      <Folder>
+        <name>MR-C4-04: Zona Cincuentenario</name>
+        <description>
+        &lt;b&gt;Barrios cubiertos (6):&lt;/b&gt;&lt;br/&gt;
+        Cincuentenario, Ciudadela Del Cincuentenario, La Liga, Los Naranjos, J.V.C. Los Nogales, Los Pinos&lt;br/&gt;&lt;br/&gt;
+        &lt;b&gt;Horario:&lt;/b&gt; 07:30 - 12:00&lt;br/&gt;
+        &lt;b&gt;Días:&lt;/b&gt; Martes-Jueves-Sábado&lt;br/&gt;
+        &lt;b&gt;Distancia:&lt;/b&gt; 4.42 km&lt;br/&gt;
+        &lt;b&gt;Vehículo:&lt;/b&gt; Triciclo
+        </description>
+        <Placemark>
+          <name>🚩 INICIO: Cincuentenario</name>
+          <description>
+        &lt;b&gt;Micro Ruta:&lt;/b&gt; MR-C4-04: Zona Cincuentenario&lt;br/&gt;
+        &lt;b&gt;Comuna:&lt;/b&gt; 4&lt;br/&gt;
+        &lt;b&gt;Punto de inicio:&lt;/b&gt; Cincuentenario&lt;br/&gt;&lt;br/&gt;
+        &lt;b&gt;Barrios en esta ruta (6):&lt;/b&gt;&lt;br/&gt;
+        Cincuentenario, Ciudadela Del Cincuentenario, La Liga, Los Naranjos, J.V.C. Los Nogales, Los Pinos&lt;br/&gt;&lt;br/&gt;
+        &lt;b&gt;Horario:&lt;/b&gt; 07:30 - 12:00&lt;br/&gt;
+        &lt;b&gt;Frecuencia:&lt;/b&gt; Martes-Jueves-Sábado&lt;br/&gt;
+        &lt;b&gt;Distancia total:&lt;/b&gt; 4.42 km&lt;br/&gt;
+        &lt;b&gt;Vehículo asignado:&lt;/b&gt; Triciclo&lt;br/&gt;&lt;br/&gt;
+        &lt;b&gt;Destino:&lt;/b&gt; Carrera 33 (Punto de Acopio)
+        </description>
+          <styleUrl>#inicio</styleUrl>
+          <Point>
+            <coordinates>-73.841,7.057,0</coordinates>
+          </Point>
+        </Placemark>
+        <Placemark>
+          <name>─── Recorrido C4-04</name>
+          <description>
+        &lt;b&gt;Trazado de ruta desde Cincuentenario hasta Carrera 33&lt;/b&gt;&lt;br/&gt;
+        Distancia: 4.42 km
+        </description>
+          <styleUrl>#linea4</styleUrl>
+          <LineString>
+            <tessellate>1</tessellate>
+            <coordinates>-73.841,7.057,0 -73.84033333333333,7.057333333333333,0 -73.846347,7.080153,0</coordinates>
+          </LineString>
+        </Placemark>
+      </Folder>
+      <Folder>
+        <name>MR-C4-05: Zona El Bosque</name>
+        <description>
+        &lt;b&gt;Barrios cubiertos (6):&lt;/b&gt;&lt;br/&gt;
+        El Bosque, Antonia Santos, El Castillo, Bellavista, El Palmar, La Península&lt;br/&gt;&lt;br/&gt;
+        &lt;b&gt;Horario:&lt;/b&gt; 11:30 - 16:00&lt;br/&gt;
+        &lt;b&gt;Días:&lt;/b&gt; Lunes-Miércoles-Viernes&lt;br/&gt;
+        &lt;b&gt;Distancia:&lt;/b&gt; 4.23 km&lt;br/&gt;
+        &lt;b&gt;Vehículo:&lt;/b&gt; Triciclo
+        </description>
+        <Placemark>
+          <name>🚩 INICIO: El Bosque</name>
+          <description>
+        &lt;b&gt;Micro Ruta:&lt;/b&gt; MR-C4-05: Zona El Bosque&lt;br/&gt;
+        &lt;b&gt;Comuna:&lt;/b&gt; 4&lt;br/&gt;
+        &lt;b&gt;Punto de inicio:&lt;/b&gt; El Bosque&lt;br/&gt;&lt;br/&gt;
+        &lt;b&gt;Barrios en esta ruta (6):&lt;/b&gt;&lt;br/&gt;
+        El Bosque, Antonia Santos, El Castillo, Bellavista, El Palmar, La Península&lt;br/&gt;&lt;br/&gt;
+        &lt;b&gt;Horario:&lt;/b&gt; 11:30 - 16:00&lt;br/&gt;
+        &lt;b&gt;Frecuencia:&lt;/b&gt; Lunes-Miércoles-Viernes&lt;br/&gt;
+        &lt;b&gt;Distancia total:&lt;/b&gt; 4.23 km&lt;br/&gt;
+        &lt;b&gt;Vehículo asignado:&lt;/b&gt; Triciclo&lt;br/&gt;&lt;br/&gt;
+        &lt;b&gt;Destino:&lt;/b&gt; Carrera 33 (Punto de Acopio)
+        </description>
+          <styleUrl>#inicio</styleUrl>
+          <Point>
+            <coordinates>-73.84,7.058,0</coordinates>
+          </Point>
+        </Placemark>
+        <Placemark>
+          <name>─── Recorrido C4-05</name>
+          <description>
+        &lt;b&gt;Trazado de ruta desde El Bosque hasta Carrera 33&lt;/b&gt;&lt;br/&gt;
+        Distancia: 4.23 km
+        </description>
+          <styleUrl>#linea5</styleUrl>
+          <LineString>
+            <tessellate>1</tessellate>
+            <coordinates>-73.84,7.058,0 -73.84233333333333,7.058666666666666,0 -73.846347,7.080153,0</coordinates>
+          </LineString>
+        </Placemark>
+      </Folder>
+      <Folder>
+        <name>MR-C4-06: Zona Buenavista</name>
+        <description>
+        &lt;b&gt;Barrios cubiertos (6):&lt;/b&gt;&lt;br/&gt;
+        Buenavista, Buenavista II, El Refugio, Las Brisas, Las Nieves, Los Lagos&lt;br/&gt;&lt;br/&gt;
+        &lt;b&gt;Horario:&lt;/b&gt; 11:30 - 16:00&lt;br/&gt;
+        &lt;b&gt;Días:&lt;/b&gt; Martes-Jueves-Sábado&lt;br/&gt;
+        &lt;b&gt;Distancia:&lt;/b&gt; 4.01 km&lt;br/&gt;
+        &lt;b&gt;Vehículo:&lt;/b&gt; Triciclo
+        </description>
+        <Placemark>
+          <name>🚩 INICIO: Buenavista</name>
+          <description>
+        &lt;b&gt;Micro Ruta:&lt;/b&gt; MR-C4-06: Zona Buenavista&lt;br/&gt;
+        &lt;b&gt;Comuna:&lt;/b&gt; 4&lt;br/&gt;
+        &lt;b&gt;Punto de inicio:&lt;/b&gt; Buenavista&lt;br/&gt;&lt;br/&gt;
+        &lt;b&gt;Barrios en esta ruta (6):&lt;/b&gt;&lt;br/&gt;
+        Buenavista, Buenavista II, El Refugio, Las Brisas, Las Nieves, Los Lagos&lt;br/&gt;&lt;br/&gt;
+        &lt;b&gt;Horario:&lt;/b&gt; 11:30 - 16:00&lt;br/&gt;
+        &lt;b&gt;Frecuencia:&lt;/b&gt; Martes-Jueves-Sábado&lt;br/&gt;
+        &lt;b&gt;Distancia total:&lt;/b&gt; 4.01 km&lt;br/&gt;
+        &lt;b&gt;Vehículo asignado:&lt;/b&gt; Triciclo&lt;br/&gt;&lt;br/&gt;
+        &lt;b&gt;Destino:&lt;/b&gt; Carrera 33 (Punto de Acopio)
+        </description>
+          <styleUrl>#inicio</styleUrl>
+          <Point>
+            <coordinates>-73.844,7.06,0</coordinates>
+          </Point>
+        </Placemark>
+        <Placemark>
+          <name>─── Recorrido C4-06</name>
+          <description>
+        &lt;b&gt;Trazado de ruta desde Buenavista hasta Carrera 33&lt;/b&gt;&lt;br/&gt;
+        Distancia: 4.01 km
+        </description>
+          <styleUrl>#linea6</styleUrl>
+          <LineString>
+            <tessellate>1</tessellate>
+            <coordinates>-73.844,7.06,0 -73.8455,7.060333333333333,0 -73.846347,7.080153,0</coordinates>
+          </LineString>
+        </Placemark>
+      </Folder>
+      <Folder>
+        <name>MR-C4-07: Zona Jose Antonio Galán</name>
+        <description>
+        &lt;b&gt;Barrios cubiertos (6):&lt;/b&gt;&lt;br/&gt;
+        Jose Antonio Galán, Marsella, Tamarindos Club, Villa De Leyva, Yarima, Villa Rosa&lt;br/&gt;&lt;br/&gt;
+        &lt;b&gt;Horario:&lt;/b&gt; 12:30 - 17:00&lt;br/&gt;
+        &lt;b&gt;Días:&lt;/b&gt; Lunes-Miércoles-Viernes&lt;br/&gt;
+        &lt;b&gt;Distancia:&lt;/b&gt; 3.74 km&lt;br/&gt;
+        &lt;b&gt;Vehículo:&lt;/b&gt; Triciclo
+        </description>
+        <Placemark>
+          <name>🚩 INICIO: Jose Antonio Galán</name>
+          <description>
+        &lt;b&gt;Micro Ruta:&lt;/b&gt; MR-C4-07: Zona Jose Antonio Galán&lt;br/&gt;
+        &lt;b&gt;Comuna:&lt;/b&gt; 4&lt;br/&gt;
+        &lt;b&gt;Punto de inicio:&lt;/b&gt; Jose Antonio Galán&lt;br/&gt;&lt;br/&gt;
+        &lt;b&gt;Barrios en esta ruta (6):&lt;/b&gt;&lt;br/&gt;
+        Jose Antonio Galán, Marsella, Tamarindos Club, Villa De Leyva, Yarima, Villa Rosa&lt;br/&gt;&lt;br/&gt;
+        &lt;b&gt;Horario:&lt;/b&gt; 12:30 - 17:00&lt;br/&gt;
+        &lt;b&gt;Frecuencia:&lt;/b&gt; Lunes-Miércoles-Viernes&lt;br/&gt;
+        &lt;b&gt;Distancia total:&lt;/b&gt; 3.74 km&lt;br/&gt;
+        &lt;b&gt;Vehículo asignado:&lt;/b&gt; Triciclo&lt;br/&gt;&lt;br/&gt;
+        &lt;b&gt;Destino:&lt;/b&gt; Carrera 33 (Punto de Acopio)
+        </description>
+          <styleUrl>#inicio</styleUrl>
+          <Point>
+            <coordinates>-73.844,7.062,0</coordinates>
+          </Point>
+        </Placemark>
+        <Placemark>
+          <name>─── Recorrido C4-07</name>
+          <description>
+        &lt;b&gt;Trazado de ruta desde Jose Antonio Galán hasta Carrera 33&lt;/b&gt;&lt;br/&gt;
+        Distancia: 3.74 km
+        </description>
+          <styleUrl>#linea7</styleUrl>
+          <LineString>
+            <tessellate>1</tessellate>
+            <coordinates>-73.844,7.062,0 -73.84616666666666,7.062666666666666,0 -73.846347,7.080153,0</coordinates>
+          </LineString>
+        </Placemark>
+      </Folder>
+    </Folder>
+  </Document>
+</kml>

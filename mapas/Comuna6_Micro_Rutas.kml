@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="utf-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+  <Document>
+    <name>Micro Rutas Comuna 6 - Barrancabermeja</name>
+    <description>
+    Sistema de Micro Rutas de Aprovechamiento
+    COMUNA 6 - Barrancabermeja, Santander
+    
+    24 barrios organizados en 4 micro rutas
+    Todas las rutas finalizan en: Carrera 33 (Punto de Acopio)
+    Coordenadas: 7.080153, -73.846347
+    
+    🚩 = Punto de inicio de ruta
+    🏁 = Punto final (Carrera 33)
+    ─── = Trazado de la ruta
+    </description>
+    <Style id="inicio">
+      <IconStyle>
+        <Icon>
+          <href>http://maps.google.com/mapfiles/kml/paddle/pink-circle.png</href>
+        </Icon>
+        <scale>1.2</scale>
+      </IconStyle>
+    </Style>
+    <Style id="fin">
+      <IconStyle>
+        <Icon>
+          <href>http://maps.google.com/mapfiles/kml/paddle/red-stars.png</href>
+        </Icon>
+        <scale>1.5</scale>
+      </IconStyle>
+    </Style>
+    <Style id="linea1">
+      <LineStyle>
+        <color>ff0000ff</color>
+        <width>4</width>
+      </LineStyle>
+    </Style>
+    <Style id="linea2">
+      <LineStyle>
+        <color>ff00ff00</color>
+        <width>4</width>
+      </LineStyle>
+    </Style>
+    <Style id="linea3">
+      <LineStyle>
+        <color>ffff0000</color>
+        <width>4</width>
+      </LineStyle>
+    </Style>
+    <Style id="linea4">
+      <LineStyle>
+        <color>ff00ffff</color>
+        <width>4</width>
+      </LineStyle>
+    </Style>
+    <Folder>
+      <name>COMUNA 6 - Micro Rutas de Aprovechamiento</name>
+      <Placemark>
+        <name>🏁 CARRERA 33 - PUNTO FINAL COMÚN</name>
+        <description>
+    &lt;b&gt;⭐ PUNTO DE ACOPIO - DESTINO FINAL DE TODAS LAS RUTAS&lt;/b&gt;&lt;br/&gt;&lt;br/&gt;
+    &lt;b&gt;Ubicación:&lt;/b&gt; Carrera 33, Barrancabermeja&lt;br/&gt;
+    &lt;b&gt;Coordenadas:&lt;/b&gt; 7.080153, -73.846347&lt;br/&gt;&lt;br/&gt;
+    &lt;b&gt;Todas las 4 micro rutas de Comuna 6 finalizan aquí&lt;/b&gt;
+    </description>
+        <styleUrl>#fin</styleUrl>
+        <Point>
+          <coordinates>-73.846347,7.080153,0</coordinates>
+        </Point>
+      </Placemark>
+      <Folder>
+        <name>MR-C6-01: Zona Antonio Nariño</name>
+        <description>
+        &lt;b&gt;Barrios cubiertos (6):&lt;/b&gt;&lt;br/&gt;
+        Antonio Nariño, J.V.C 6 De Enero, San Pedro, Rafael Rangel, J.V.C. Los Reyes, Kennedy&lt;br/&gt;&lt;br/&gt;
+        &lt;b&gt;Horario:&lt;/b&gt; 07:00 - 11:00&lt;br/&gt;
+        &lt;b&gt;Días:&lt;/b&gt; Lunes-Miércoles-Viernes&lt;br/&gt;
+        &lt;b&gt;Distancia:&lt;/b&gt; 2.11 km&lt;br/&gt;
+        &lt;b&gt;Vehículo:&lt;/b&gt; Triciclo
+        </description>
+        <Placemark>
+          <name>🚩 INICIO: Antonio Nariño</name>
+          <description>
+        &lt;b&gt;Micro Ruta:&lt;/b&gt; MR-C6-01: Zona Antonio Nariño&lt;br/&gt;
+        &lt;b&gt;Comuna:&lt;/b&gt; 6&lt;br/&gt;
+        &lt;b&gt;Punto de inicio:&lt;/b&gt; Antonio Nariño&lt;br/&gt;&lt;br/&gt;
+        &lt;b&gt;Barrios en esta ruta (6):&lt;/b&gt;&lt;br/&gt;
+        Antonio Nariño, J.V.C 6 De Enero, San Pedro, Rafael Rangel, J.V.C. Los Reyes, Kennedy&lt;br/&gt;&lt;br/&gt;
+        &lt;b&gt;Horario:&lt;/b&gt; 07:00 - 11:00&lt;br/&gt;
+        &lt;b&gt;Frecuencia:&lt;/b&gt; Lunes-Miércoles-Viernes&lt;br/&gt;
+        &lt;b&gt;Distancia total:&lt;/b&gt; 2.11 km&lt;br/&gt;
+        &lt;b&gt;Vehículo asignado:&lt;/b&gt; Triciclo&lt;br/&gt;&lt;br/&gt;
+        &lt;b&gt;Destino:&lt;/b&gt; Carrera 33 (Punto de Acopio)
+        </description>
+          <styleUrl>#inicio</styleUrl>
+          <Point>
+            <coordinates>-73.85,7.072,0</coordinates>
+          </Point>
+        </Placemark>
+        <Placemark>
+          <name>─── Recorrido C6-01</name>
+          <description>
+        &lt;b&gt;Trazado de ruta desde Antonio Nariño hasta Carrera 33&lt;/b&gt;&lt;br/&gt;
+        Distancia: 2.11 km
+        </description>
+          <styleUrl>#linea1</styleUrl>
+          <LineString>
+            <tessellate>1</tessellate>
+            <coordinates>-73.85,7.072,0 -73.84916666666666,7.072500000000001,0 -73.846347,7.080153,0</coordinates>
+          </LineString>
+        </Placemark>
+      </Folder>
+      <Folder>
+        <name>MR-C6-02: Zona Benjamín Herrera</name>
+        <description>
+        &lt;b&gt;Barrios cubiertos (6):&lt;/b&gt;&lt;br/&gt;
+        Benjamín Herrera, Brisas De San Martin, Puerta Del Sol, Villa Fauda, Boston, Veinte De Julio&lt;br/&gt;&lt;br/&gt;
+        &lt;b&gt;Horario:&lt;/b&gt; 07:00 - 11:00&lt;br/&gt;
+        &lt;b&gt;Días:&lt;/b&gt; Martes-Jueves-Sábado&lt;br/&gt;
+        &lt;b&gt;Distancia:&lt;/b&gt; 1.93 km&lt;br/&gt;
+        &lt;b&gt;Vehículo:&lt;/b&gt; Triciclo
+        </description>
+        <Placemark>
+          <name>🚩 INICIO: Benjamín Herrera</name>
+          <description>
+        &lt;b&gt;Micro Ruta:&lt;/b&gt; MR-C6-02: Zona Benjamín Herrera&lt;br/&gt;
+        &lt;b&gt;Comuna:&lt;/b&gt; 6&lt;br/&gt;
+        &lt;b&gt;Punto de inicio:&lt;/b&gt; Benjamín Herrera&lt;br/&gt;&lt;br/&gt;
+        &lt;b&gt;Barrios en esta ruta (6):&lt;/b&gt;&lt;br/&gt;
+        Benjamín Herrera, Brisas De San Martin, Puerta Del Sol, Villa Fauda, Boston, Veinte De Julio&lt;br/&gt;&lt;br/&gt;
+        &lt;b&gt;Horario:&lt;/b&gt; 07:00 - 11:00&lt;br/&gt;
+        &lt;b&gt;Frecuencia:&lt;/b&gt; Martes-Jueves-Sábado&lt;br/&gt;
+        &lt;b&gt;Distancia total:&lt;/b&gt; 1.93 km&lt;br/&gt;
+        &lt;b&gt;Vehículo asignado:&lt;/b&gt; Triciclo&lt;br/&gt;&lt;br/&gt;
+        &lt;b&gt;Destino:&lt;/b&gt; Carrera 33 (Punto de Acopio)
+        </description>
+          <styleUrl>#inicio</styleUrl>
+          <Point>
+            <coordinates>-73.849,7.073,0</coordinates>
+          </Point>
+        </Placemark>
+        <Placemark>
+          <name>─── Recorrido C6-02</name>
+          <description>
+        &lt;b&gt;Trazado de ruta desde Benjamín Herrera hasta Carrera 33&lt;/b&gt;&lt;br/&gt;
+        Distancia: 1.93 km
+        </description>
+          <styleUrl>#linea2</styleUrl>
+          <LineString>
+            <tessellate>1</tessellate>
+            <coordinates>-73.849,7.073,0 -73.84916666666668,7.074166666666667,0 -73.846347,7.080153,0</coordinates>
+          </LineString>
+        </Placemark>
+      </Folder>
+      <Folder>
+        <name>MR-C6-03: Zona Brisas De Versalles J.V.C</name>
+        <description>
+        &lt;b&gt;Barrios cubiertos (6):&lt;/b&gt;&lt;br/&gt;
+        Brisas De Versalles J.V.C, J.V.C. Veinte De Agosto, Danubio, Oro Negro, Veinte De Agosto, Las Granjas&lt;br/&gt;&lt;br/&gt;
+        &lt;b&gt;Horario:&lt;/b&gt; 11:30 - 15:30&lt;br/&gt;
+        &lt;b&gt;Días:&lt;/b&gt; Lunes-Miércoles-Viernes&lt;br/&gt;
+        &lt;b&gt;Distancia:&lt;/b&gt; 1.8199999999999998 km&lt;br/&gt;
+        &lt;b&gt;Vehículo:&lt;/b&gt; Triciclo
+        </description>
+        <Placemark>
+          <name>🚩 INICIO: Brisas De Versalles J.V.C</name>
+          <description>
+        &lt;b&gt;Micro Ruta:&lt;/b&gt; MR-C6-03: Zona Brisas De Versalles J.V.C&lt;br/&gt;
+        &lt;b&gt;Comuna:&lt;/b&gt; 6&lt;br/&gt;
+        &lt;b&gt;Punto de inicio:&lt;/b&gt; Brisas De Versalles J.V.C&lt;br/&gt;&lt;br/&gt;
+        &lt;b&gt;Barrios en esta ruta (6):&lt;/b&gt;&lt;br/&gt;
+        Brisas De Versalles J.V.C, J.V.C. Veinte De Agosto, Danubio, Oro Negro, Veinte De Agosto, Las Granjas&lt;br/&gt;&lt;br/&gt;
+        &lt;b&gt;Horario:&lt;/b&gt; 11:30 - 15:30&lt;br/&gt;
+        &lt;b&gt;Frecuencia:&lt;/b&gt; Lunes-Miércoles-Viernes&lt;br/&gt;
+        &lt;b&gt;Distancia total:&lt;/b&gt; 1.8199999999999998 km&lt;br/&gt;
+        &lt;b&gt;Vehículo asignado:&lt;/b&gt; Triciclo&lt;br/&gt;&lt;br/&gt;
+        &lt;b&gt;Destino:&lt;/b&gt; Carrera 33 (Punto de Acopio)
+        </description>
+          <styleUrl>#inicio</styleUrl>
+          <Point>
+            <coordinates>-73.85,7.076,0</coordinates>
+          </Point>
+        </Placemark>
+        <Placemark>
+          <name>─── Recorrido C6-03</name>
+          <description>
+        &lt;b&gt;Trazado de ruta desde Brisas De Versalles J.V.C hasta Carrera 33&lt;/b&gt;&lt;br/&gt;
+        Distancia: 1.8199999999999998 km
+        </description>
+          <styleUrl>#linea3</styleUrl>
+          <LineString>
+            <tessellate>1</tessellate>
+            <coordinates>-73.85,7.076,0 -73.85033333333332,7.0761666666666665,0 -73.846347,7.080153,0</coordinates>
+          </LineString>
+        </Placemark>
+      </Folder>
+      <Folder>
+        <name>MR-C6-04: Zona Brisas Del Oriente</name>
+        <description>
+        &lt;b&gt;Barrios cubiertos (6):&lt;/b&gt;&lt;br/&gt;
+        Brisas Del Oriente, Los Álamos, Urbanización Las Granjas, Corintos, Los Comuneros, Villa Del Coral&lt;br/&gt;&lt;br/&gt;
+        &lt;b&gt;Horario:&lt;/b&gt; 11:30 - 15:30&lt;br/&gt;
+        &lt;b&gt;Días:&lt;/b&gt; Martes-Jueves-Sábado&lt;br/&gt;
+        &lt;b&gt;Distancia:&lt;/b&gt; 1.79 km&lt;br/&gt;
+        &lt;b&gt;Vehículo:&lt;/b&gt; Triciclo
+        </description>
+        <Placemark>
+          <name>🚩 INICIO: Brisas Del Oriente</name>
+          <description>
+        &lt;b&gt;Micro Ruta:&lt;/b&gt; MR-C6-04: Zona Brisas Del Oriente&lt;br/&gt;
+        &lt;b&gt;Comuna:&lt;/b&gt; 6&lt;br/&gt;
+        &lt;b&gt;Punto de inicio:&lt;/b&gt; Brisas Del Oriente&lt;br/&gt;&lt;br/&gt;
+        &lt;b&gt;Barrios en esta ruta (6):&lt;/b&gt;&lt;br/&gt;
+        Brisas Del Oriente, Los Álamos, Urbanización Las Granjas, Corintos, Los Comuneros, Villa Del Coral&lt;br/&gt;&lt;br/&gt;
+        &lt;b&gt;Horario:&lt;/b&gt; 11:30 - 15:30&lt;br/&gt;
+        &lt;b&gt;Frecuencia:&lt;/b&gt; Martes-Jueves-Sábado&lt;br/&gt;
+        &lt;b&gt;Distancia total:&lt;/b&gt; 1.79 km&lt;br/&gt;
+        &lt;b&gt;Vehículo asignado:&lt;/b&gt; Triciclo&lt;br/&gt;&lt;br/&gt;
+        &lt;b&gt;Destino:&lt;/b&gt; Carrera 33 (Punto de Acopio)
+        </description>
+          <styleUrl>#inicio</styleUrl>
+          <Point>
+            <coordinates>-73.847,7.077,0</coordinates>
+          </Point>
+        </Placemark>
+        <Placemark>
+          <name>─── Recorrido C6-04</name>
+          <description>
+        &lt;b&gt;Trazado de ruta desde Brisas Del Oriente hasta Carrera 33&lt;/b&gt;&lt;br/&gt;
+        Distancia: 1.79 km
+        </description>
+          <styleUrl>#linea4</styleUrl>
+          <LineString>
+            <tessellate>1</tessellate>
+            <coordinates>-73.847,7.077,0 -73.85000000000001,7.076333333333333,0 -73.846347,7.080153,0</coordinates>
+          </LineString>
+        </Placemark>
+      </Folder>
+    </Folder>
+  </Document>
+</kml>

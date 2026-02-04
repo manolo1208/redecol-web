@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="utf-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+  <Document>
+    <name>Micro Rutas Comuna 7 - Barrancabermeja - ¡SISTEMA COMPLETO!</name>
+    <description>
+    Sistema de Micro Rutas de Aprovechamiento
+    COMUNA 7 - Barrancabermeja, Santander
+    
+    23 barrios organizados en 4 micro rutas
+    ¡ÚLTIMA COMUNA - SISTEMA 100% COMPLETO!
+    
+    Todas las rutas finalizan en: Carrera 33 (Punto de Acopio)
+    Coordenadas: 7.080153, -73.846347
+    
+    🚩 = Punto de inicio de ruta
+    🏁 = Punto final (Carrera 33)
+    ─── = Trazado de la ruta
+    </description>
+    <Style id="inicio">
+      <IconStyle>
+        <Icon>
+          <href>http://maps.google.com/mapfiles/kml/paddle/wht-circle.png</href>
+        </Icon>
+        <scale>1.2</scale>
+      </IconStyle>
+    </Style>
+    <Style id="fin">
+      <IconStyle>
+        <Icon>
+          <href>http://maps.google.com/mapfiles/kml/paddle/red-stars.png</href>
+        </Icon>
+        <scale>1.5</scale>
+      </IconStyle>
+    </Style>
+    <Style id="linea1">
+      <LineStyle>
+        <color>ff0000ff</color>
+        <width>4</width>
+      </LineStyle>
+    </Style>
+    <Style id="linea2">
+      <LineStyle>
+        <color>ff00ff00</color>
+        <width>4</width>
+      </LineStyle>
+    </Style>
+    <Style id="linea3">
+      <LineStyle>
+        <color>ffff0000</color>
+        <width>4</width>
+      </LineStyle>
+    </Style>
+    <Style id="linea4">
+      <LineStyle>
+        <color>ff00ffff</color>
+        <width>4</width>
+      </LineStyle>
+    </Style>
+    <Folder>
+      <name>COMUNA 7 - Micro Rutas de Aprovechamiento - ¡ÚLTIMA COMUNA!</name>
+      <Placemark>
+        <name>🏁 CARRERA 33 - PUNTO FINAL COMÚN</name>
+        <description>
+    &lt;b&gt;⭐ PUNTO DE ACOPIO - DESTINO FINAL DE TODAS LAS RUTAS&lt;/b&gt;&lt;br/&gt;&lt;br/&gt;
+    &lt;b&gt;Ubicación:&lt;/b&gt; Carrera 33, Barrancabermeja&lt;br/&gt;
+    &lt;b&gt;Coordenadas:&lt;/b&gt; 7.080153, -73.846347&lt;br/&gt;&lt;br/&gt;
+    &lt;b&gt;Todas las 4 micro rutas de Comuna 7 finalizan aquí&lt;/b&gt;&lt;br/&gt;
+    &lt;b&gt;¡SISTEMA COMPLETO - 7/7 COMUNAS TERMINADAS!&lt;/b&gt;
+    </description>
+        <styleUrl>#fin</styleUrl>
+        <Point>
+          <coordinates>-73.846347,7.080153,0</coordinates>
+        </Point>
+      </Placemark>
+      <Folder>
+        <name>MR-C7-01: Zona Vereda La Independencia</name>
+        <description>
+        &lt;b&gt;Barrios cubiertos (6):&lt;/b&gt;&lt;br/&gt;
+        Vereda La Independencia, Asentamiento Humano Villa Aura, Villarelis Uno, Asentamiento Humano Las Palmas, Villarelis Dos, 16 De Marzo&lt;br/&gt;&lt;br/&gt;
+        &lt;b&gt;Horario:&lt;/b&gt; 07:00 - 11:30&lt;br/&gt;
+        &lt;b&gt;Días:&lt;/b&gt; Lunes-Miércoles-Viernes&lt;br/&gt;
+        &lt;b&gt;Distancia:&lt;/b&gt; 4.640000000000001 km&lt;br/&gt;
+        &lt;b&gt;Vehículo:&lt;/b&gt; Motocarro
+        </description>
+        <Placemark>
+          <name>🚩 INICIO: Vereda La Independencia</name>
+          <description>
+        &lt;b&gt;Micro Ruta:&lt;/b&gt; MR-C7-01: Zona Vereda La Independencia&lt;br/&gt;
+        &lt;b&gt;Comuna:&lt;/b&gt; 7 (¡ÚLTIMA!)&lt;br/&gt;
+        &lt;b&gt;Punto de inicio:&lt;/b&gt; Vereda La Independencia&lt;br/&gt;&lt;br/&gt;
+        &lt;b&gt;Barrios en esta ruta (6):&lt;/b&gt;&lt;br/&gt;
+        Vereda La Independencia, Asentamiento Humano Villa Aura, Villarelis Uno, Asentamiento Humano Las Palmas, Villarelis Dos, 16 De Marzo&lt;br/&gt;&lt;br/&gt;
+        &lt;b&gt;Horario:&lt;/b&gt; 07:00 - 11:30&lt;br/&gt;
+        &lt;b&gt;Frecuencia:&lt;/b&gt; Lunes-Miércoles-Viernes&lt;br/&gt;
+        &lt;b&gt;Distancia total:&lt;/b&gt; 4.640000000000001 km&lt;br/&gt;
+        &lt;b&gt;Vehículo asignado:&lt;/b&gt; Motocarro&lt;br/&gt;&lt;br/&gt;
+        &lt;b&gt;Destino:&lt;/b&gt; Carrera 33 (Punto de Acopio)
+        </description>
+          <styleUrl>#inicio</styleUrl>
+          <Point>
+            <coordinates>-73.858,7.052,0</coordinates>
+          </Point>
+        </Placemark>
+        <Placemark>
+          <name>─── Recorrido C7-01</name>
+          <description>
+        &lt;b&gt;Trazado de ruta desde Vereda La Independencia hasta Carrera 33&lt;/b&gt;&lt;br/&gt;
+        Distancia: 4.640000000000001 km
+        </description>
+          <styleUrl>#linea1</styleUrl>
+          <LineString>
+            <tessellate>1</tessellate>
+            <coordinates>-73.858,7.052,0 -73.85583333333334,7.0535,0 -73.846347,7.080153,0</coordinates>
+          </LineString>
+        </Placemark>
+      </Folder>
+      <Folder>
+        <name>MR-C7-02: Zona Villarelis Tres</name>
+        <description>
+        &lt;b&gt;Barrios cubiertos (6):&lt;/b&gt;&lt;br/&gt;
+        Villarelis Tres, Pablo Acuña, Nuevo Horizonte, 9 De Abril, Divino Niño, Maria Eugenia&lt;br/&gt;&lt;br/&gt;
+        &lt;b&gt;Horario:&lt;/b&gt; 07:00 - 11:30&lt;br/&gt;
+        &lt;b&gt;Días:&lt;/b&gt; Martes-Jueves-Sábado&lt;br/&gt;
+        &lt;b&gt;Distancia:&lt;/b&gt; 4.3100000000000005 km&lt;br/&gt;
+        &lt;b&gt;Vehículo:&lt;/b&gt; Motocarro
+        </description>
+        <Placemark>
+          <name>🚩 INICIO: Villarelis Tres</name>
+          <description>
+        &lt;b&gt;Micro Ruta:&lt;/b&gt; MR-C7-02: Zona Villarelis Tres&lt;br/&gt;
+        &lt;b&gt;Comuna:&lt;/b&gt; 7 (¡ÚLTIMA!)&lt;br/&gt;
+        &lt;b&gt;Punto de inicio:&lt;/b&gt; Villarelis Tres&lt;br/&gt;&lt;br/&gt;
+        &lt;b&gt;Barrios en esta ruta (6):&lt;/b&gt;&lt;br/&gt;
+        Villarelis Tres, Pablo Acuña, Nuevo Horizonte, 9 De Abril, Divino Niño, Maria Eugenia&lt;br/&gt;&lt;br/&gt;
+        &lt;b&gt;Horario:&lt;/b&gt; 07:00 - 11:30&lt;br/&gt;
+        &lt;b&gt;Frecuencia:&lt;/b&gt; Martes-Jueves-Sábado&lt;br/&gt;
+        &lt;b&gt;Distancia total:&lt;/b&gt; 4.3100000000000005 km&lt;br/&gt;
+        &lt;b&gt;Vehículo asignado:&lt;/b&gt; Motocarro&lt;br/&gt;&lt;br/&gt;
+        &lt;b&gt;Destino:&lt;/b&gt; Carrera 33 (Punto de Acopio)
+        </description>
+          <styleUrl>#inicio</styleUrl>
+          <Point>
+            <coordinates>-73.856,7.055,0</coordinates>
+          </Point>
+        </Placemark>
+        <Placemark>
+          <name>─── Recorrido C7-02</name>
+          <description>
+        &lt;b&gt;Trazado de ruta desde Villarelis Tres hasta Carrera 33&lt;/b&gt;&lt;br/&gt;
+        Distancia: 4.3100000000000005 km
+        </description>
+          <styleUrl>#linea2</styleUrl>
+          <LineString>
+            <tessellate>1</tessellate>
+            <coordinates>-73.856,7.055,0 -73.85383333333333,7.056,0 -73.846347,7.080153,0</coordinates>
+          </LineString>
+        </Placemark>
+      </Folder>
+      <Folder>
+        <name>MR-C7-03: Zona El Campin</name>
+        <description>
+        &lt;b&gt;Barrios cubiertos (6):&lt;/b&gt;&lt;br/&gt;
+        El Campin, Altos Del Campestre, Campestre, Las Flores, Los Fundadores, Colinas Del Campestre&lt;br/&gt;&lt;br/&gt;
+        &lt;b&gt;Horario:&lt;/b&gt; 12:00 - 16:30&lt;br/&gt;
+        &lt;b&gt;Días:&lt;/b&gt; Lunes-Miércoles-Viernes&lt;br/&gt;
+        &lt;b&gt;Distancia:&lt;/b&gt; 3.98 km&lt;br/&gt;
+        &lt;b&gt;Vehículo:&lt;/b&gt; Triciclo
+        </description>
+        <Placemark>
+          <name>🚩 INICIO: El Campin</name>
+          <description>
+        &lt;b&gt;Micro Ruta:&lt;/b&gt; MR-C7-03: Zona El Campin&lt;br/&gt;
+        &lt;b&gt;Comuna:&lt;/b&gt; 7 (¡ÚLTIMA!)&lt;br/&gt;
+        &lt;b&gt;Punto de inicio:&lt;/b&gt; El Campin&lt;br/&gt;&lt;br/&gt;
+        &lt;b&gt;Barrios en esta ruta (6):&lt;/b&gt;&lt;br/&gt;
+        El Campin, Altos Del Campestre, Campestre, Las Flores, Los Fundadores, Colinas Del Campestre&lt;br/&gt;&lt;br/&gt;
+        &lt;b&gt;Horario:&lt;/b&gt; 12:00 - 16:30&lt;br/&gt;
+        &lt;b&gt;Frecuencia:&lt;/b&gt; Lunes-Miércoles-Viernes&lt;br/&gt;
+        &lt;b&gt;Distancia total:&lt;/b&gt; 3.98 km&lt;br/&gt;
+        &lt;b&gt;Vehículo asignado:&lt;/b&gt; Triciclo&lt;br/&gt;&lt;br/&gt;
+        &lt;b&gt;Destino:&lt;/b&gt; Carrera 33 (Punto de Acopio)
+        </description>
+          <styleUrl>#inicio</styleUrl>
+          <Point>
+            <coordinates>-73.854,7.058,0</coordinates>
+          </Point>
+        </Placemark>
+        <Placemark>
+          <name>─── Recorrido C7-03</name>
+          <description>
+        &lt;b&gt;Trazado de ruta desde El Campin hasta Carrera 33&lt;/b&gt;&lt;br/&gt;
+        Distancia: 3.98 km
+        </description>
+          <styleUrl>#linea3</styleUrl>
+          <LineString>
+            <tessellate>1</tessellate>
+            <coordinates>-73.854,7.058,0 -73.8535,7.059,0 -73.846347,7.080153,0</coordinates>
+          </LineString>
+        </Placemark>
+      </Folder>
+      <Folder>
+        <name>MR-C7-04: Zona El Paraíso</name>
+        <description>
+        &lt;b&gt;Barrios cubiertos (5):&lt;/b&gt;&lt;br/&gt;
+        El Paraíso, Minas Del Paraíso, Prados Del Campestre, Urbanización Los Corales, Urbanización Minas Del Paraíso VI Etapa&lt;br/&gt;&lt;br/&gt;
+        &lt;b&gt;Horario:&lt;/b&gt; 12:00 - 16:30&lt;br/&gt;
+        &lt;b&gt;Días:&lt;/b&gt; Martes-Jueves-Sábado&lt;br/&gt;
+        &lt;b&gt;Distancia:&lt;/b&gt; 3.65 km&lt;br/&gt;
+        &lt;b&gt;Vehículo:&lt;/b&gt; Triciclo
+        </description>
+        <Placemark>
+          <name>🚩 INICIO: El Paraíso</name>
+          <description>
+        &lt;b&gt;Micro Ruta:&lt;/b&gt; MR-C7-04: Zona El Paraíso&lt;br/&gt;
+        &lt;b&gt;Comuna:&lt;/b&gt; 7 (¡ÚLTIMA!)&lt;br/&gt;
+        &lt;b&gt;Punto de inicio:&lt;/b&gt; El Paraíso&lt;br/&gt;&lt;br/&gt;
+        &lt;b&gt;Barrios en esta ruta (5):&lt;/b&gt;&lt;br/&gt;
+        El Paraíso, Minas Del Paraíso, Prados Del Campestre, Urbanización Los Corales, Urbanización Minas Del Paraíso VI Etapa&lt;br/&gt;&lt;br/&gt;
+        &lt;b&gt;Horario:&lt;/b&gt; 12:00 - 16:30&lt;br/&gt;
+        &lt;b&gt;Frecuencia:&lt;/b&gt; Martes-Jueves-Sábado&lt;br/&gt;
+        &lt;b&gt;Distancia total:&lt;/b&gt; 3.65 km&lt;br/&gt;
+        &lt;b&gt;Vehículo asignado:&lt;/b&gt; Triciclo&lt;br/&gt;&lt;br/&gt;
+        &lt;b&gt;Destino:&lt;/b&gt; Carrera 33 (Punto de Acopio)
+        </description>
+          <styleUrl>#inicio</styleUrl>
+          <Point>
+            <coordinates>-73.852,7.061,0</coordinates>
+          </Point>
+        </Placemark>
+        <Placemark>
+          <name>─── Recorrido C7-04</name>
+          <description>
+        &lt;b&gt;Trazado de ruta desde El Paraíso hasta Carrera 33&lt;/b&gt;&lt;br/&gt;
+        Distancia: 3.65 km
+        </description>
+          <styleUrl>#linea4</styleUrl>
+          <LineString>
+            <tessellate>1</tessellate>
+            <coordinates>-73.852,7.061,0 -73.8524,7.0618,0 -73.846347,7.080153,0</coordinates>
+          </LineString>
+        </Placemark>
+      </Folder>
+    </Folder>
+  </Document>
+</kml>

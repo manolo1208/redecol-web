@@ -1,0 +1,338 @@
+<?xml version="1.0" encoding="utf-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+  <Document>
+    <name>Micro Rutas Comuna 5 - Barrancabermeja</name>
+    <description>
+    Sistema de Micro Rutas de Aprovechamiento
+    COMUNA 5 - Barrancabermeja, Santander
+    
+    36 barrios organizados en 6 micro rutas
+    Todas las rutas finalizan en: Carrera 33 (Punto de Acopio)
+    Coordenadas: 7.080153, -73.846347
+    
+    🚩 = Punto de inicio de ruta
+    🏁 = Punto final (Carrera 33)
+    ─── = Trazado de la ruta
+    </description>
+    <Style id="inicio">
+      <IconStyle>
+        <Icon>
+          <href>http://maps.google.com/mapfiles/kml/paddle/ylw-circle.png</href>
+        </Icon>
+        <scale>1.2</scale>
+      </IconStyle>
+    </Style>
+    <Style id="fin">
+      <IconStyle>
+        <Icon>
+          <href>http://maps.google.com/mapfiles/kml/paddle/red-stars.png</href>
+        </Icon>
+        <scale>1.5</scale>
+      </IconStyle>
+    </Style>
+    <Style id="linea1">
+      <LineStyle>
+        <color>ff0000ff</color>
+        <width>4</width>
+      </LineStyle>
+    </Style>
+    <Style id="linea2">
+      <LineStyle>
+        <color>ff00ff00</color>
+        <width>4</width>
+      </LineStyle>
+    </Style>
+    <Style id="linea3">
+      <LineStyle>
+        <color>ffff0000</color>
+        <width>4</width>
+      </LineStyle>
+    </Style>
+    <Style id="linea4">
+      <LineStyle>
+        <color>ff00ffff</color>
+        <width>4</width>
+      </LineStyle>
+    </Style>
+    <Style id="linea5">
+      <LineStyle>
+        <color>ffff00ff</color>
+        <width>4</width>
+      </LineStyle>
+    </Style>
+    <Style id="linea6">
+      <LineStyle>
+        <color>ffffff00</color>
+        <width>4</width>
+      </LineStyle>
+    </Style>
+    <Folder>
+      <name>COMUNA 5 - Micro Rutas de Aprovechamiento</name>
+      <Placemark>
+        <name>🏁 CARRERA 33 - PUNTO FINAL COMÚN</name>
+        <description>
+    &lt;b&gt;⭐ PUNTO DE ACOPIO - DESTINO FINAL DE TODAS LAS RUTAS&lt;/b&gt;&lt;br/&gt;&lt;br/&gt;
+    &lt;b&gt;Ubicación:&lt;/b&gt; Carrera 33, Barrancabermeja&lt;br/&gt;
+    &lt;b&gt;Coordenadas:&lt;/b&gt; 7.080153, -73.846347&lt;br/&gt;&lt;br/&gt;
+    &lt;b&gt;Todas las 6 micro rutas de Comuna 5 finalizan aquí&lt;/b&gt;
+    </description>
+        <styleUrl>#fin</styleUrl>
+        <Point>
+          <coordinates>-73.846347,7.080153,0</coordinates>
+        </Point>
+      </Placemark>
+      <Folder>
+        <name>MR-C5-01: Zona Tierra Adentro</name>
+        <description>
+        &lt;b&gt;Barrios cubiertos (6):&lt;/b&gt;&lt;br/&gt;
+        Tierra Adentro, J.V.C. Tierradentro II, Asentamiento Humano Nuevo Milenio, J.V.C. Ramaral, Las Malvinas Bajas, Asentamiento Humano Las Torres&lt;br/&gt;&lt;br/&gt;
+        &lt;b&gt;Horario:&lt;/b&gt; 07:00 - 11:30&lt;br/&gt;
+        &lt;b&gt;Días:&lt;/b&gt; Lunes-Miércoles-Viernes&lt;br/&gt;
+        &lt;b&gt;Distancia:&lt;/b&gt; 4.8100000000000005 km&lt;br/&gt;
+        &lt;b&gt;Vehículo:&lt;/b&gt; Furgón
+        </description>
+        <Placemark>
+          <name>🚩 INICIO: Tierra Adentro</name>
+          <description>
+        &lt;b&gt;Micro Ruta:&lt;/b&gt; MR-C5-01: Zona Tierra Adentro&lt;br/&gt;
+        &lt;b&gt;Comuna:&lt;/b&gt; 5&lt;br/&gt;
+        &lt;b&gt;Punto de inicio:&lt;/b&gt; Tierra Adentro&lt;br/&gt;&lt;br/&gt;
+        &lt;b&gt;Barrios en esta ruta (6):&lt;/b&gt;&lt;br/&gt;
+        Tierra Adentro, J.V.C. Tierradentro II, Asentamiento Humano Nuevo Milenio, J.V.C. Ramaral, Las Malvinas Bajas, Asentamiento Humano Las Torres&lt;br/&gt;&lt;br/&gt;
+        &lt;b&gt;Horario:&lt;/b&gt; 07:00 - 11:30&lt;br/&gt;
+        &lt;b&gt;Frecuencia:&lt;/b&gt; Lunes-Miércoles-Viernes&lt;br/&gt;
+        &lt;b&gt;Distancia total:&lt;/b&gt; 4.8100000000000005 km&lt;br/&gt;
+        &lt;b&gt;Vehículo asignado:&lt;/b&gt; Furgón&lt;br/&gt;&lt;br/&gt;
+        &lt;b&gt;Destino:&lt;/b&gt; Carrera 33 (Punto de Acopio)
+        </description>
+          <styleUrl>#inicio</styleUrl>
+          <Point>
+            <coordinates>-73.871,7.06,0</coordinates>
+          </Point>
+        </Placemark>
+        <Placemark>
+          <name>─── Recorrido C5-01</name>
+          <description>
+        &lt;b&gt;Trazado de ruta desde Tierra Adentro hasta Carrera 33&lt;/b&gt;&lt;br/&gt;
+        Distancia: 4.8100000000000005 km
+        </description>
+          <styleUrl>#linea1</styleUrl>
+          <LineString>
+            <tessellate>1</tessellate>
+            <coordinates>-73.871,7.06,0 -73.87016666666666,7.062,0 -73.846347,7.080153,0</coordinates>
+          </LineString>
+        </Placemark>
+      </Folder>
+      <Folder>
+        <name>MR-C5-02: Zona La Independencia</name>
+        <description>
+        &lt;b&gt;Barrios cubiertos (6):&lt;/b&gt;&lt;br/&gt;
+        La Independencia, Malvinas Alta, Asentamiento Humano La Nueva Esperanza, La Esperanza, San José De Provivienda, San José Obrero&lt;br/&gt;&lt;br/&gt;
+        &lt;b&gt;Horario:&lt;/b&gt; 07:00 - 11:30&lt;br/&gt;
+        &lt;b&gt;Días:&lt;/b&gt; Martes-Jueves-Sábado&lt;br/&gt;
+        &lt;b&gt;Distancia:&lt;/b&gt; 4.49 km&lt;br/&gt;
+        &lt;b&gt;Vehículo:&lt;/b&gt; Furgón
+        </description>
+        <Placemark>
+          <name>🚩 INICIO: La Independencia</name>
+          <description>
+        &lt;b&gt;Micro Ruta:&lt;/b&gt; MR-C5-02: Zona La Independencia&lt;br/&gt;
+        &lt;b&gt;Comuna:&lt;/b&gt; 5&lt;br/&gt;
+        &lt;b&gt;Punto de inicio:&lt;/b&gt; La Independencia&lt;br/&gt;&lt;br/&gt;
+        &lt;b&gt;Barrios en esta ruta (6):&lt;/b&gt;&lt;br/&gt;
+        La Independencia, Malvinas Alta, Asentamiento Humano La Nueva Esperanza, La Esperanza, San José De Provivienda, San José Obrero&lt;br/&gt;&lt;br/&gt;
+        &lt;b&gt;Horario:&lt;/b&gt; 07:00 - 11:30&lt;br/&gt;
+        &lt;b&gt;Frecuencia:&lt;/b&gt; Martes-Jueves-Sábado&lt;br/&gt;
+        &lt;b&gt;Distancia total:&lt;/b&gt; 4.49 km&lt;br/&gt;
+        &lt;b&gt;Vehículo asignado:&lt;/b&gt; Furgón&lt;br/&gt;&lt;br/&gt;
+        &lt;b&gt;Destino:&lt;/b&gt; Carrera 33 (Punto de Acopio)
+        </description>
+          <styleUrl>#inicio</styleUrl>
+          <Point>
+            <coordinates>-73.867,7.063,0</coordinates>
+          </Point>
+        </Placemark>
+        <Placemark>
+          <name>─── Recorrido C5-02</name>
+          <description>
+        &lt;b&gt;Trazado de ruta desde La Independencia hasta Carrera 33&lt;/b&gt;&lt;br/&gt;
+        Distancia: 4.49 km
+        </description>
+          <styleUrl>#linea2</styleUrl>
+          <LineString>
+            <tessellate>1</tessellate>
+            <coordinates>-73.867,7.063,0 -73.869,7.065333333333332,0 -73.846347,7.080153,0</coordinates>
+          </LineString>
+        </Placemark>
+      </Folder>
+      <Folder>
+        <name>MR-C5-03: Zona La Tora</name>
+        <description>
+        &lt;b&gt;Barrios cubiertos (6):&lt;/b&gt;&lt;br/&gt;
+        La Tora, Las Américas, Las Camelias, Las Mercedes, El Porvenir, El Triunfo&lt;br/&gt;&lt;br/&gt;
+        &lt;b&gt;Horario:&lt;/b&gt; 08:00 - 12:30&lt;br/&gt;
+        &lt;b&gt;Días:&lt;/b&gt; Lunes-Miércoles-Viernes&lt;br/&gt;
+        &lt;b&gt;Distancia:&lt;/b&gt; 4.21 km&lt;br/&gt;
+        &lt;b&gt;Vehículo:&lt;/b&gt; Triciclo
+        </description>
+        <Placemark>
+          <name>🚩 INICIO: La Tora</name>
+          <description>
+        &lt;b&gt;Micro Ruta:&lt;/b&gt; MR-C5-03: Zona La Tora&lt;br/&gt;
+        &lt;b&gt;Comuna:&lt;/b&gt; 5&lt;br/&gt;
+        &lt;b&gt;Punto de inicio:&lt;/b&gt; La Tora&lt;br/&gt;&lt;br/&gt;
+        &lt;b&gt;Barrios en esta ruta (6):&lt;/b&gt;&lt;br/&gt;
+        La Tora, Las Américas, Las Camelias, Las Mercedes, El Porvenir, El Triunfo&lt;br/&gt;&lt;br/&gt;
+        &lt;b&gt;Horario:&lt;/b&gt; 08:00 - 12:30&lt;br/&gt;
+        &lt;b&gt;Frecuencia:&lt;/b&gt; Lunes-Miércoles-Viernes&lt;br/&gt;
+        &lt;b&gt;Distancia total:&lt;/b&gt; 4.21 km&lt;br/&gt;
+        &lt;b&gt;Vehículo asignado:&lt;/b&gt; Triciclo&lt;br/&gt;&lt;br/&gt;
+        &lt;b&gt;Destino:&lt;/b&gt; Carrera 33 (Punto de Acopio)
+        </description>
+          <styleUrl>#inicio</styleUrl>
+          <Point>
+            <coordinates>-73.866,7.064,0</coordinates>
+          </Point>
+        </Placemark>
+        <Placemark>
+          <name>─── Recorrido C5-03</name>
+          <description>
+        &lt;b&gt;Trazado de ruta desde La Tora hasta Carrera 33&lt;/b&gt;&lt;br/&gt;
+        Distancia: 4.21 km
+        </description>
+          <styleUrl>#linea3</styleUrl>
+          <LineString>
+            <tessellate>1</tessellate>
+            <coordinates>-73.866,7.064,0 -73.8665,7.066166666666667,0 -73.846347,7.080153,0</coordinates>
+          </LineString>
+        </Placemark>
+      </Folder>
+      <Folder>
+        <name>MR-C5-04: Zona Barrancabermeja</name>
+        <description>
+        &lt;b&gt;Barrios cubiertos (6):&lt;/b&gt;&lt;br/&gt;
+        Barrancabermeja, Alcázar, La Candelaria, Miraflores, Los Rosales, Campo Alegre&lt;br/&gt;&lt;br/&gt;
+        &lt;b&gt;Horario:&lt;/b&gt; 08:00 - 12:30&lt;br/&gt;
+        &lt;b&gt;Días:&lt;/b&gt; Martes-Jueves-Sábado&lt;br/&gt;
+        &lt;b&gt;Distancia:&lt;/b&gt; 3.83 km&lt;br/&gt;
+        &lt;b&gt;Vehículo:&lt;/b&gt; Triciclo
+        </description>
+        <Placemark>
+          <name>🚩 INICIO: Barrancabermeja</name>
+          <description>
+        &lt;b&gt;Micro Ruta:&lt;/b&gt; MR-C5-04: Zona Barrancabermeja&lt;br/&gt;
+        &lt;b&gt;Comuna:&lt;/b&gt; 5&lt;br/&gt;
+        &lt;b&gt;Punto de inicio:&lt;/b&gt; Barrancabermeja&lt;br/&gt;&lt;br/&gt;
+        &lt;b&gt;Barrios en esta ruta (6):&lt;/b&gt;&lt;br/&gt;
+        Barrancabermeja, Alcázar, La Candelaria, Miraflores, Los Rosales, Campo Alegre&lt;br/&gt;&lt;br/&gt;
+        &lt;b&gt;Horario:&lt;/b&gt; 08:00 - 12:30&lt;br/&gt;
+        &lt;b&gt;Frecuencia:&lt;/b&gt; Martes-Jueves-Sábado&lt;br/&gt;
+        &lt;b&gt;Distancia total:&lt;/b&gt; 3.83 km&lt;br/&gt;
+        &lt;b&gt;Vehículo asignado:&lt;/b&gt; Triciclo&lt;br/&gt;&lt;br/&gt;
+        &lt;b&gt;Destino:&lt;/b&gt; Carrera 33 (Punto de Acopio)
+        </description>
+          <styleUrl>#inicio</styleUrl>
+          <Point>
+            <coordinates>-73.864,7.066,0</coordinates>
+          </Point>
+        </Placemark>
+        <Placemark>
+          <name>─── Recorrido C5-04</name>
+          <description>
+        &lt;b&gt;Trazado de ruta desde Barrancabermeja hasta Carrera 33&lt;/b&gt;&lt;br/&gt;
+        Distancia: 3.83 km
+        </description>
+          <styleUrl>#linea4</styleUrl>
+          <LineString>
+            <tessellate>1</tessellate>
+            <coordinates>-73.864,7.066,0 -73.86383333333333,7.0683333333333325,0 -73.846347,7.080153,0</coordinates>
+          </LineString>
+        </Placemark>
+      </Folder>
+      <Folder>
+        <name>MR-C5-05: Zona Chapinero</name>
+        <description>
+        &lt;b&gt;Barrios cubiertos (6):&lt;/b&gt;&lt;br/&gt;
+        Chapinero, Chapinero II, El Chico, Santander, Villa Rosita, Versalles&lt;br/&gt;&lt;br/&gt;
+        &lt;b&gt;Horario:&lt;/b&gt; 12:00 - 16:30&lt;br/&gt;
+        &lt;b&gt;Días:&lt;/b&gt; Lunes-Miércoles-Viernes&lt;br/&gt;
+        &lt;b&gt;Distancia:&lt;/b&gt; 3.65 km&lt;br/&gt;
+        &lt;b&gt;Vehículo:&lt;/b&gt; Triciclo
+        </description>
+        <Placemark>
+          <name>🚩 INICIO: Chapinero</name>
+          <description>
+        &lt;b&gt;Micro Ruta:&lt;/b&gt; MR-C5-05: Zona Chapinero&lt;br/&gt;
+        &lt;b&gt;Comuna:&lt;/b&gt; 5&lt;br/&gt;
+        &lt;b&gt;Punto de inicio:&lt;/b&gt; Chapinero&lt;br/&gt;&lt;br/&gt;
+        &lt;b&gt;Barrios en esta ruta (6):&lt;/b&gt;&lt;br/&gt;
+        Chapinero, Chapinero II, El Chico, Santander, Villa Rosita, Versalles&lt;br/&gt;&lt;br/&gt;
+        &lt;b&gt;Horario:&lt;/b&gt; 12:00 - 16:30&lt;br/&gt;
+        &lt;b&gt;Frecuencia:&lt;/b&gt; Lunes-Miércoles-Viernes&lt;br/&gt;
+        &lt;b&gt;Distancia total:&lt;/b&gt; 3.65 km&lt;br/&gt;
+        &lt;b&gt;Vehículo asignado:&lt;/b&gt; Triciclo&lt;br/&gt;&lt;br/&gt;
+        &lt;b&gt;Destino:&lt;/b&gt; Carrera 33 (Punto de Acopio)
+        </description>
+          <styleUrl>#inicio</styleUrl>
+          <Point>
+            <coordinates>-73.862,7.071,0</coordinates>
+          </Point>
+        </Placemark>
+        <Placemark>
+          <name>─── Recorrido C5-05</name>
+          <description>
+        &lt;b&gt;Trazado de ruta desde Chapinero hasta Carrera 33&lt;/b&gt;&lt;br/&gt;
+        Distancia: 3.65 km
+        </description>
+          <styleUrl>#linea5</styleUrl>
+          <LineString>
+            <tessellate>1</tessellate>
+            <coordinates>-73.862,7.071,0 -73.86383333333333,7.071666666666666,0 -73.846347,7.080153,0</coordinates>
+          </LineString>
+        </Placemark>
+      </Folder>
+      <Folder>
+        <name>MR-C5-06: Zona Simon Bolívar</name>
+        <description>
+        &lt;b&gt;Barrios cubiertos (6):&lt;/b&gt;&lt;br/&gt;
+        Simon Bolívar, Primero De Mayo, Asentamiento Humano Colinas Del Seminario, San Pedro Claver, Santa Ana, Urbanización Los Lagos&lt;br/&gt;&lt;br/&gt;
+        &lt;b&gt;Horario:&lt;/b&gt; 12:00 - 16:30&lt;br/&gt;
+        &lt;b&gt;Días:&lt;/b&gt; Martes-Jueves-Sábado&lt;br/&gt;
+        &lt;b&gt;Distancia:&lt;/b&gt; 3.99 km&lt;br/&gt;
+        &lt;b&gt;Vehículo:&lt;/b&gt; Triciclo
+        </description>
+        <Placemark>
+          <name>🚩 INICIO: Simon Bolívar</name>
+          <description>
+        &lt;b&gt;Micro Ruta:&lt;/b&gt; MR-C5-06: Zona Simon Bolívar&lt;br/&gt;
+        &lt;b&gt;Comuna:&lt;/b&gt; 5&lt;br/&gt;
+        &lt;b&gt;Punto de inicio:&lt;/b&gt; Simon Bolívar&lt;br/&gt;&lt;br/&gt;
+        &lt;b&gt;Barrios en esta ruta (6):&lt;/b&gt;&lt;br/&gt;
+        Simon Bolívar, Primero De Mayo, Asentamiento Humano Colinas Del Seminario, San Pedro Claver, Santa Ana, Urbanización Los Lagos&lt;br/&gt;&lt;br/&gt;
+        &lt;b&gt;Horario:&lt;/b&gt; 12:00 - 16:30&lt;br/&gt;
+        &lt;b&gt;Frecuencia:&lt;/b&gt; Martes-Jueves-Sábado&lt;br/&gt;
+        &lt;b&gt;Distancia total:&lt;/b&gt; 3.99 km&lt;br/&gt;
+        &lt;b&gt;Vehículo asignado:&lt;/b&gt; Triciclo&lt;br/&gt;&lt;br/&gt;
+        &lt;b&gt;Destino:&lt;/b&gt; Carrera 33 (Punto de Acopio)
+        </description>
+          <styleUrl>#inicio</styleUrl>
+          <Point>
+            <coordinates>-73.865,7.071,0</coordinates>
+          </Point>
+        </Placemark>
+        <Placemark>
+          <name>─── Recorrido C5-06</name>
+          <description>
+        &lt;b&gt;Trazado de ruta desde Simon Bolívar hasta Carrera 33&lt;/b&gt;&lt;br/&gt;
+        Distancia: 3.99 km
+        </description>
+          <styleUrl>#linea6</styleUrl>
+          <LineString>
+            <tessellate>1</tessellate>
+            <coordinates>-73.865,7.071,0 -73.8665,7.07,0 -73.846347,7.080153,0</coordinates>
+          </LineString>
+        </Placemark>
+      </Folder>
+    </Folder>
+  </Document>
+</kml>
