@@ -168,6 +168,7 @@
           <li><a href="#rutas" class="hover:text-primary-blue transition">Rutas</a></li>
           <li><a href="#pqr" class="hover:text-primary-blue transition">PQR</a></li>
           <li><a href="#comercial" class="hover:text-primary-blue transition">Comercial</a></li>
+          <li><a href="#documentos" class="hover:text-primary-blue transition">Documentos</a></li>
           <li><a href="#contacto" class="hover:text-primary-blue transition">Contacto</a></li>
         </ul>
       </nav>
@@ -189,6 +190,7 @@
         <a href="#rutas" class="block py-2 text-gray-700 hover:text-primary-blue transition">Rutas</a>
         <a href="#pqr" class="block py-2 text-gray-700 hover:text-primary-blue transition">PQR</a>
         <a href="#comercial" class="block py-2 text-gray-700 hover:text-primary-blue transition">Comercial</a>
+        <a href="#documentos" class="block py-2 text-gray-700 hover:text-primary-blue transition">Documentos</a>
         <a href="#contacto" class="block py-2 text-gray-700 hover:text-primary-blue transition">Contacto</a>
       </nav>
     </div>
@@ -508,12 +510,14 @@
         </table>
       </div>
 
-      <!-- Botón de descarga de PDF de rutas - CORREGIDO -->
-      <div class="text-center mb-8">
-        <a href="docs/docs/rutas_y_horarios.pdf" download class="pdf-download-btn">
-          <i class="fas fa-file-pdf"></i>
-          Descargar PDF de rutas
-        </a>
+      <!-- Botones de descarga -->
+      <div class="text-center mb-8 space-y-4">
+        <div>
+          <a href="docs/REDECOL_FRECUENCIAS_HORARIOS_APROVECHAMIENTO_BARRANCABERMEJA.pdf" download class="pdf-download-btn">
+            <i class="fas fa-file-pdf"></i>
+            Descargar PDF de Frecuencias y Horarios
+          </a>
+        </div>
       </div>
 
       <!-- Mapa interactivo funcional -->
@@ -533,12 +537,16 @@
       <div class="section-divider mb-12"></div>
 
       <div class="max-w-4xl mx-auto">
-        <!-- Botón de instrucciones -->
-        <div class="mb-6 text-center">
+        <!-- Botones de instrucciones y protocolo -->
+        <div class="mb-6 text-center space-x-4">
           <button onclick="abrirModal('modalPQR')" class="btn-instrucciones">
             <i class="fas fa-info-circle"></i>
             Ver instrucciones para PQRS
           </button>
+          <a href="docs/PROTOCOLO_PQR_REDECOL_ESP.pdf" target="_blank" class="btn-instrucciones" style="background: #8b5cf6;">
+            <i class="fas fa-file-contract"></i>
+            Ver Protocolo PQR
+          </a>
         </div>
 
         <div class="bg-light-blue p-8 rounded-lg shadow-lg">
@@ -695,30 +703,100 @@
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
 
-        <!-- Contrato de Condiciones Uniformes - CORREGIDO -->
+        <!-- Contrato de Condiciones Uniformes -->
         <div class="bg-white p-6 rounded-lg shadow-lg card-hover text-center border border-gray-200">
           <div class="mb-4">
             <i class="fas fa-file-contract text-5xl text-primary-blue"></i>
           </div>
           <h3 class="text-2xl font-bold text-primary-blue mb-4">Contrato de Condiciones Uniformes</h3>
           <p class="text-gray-600 mb-4">Consulta el documento oficial con los términos y condiciones del servicio público de aseo.</p>
-          <a href="docs/docs/CONTRATO_DE_CONDICIONES_UNIFORME_CCU.pdf" target="_blank" class="pdf-download-btn">
+          <a href="docs/CONTRATO_DE_CONDICIONES_UNIFORME_CCU.pdf" target="_blank" class="pdf-download-btn">
             <i class="fas fa-file-pdf"></i> Ver Contrato PDF
           </a>
         </div>
 
-        <!-- Portafolio REDECOL 2026 - CORREGIDO -->
+        <!-- Portafolio REDECOL 2026 -->
         <div class="bg-white p-6 rounded-lg shadow-lg card-hover text-center border border-gray-200">
           <div class="mb-4">
             <i class="fas fa-briefcase text-5xl text-primary-blue"></i>
           </div>
           <h3 class="text-2xl font-bold text-primary-blue mb-4">Portafolio REDECOL 2026</h3>
           <p class="text-gray-600 mb-4">Conoce nuestra oferta de servicios, objetivos y alcance institucional actualizado.</p>
-          <a href="docs/docs/PORTAFOLIO_REDECOL_ESP.pdf" download class="pdf-download-btn">
+          <a href="docs/PORTAFOLIO_REDECOL_ESP.pdf" download class="pdf-download-btn">
             <i class="fas fa-file-pdf"></i> Descargar Portafolio PDF
           </a>
         </div>
 
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== DOCUMENTOS INSTITUCIONALES ========== -->
+  <section id="documentos" class="py-16 bg-gray-50">
+    <div class="container mx-auto px-4">
+      <h2 class="text-4xl font-bold mb-4 text-center text-primary-blue">Documentos Institucionales</h2>
+      <div class="section-divider mb-12"></div>
+
+      <div class="max-w-5xl mx-auto">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+          <!-- Supervisión y Control Operativo -->
+          <div class="bg-white p-6 rounded-lg shadow-lg card-hover border border-gray-200">
+            <div class="flex items-center mb-4">
+              <i class="fas fa-clipboard-check text-4xl text-purple-600 mr-4"></i>
+              <h3 class="text-xl font-bold text-primary-blue">Supervisión y Control Operativo</h3>
+            </div>
+            <p class="text-gray-600 mb-4">Decreto 1381 de 2024 - Supervisión y control de operaciones de aprovechamiento.</p>
+            <a href="docs/REDECOL_Supervision_Control_Operativo_Decreto_1381_2024.pdf" target="_blank" class="text-secondary-blue hover:text-primary-blue font-semibold">
+              <i class="fas fa-file-pdf mr-2"></i>Ver documento →
+            </a>
+          </div>
+
+          <!-- Sistema Completo 193 Barrios -->
+          <div class="bg-white p-6 rounded-lg shadow-lg card-hover border border-gray-200">
+            <div class="flex items-center mb-4">
+              <i class="fas fa-map-marked-alt text-4xl text-green-600 mr-4"></i>
+              <h3 class="text-xl font-bold text-primary-blue">Sistema Completo - 193 Barrios</h3>
+            </div>
+            <p class="text-gray-600 mb-4">Listado completo de los 193 barrios atendidos por REDECOL en Barrancabermeja.</p>
+            <a href="docs/SISTEMA_COMPLETO_193_BARRIOS_Barrancabermeja.pdf" target="_blank" class="text-secondary-blue hover:text-primary-blue font-semibold">
+              <i class="fas fa-file-pdf mr-2"></i>Ver documento →
+            </a>
+          </div>
+
+        </div>
+
+        <!-- Sección de archivos KML para mapas -->
+        <div class="mt-8 bg-blue-50 p-6 rounded-lg border border-blue-200">
+          <h3 class="text-2xl font-bold text-primary-blue mb-4 flex items-center">
+            <i class="fas fa-globe text-3xl mr-3"></i>
+            Archivos de Mapas (KML)
+          </h3>
+          <p class="text-gray-700 mb-4">Descarga los archivos KML para visualizar las rutas en Google Earth o aplicaciones de mapas.</p>
+          
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div class="bg-white p-4 rounded shadow">
+              <h4 class="font-bold text-primary-blue mb-2">Ruta BA (Zona Norte)</h4>
+              <a href="docs/BA.kml" download class="text-secondary-blue hover:text-primary-blue font-semibold text-sm">
+                <i class="fas fa-download mr-2"></i>Descargar BA.kml
+              </a>
+            </div>
+            
+            <div class="bg-white p-4 rounded shadow">
+              <h4 class="font-bold text-primary-blue mb-2">Ruta BB (Zona Sur)</h4>
+              <a href="docs/BB.kml" download class="text-secondary-blue hover:text-primary-blue font-semibold text-sm">
+                <i class="fas fa-download mr-2"></i>Descargar BB.kml
+              </a>
+            </div>
+          </div>
+
+          <div class="mt-4 bg-white p-4 rounded border border-blue-100">
+            <p class="text-sm text-gray-600">
+              <i class="fas fa-info-circle text-blue-500 mr-2"></i>
+              <strong>Nota:</strong> Los archivos KML pueden abrirse con Google Earth, Google Maps, o cualquier aplicación compatible con este formato.
+            </p>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -963,23 +1041,6 @@
             para consolidar la economía circular en nuestra región."
           </p>
         </div>
-
-        <!-- Documentos relacionados - CORREGIDO -->
-        <div class="mt-6">
-          <h3 class="font-bold text-primary-blue mb-3">Documentos Relacionados</h3>
-          <div class="space-y-2">
-            <a href="docs/docs/reconocimiento_2025.pdf" target="_blank" 
-               class="flex items-center text-secondary-blue hover:text-primary-blue transition">
-              <i class="fas fa-file-pdf mr-2"></i>
-              Certificado de Reconocimiento (PDF)
-            </a>
-            <a href="docs/docs/informe_ambiental_2024.pdf" target="_blank" 
-               class="flex items-center text-secondary-blue hover:text-primary-blue transition">
-              <i class="fas fa-file-pdf mr-2"></i>
-              Informe de Gestión Ambiental 2024 (PDF)
-            </a>
-          </div>
-        </div>
       </div>
 
       <div class="text-center mt-6">
@@ -1066,31 +1127,6 @@
           </div>
         </div>
 
-        <!-- Documentos descargables - CORREGIDO -->
-        <div class="mt-6 bg-light-blue p-4 rounded">
-          <h3 class="font-bold text-primary-blue mb-3">
-            <i class="fas fa-download mr-2"></i>
-            Documentos Descargables
-          </h3>
-          <div class="space-y-2">
-            <a href="docs/docs/ruta_nororiental_mapa.pdf" download 
-               class="flex items-center text-secondary-blue hover:text-primary-blue transition">
-              <i class="fas fa-file-pdf mr-2"></i>
-              Mapa detallado de la ruta (PDF)
-            </a>
-            <a href="docs/docs/ruta_nororiental_horarios.pdf" download 
-               class="flex items-center text-secondary-blue hover:text-primary-blue transition">
-              <i class="fas fa-file-pdf mr-2"></i>
-              Horarios y frecuencias (PDF)
-            </a>
-            <a href="docs/docs/guia_separacion_fuente.pdf" download 
-               class="flex items-center text-secondary-blue hover:text-primary-blue transition">
-              <i class="fas fa-file-pdf mr-2"></i>
-              Guía de separación en la fuente (PDF)
-            </a>
-          </div>
-        </div>
-
         <!-- Instrucciones para residentes -->
         <div class="mt-6 bg-green-50 p-4 rounded">
           <h3 class="font-bold text-green-700 mb-3">
@@ -1159,3 +1195,4 @@
 
 </body>
 </html>
+
