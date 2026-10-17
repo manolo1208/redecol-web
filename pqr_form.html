@@ -2,89 +2,237 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Peticiones, Quejas y Recursos - REDECOL E.S.P.</title>
+    <title>PQRS y Reclamos - REDECOL E.S.P.</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .drop-zone {
+            border: 2px dashed #6b7280;
+            transition: all 0.3s ease;
+        }
+        .drop-zone:hover, .drop-zone.dragover {
+            border-color: #3b82f6;
+            background-color: #eff6ff;
+        }
+        .tag-btn {
+            transition: all 0.2s ease;
+        }
+        .tag-btn.active {
+            background-color: #3b82f6;
+            color: white;
+            border-color: #3b82f6;
+        }
+        .area-list option:checked {
+            background-color: #3b82f6;
+            color: white;
+        }
+    </style>
 </head>
-<body class="bg-gray-100 text-gray-800">
+<body class="bg-gray-50 text-gray-800 min-h-screen">
 
-    <div class="container mx-auto px-4 py-12 max-w-3xl lg:max-w-4xl">
-        <h1 class="text-3xl font-bold mb-6 text-center">Peticiones, Quejas y Recursos (PQR)</h1>
+    <!-- Header -->
+    <div class="container mx-auto px-4 py-8 max-w-4xl">
+        <h1 class="text-4xl font-bold text-center text-blue-900 mb-6">PQRS y reclamos</h1>
 
-        <form id="formularioPQR" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
-            <!-- Datos Personales -->
-            <h2 class="text-xl font-semibold mb-4">Datos del Peticionario</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+        <!-- Botones de Instrucciones -->
+        <div class="flex flex-wrap justify-center gap-4 mb-8">
+            <button class="bg-amber-500 hover:bg-amber-600 text-white font-semibold py-2 px-6 rounded-lg flex items-center gap-2 transition">
+                <i class="fas fa-info-circle"></i>
+                Ver instrucciones para PQRS
+            </button>
+            <button class="bg-purple-500 hover:bg-purple-600 text-white font-semibold py-2 px-6 rounded-lg flex items-center gap-2 transition">
+                <i class="fas fa-file-alt"></i>
+                Ver Protocolo PQR
+            </button>
+        </div>
+
+        <!-- Formulario Principal -->
+        <div class="bg-blue-50 rounded-xl shadow-lg p-6 md:p-8">
+            <h2 class="text-2xl font-bold text-blue-900 mb-6 flex items-center gap-2">
+                <i class="fas fa-comments text-blue-700"></i>
+                Formulario de PQRS
+            </h2>
+
+            <form id="formularioPQR" class="space-y-6">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <!-- Zona de Adjuntar Archivos -->
+                    <div class="md:col-span-1">
+                        <div id="dropZone" class="drop-zone rounded-lg p-6 text-center cursor-pointer bg-white">
+                            <i class="fas fa-cloud-upload-alt text-4xl text-blue-700 mb-2"></i>
+                            <p class="font-semibold text-gray-700">Adjuntar archivos (PDF, JPG)</p>
+                            <p class="text-sm text-gray-500 mt-1">Ingrese uno y zone</p>
+                            <input type="file" id="archivo" name="archivo" accept=".pdf,.jpg,.jpeg,.png" class="hidden" multiple>
+                        </div>
+                        <div id="fileList" class="mt-3 space-y-2"></div>
+                    </div>
+
+                    <!-- Campos de Datos -->
+                    <div class="md:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">
+                                Nombre completo <span class="text-red-500">*</span>
+                            </label>
+                            <input type="text" id="nombre" name="nombre" required
+                                class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">
+                                Teléfono <span class="text-red-500">*</span>
+                            </label>
+                            <input type="tel" id="telefono" name="telefono" required
+                                class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">
+                                Correo electrónico <span class="text-red-500">*</span>
+                            </label>
+                            <input type="email" id="correo" name="correo" required
+                                class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">
+                                Tipo de solicitud <span class="text-red-500">*</span>
+                            </label>
+                            <select id="tipoSolicitud" name="tipoSolicitud" required
+                                class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+                                <option value="">Selecciona una opción</option>
+                                <option value="Petición">Petición</option>
+                                <option value="Queja">Queja</option>
+                                <option value="Reclamo">Reclamo</option>
+                                <option value="Sugerencia">Sugerencia</option>
+                            </select>
+                        </div>
+                        <div class="md:col-span-2">
+                            <label class="block text-sm font-medium text-gray-700 mb-1">
+                                Dirección del servicio
+                            </label>
+                            <input type="text" id="direccion" name="direccion"
+                                class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Descripción Detallada -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">
+                            Descripción detallada <span class="text-red-500">*</span>
+                        </label>
+                        <textarea id="descripcion" name="descripcion" rows="6" 
+                            placeholder="Describe tu solicitud de manera detalla..."
+                            required
+                            class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white resize-y"></textarea>
+                    </div>
+
+                    <!-- Detalles de la Solicitud -->
+                    <div>
+                        <h3 class="text-lg font-bold text-gray-800 mb-3">Detalles de la Solicitud</h3>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">
+                                    Área de servicio afectada
+                                </label>
+                                <select id="areaServicio" name="areaServicio" multiple size="5"
+                                    class="area-list w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white text-sm">
+                                    <option value="Atención al cliente">Atención al cliente</option>
+                                    <option value="Facturación">Facturación</option>
+                                    <option value="Multaduntas">Multaduntas</option>
+                                    <option value="Convecional servicio">Convecional servicio</option>
+                                    <option value="Serverras de cliente">Serverras de cliente</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">
+                                    Fecha del incidente
+                                </label>
+                                <input type="date" id="fechaIncidente" name="fechaIncidente"
+                                    class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+                            </div>
+                        </div>
+
+                        <div class="mt-4">
+                            <label class="block text-sm font-medium text-gray-700 mb-2">
+                                Categorías de problema
+                            </label>
+                            <div class="flex flex-wrap gap-2">
+                                <button type="button" class="tag-btn px-3 py-1 border border-gray-300 rounded-full text-sm bg-white hover:bg-gray-100" data-category="Demora">Demora</button>
+                                <button type="button" class="tag-btn px-3 py-1 border border-gray-300 rounded-full text-sm bg-white hover:bg-gray-100" data-category="Cobro indebido">Cobro indebido</button>
+                                <button type="button" class="tag-btn px-3 py-1 border border-gray-300 rounded-full text-sm bg-white hover:bg-gray-100" data-category="Cobro indeido">Cobro indeido</button>
+                                <button type="button" class="tag-btn px-3 py-1 border border-gray-300 rounded-full text-sm bg-white hover:bg-gray-100" data-category="Mal trato">Mal trato</button>
+                                <button type="button" class="tag-btn px-3 py-1 border border-gray-300 rounded-full text-sm bg-white hover:bg-gray-100" data-category="Mal trato">Mal trato</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PQR Anteriores Relacionadas -->
                 <div>
-                    <label class="block text-sm font-medium mb-1" for="nombre">Nombre Completo:</label>
-                    <input type="text" id="nombre" name="nombre" required
-                        class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500">
+                    <h3 class="text-lg font-bold text-gray-800 mb-3">PQR Anteriores Relacionadas</h3>
+                    <div class="bg-white rounded-lg overflow-hidden border border-gray-200">
+                        <table class="w-full text-sm">
+                            <thead class="bg-gray-100">
+                                <tr>
+                                    <th class="px-4 py-2 text-left font-semibold text-gray-700">Usuario ID</th>
+                                    <th class="px-4 py-2 text-left font-semibold text-gray-700">Fecha</th>
+                                    <th class="px-4 py-2 text-left font-semibold text-gray-700">Estados</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tablaPQR">
+                                <tr class="border-t border-gray-200">
+                                    <td class="px-4 py-2">200931102</td>
+                                    <td class="px-4 py-2">21/06/sev/2022</td>
+                                    <td class="px-4 py-2">
+                                        <span class="bg-yellow-100 text-yellow-800 px-2 py-1 rounded text-xs font-semibold">Pendiente</span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
-                <div>
-                    <label class="block text-sm font-medium mb-1" for="cedula">Cédula de Ciudadanía:</label>
-                    <input type="text" id="cedula" name="cedula" required
-                        class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500">
-                </div>
-                <div>
-                    <label class="block text-sm font-medium mb-1" for="correo">Correo Electrónico:</label>
-                    <input type="email" id="correo" name="correo" required
-                        class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500">
-                </div>
-                <div>
-                    <label class="block text-sm font-medium mb-1" for="telefono">Teléfono de Contacto:</label>
-                    <input type="tel" id="telefono" name="telefono" required
-                        class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500">
-                </div>
-                <div class="md:col-span-2">
-                    <label class="block text-sm font-medium mb-1" for="direccion">Dirección:</label>
-                    <input type="text" id="direccion" name="direccion" required
-                        class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500">
-                </div>
-            </div>
 
-            <!-- Tipo de Solicitud -->
-            <h2 class="text-xl font-semibold mb-4">Tipo de Solicitud</h2>
-            <div class="mb-4">
-                <select id="tipoSolicitud" name="tipoSolicitud" required
-                    class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500">
-                    <option value="">Seleccione una opción</option>
-                    <option value="Petición">Petición</option>
-                    <option value="Queja">Queja</option>
-                    <option value="Recurso">Recurso</option>
-                </select>
-            </div>
+                <!-- Código de Radicación -->
+                <div class="bg-white rounded-lg p-4 border border-gray-200 text-center">
+                    <p class="text-gray-700 mb-2">Código de Radicación (Será generado):</p>
+                    <span id="codigoRadicacion" class="inline-block bg-gray-200 text-gray-800 font-mono font-bold px-4 py-2 rounded text-lg">
+                        PENDIENTE
+                    </span>
+                </div>
 
-            <!-- Descripción -->
-            <h2 class="text-xl font-semibold mb-4">Descripción de la Solicitud</h2>
-            <div class="mb-4">
-                <textarea id="descripcion" name="descripcion" rows="7" placeholder="Escriba su mensaje aquí..."
-                    required
-                    class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500"></textarea>
-            </div>
-
-            <!-- Código de Radicación -->
-            <div class="mb-4">
-                <strong>Código de Radicación:</strong> <span id="codigoRadicacion"
-                    class="font-mono bg-gray-200 px-2 py-1 rounded">PENDIENTE</span>
-            </div>
-
-            <!-- Botón de Enviar -->
-            <div class="flex justify-center">
-                <button type="submit"
-                    class="bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-2 px-8 rounded focus:outline-none focus:ring-2 focus:ring-yellow-400">
-                    Enviar Solicitud
-                </button>
-            </div>
-        </form>
+                <!-- Botón Enviar -->
+                <div class="flex justify-center">
+                    <button type="submit"
+                        class="bg-blue-900 hover:bg-blue-800 text-white font-bold py-3 px-8 rounded-lg flex items-center gap-2 transition shadow-lg">
+                        <i class="fas fa-paper-plane"></i>
+                        Enviar solicitud
+                    </button>
+                </div>
+            </form>
+        </div>
 
         <!-- Mensaje de Confirmación -->
-        <div id="mensajeConfirmacion" class="hidden bg-green-100 text-green-700 p-4 rounded shadow text-center">
-            ✅ Su solicitud ha sido enviada exitosamente.  
-            <br><strong>Código de Radicación:</strong> <span id="confirmacionCodigo"></span>
+        <div id="mensajeConfirmacion" class="hidden mt-6 bg-green-100 border border-green-400 text-green-700 p-4 rounded-lg shadow text-center">
+            <i class="fas fa-check-circle text-2xl mb-2"></i>
+            <p class="font-semibold">✅ Su solicitud ha sido enviada exitosamente.</p>
+            <p class="mt-2"><strong>Código de Radicación:</strong> <span id="confirmacionCodigo" class="font-mono"></span></p>
+        </div>
+
+        <!-- Consultar Estado -->
+        <div class="mt-8 bg-white rounded-lg shadow p-4 flex flex-col md:flex-row items-center justify-center gap-3">
+            <label class="text-gray-700 font-medium">Consultar estado de mi PQR (Ingrese ID):</label>
+            <div class="flex gap-2">
+                <input type="text" id="buscarPQR" placeholder="[campo]" 
+                    class="px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                <button class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
         </div>
     </div>
 
     <script>
+        // Generar código de radicación
         function generarCodigoRadicacion() {
             const fecha = new Date();
             const año = fecha.getFullYear().toString().slice(-2);
@@ -96,51 +244,113 @@
             return `PQR-${año}${mes}${dia}-${hora}${minutos}${segundos}`;
         }
 
+        // Drag & Drop para archivos
+        const dropZone = document.getElementById('dropZone');
+        const fileInput = document.getElementById('archivo');
+        const fileList = document.getElementById('fileList');
+
+        dropZone.addEventListener('click', () => fileInput.click());
+
+        dropZone.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            dropZone.classList.add('dragover');
+        });
+
+        dropZone.addEventListener('dragleave', () => {
+            dropZone.classList.remove('dragover');
+        });
+
+        dropZone.addEventListener('drop', (e) => {
+            e.preventDefault();
+            dropZone.classList.remove('dragover');
+            const files = e.dataTransfer.files;
+            mostrarArchivos(files);
+        });
+
+        fileInput.addEventListener('change', (e) => {
+            mostrarArchivos(e.target.files);
+        });
+
+        function mostrarArchivos(files) {
+            fileList.innerHTML = '';
+            Array.from(files).forEach(file => {
+                const div = document.createElement('div');
+                div.className = 'flex items-center gap-2 bg-white p-2 rounded border border-gray-200';
+                div.innerHTML = `
+                    <i class="fas fa-file-image text-blue-500"></i>
+                    <span class="text-sm text-gray-700">${file.name}</span>
+                    <button type="button" onclick="this.parentElement.remove()" class="text-red-500 hover:text-red-700">
+                        <i class="fas fa-trash-alt"></i>
+                    </button>
+                `;
+                fileList.appendChild(div);
+            });
+        }
+
+        // Tags de categorías
+        const tagButtons = document.querySelectorAll('.tag-btn');
+        const categoriasSeleccionadas = [];
+
+        tagButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                btn.classList.toggle('active');
+                const category = btn.dataset.category;
+                
+                if (btn.classList.contains('active')) {
+                    if (!categoriasSeleccionadas.includes(category)) {
+                        categoriasSeleccionadas.push(category);
+                    }
+                } else {
+                    const index = categoriasSeleccionadas.indexOf(category);
+                    if (index > -1) {
+                        categoriasSeleccionadas.splice(index, 1);
+                    }
+                }
+            });
+        });
+
+        // Envío del formulario
         document.getElementById("formularioPQR").addEventListener("submit", function (e) {
             e.preventDefault();
 
-            // Obtener valores del formulario
             const nombre = document.getElementById("nombre").value;
-            const cedula = document.getElementById("cedula").value;
             const correo = document.getElementById("correo").value;
             const telefono = document.getElementById("telefono").value;
-            const direccion = document.getElementById("direccion").value;
             const tipoSolicitud = document.getElementById("tipoSolicitud").value;
             const descripcion = document.getElementById("descripcion").value;
 
-            if (!nombre || !cedula || !correo || !telefono || !direccion || !tipoSolicitud || !descripcion) {
-                alert("Por favor complete todos los campos.");
+            if (!nombre || !correo || !telefono || !tipoSolicitud || !descripcion) {
+                alert("Por favor complete todos los campos obligatorios.");
                 return;
             }
 
-            // Generar código de radicación
             const codigoRadicacion = generarCodigoRadicacion();
             document.getElementById("codigoRadicacion").textContent = codigoRadicacion;
 
-            // Mostrar mensaje de confirmación
             document.getElementById("mensajeConfirmacion").classList.remove("hidden");
             document.getElementById("confirmacionCodigo").textContent = codigoRadicacion;
 
-            // Construir cuerpo del correo
             const asunto = encodeURIComponent(`[PQR] ${tipoSolicitud} - ${codigoRadicacion}`);
             const cuerpoCorreo = encodeURIComponent(
                 `Nueva Solicitud de PQR\n` +
                 `===========================\n\n` +
                 `Código de Radicación: ${codigoRadicacion}\n` +
                 `Nombre: ${nombre}\n` +
-                `Cédula: ${cedula}\n` +
                 `Correo: ${correo}\n` +
                 `Teléfono: ${telefono}\n` +
-                `Dirección: ${direccion}\n\n` +
-                `Tipo de Solicitud: ${tipoSolicitud}\n\n` +
+                `Tipo de Solicitud: ${tipoSolicitud}\n` +
+                `Categorías: ${categoriasSeleccionadas.join(', ')}\n\n` +
                 `Descripción:\n${descripcion}`
             );
 
-            // Abrir cliente de correo predeterminado
             window.location.href = `mailto:pqr.redecol@outlook.com?subject=${asunto}&body=${cuerpoCorreo}`;
 
-            // Limpiar formulario
-            document.getElementById("formularioPQR").reset();
+            setTimeout(() => {
+                document.getElementById("formularioPQR").reset();
+                categoriasSeleccionadas.length = 0;
+                tagButtons.forEach(btn => btn.classList.remove('active'));
+                fileList.innerHTML = '';
+            }, 1000);
         });
     </script>
 </body>
