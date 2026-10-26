@@ -4,1528 +4,546 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>REDECOL E.S.P. – Servicio Público de Aseo</title>
-  <!-- Tailwind CSS & Font Awesome -->
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet" />
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-  <!-- Paleta corporativa -->
   <style>
     :root{
       --primary-blue:#1e3a8a;
       --secondary-blue:#3b82f6;
       --light-blue:#eff6ff;
-      --accent-blue:#60a5fa;
       --green-primary:#15803d;
       --green-secondary:#22c55e;
+      --gray-100:#f3f4f6;
+      --gray-200:#e5e7eb;
+      --gray-700:#374151;
+      --shadow:0 12px 30px rgba(15, 23, 42, 0.12);
     }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { font-family: Arial, Helvetica, sans-serif; background: #f8fafc; color: #111827; }
+    a { text-decoration: none; }
+
     .bg-primary-blue{background:var(--primary-blue)}
     .bg-secondary-blue{background:var(--secondary-blue)}
     .bg-light-blue{background:var(--light-blue)}
     .text-primary-blue{color:var(--primary-blue)}
-    .text-secondary-blue{color:var(--secondary-blue)}
     .border-primary-blue{border-color:var(--primary-blue)}
-    .text-green-primary{color:var(--green-primary)}
-    .bg-green-primary{background:var(--green-primary)}
-    .bg-green-secondary{background:var(--green-secondary)}
 
-    .hero-gradient{background:linear-gradient(135deg,var(--primary-blue) 0%,var(--secondary-blue) 100%)}
-    .card-hover{transition:transform .3s,box-shadow .3s}
-    .card-hover:hover{transform:translateY(-5px);box-shadow:0 10px 25px rgba(0,0,0,.15)}
-    .logo-container{width:60px;height:60px;background:#fff;border-radius:8px;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 4px rgba(0,0,0,.1);overflow:hidden;}
-    .section-divider{height:4px;background:linear-gradient(90deg,var(--primary-blue),var(--secondary-blue));border-radius:2px;margin:0 auto;width:80px}
-    html{scroll-behavior:smooth}
-    
-    /* Botón de descarga PDF */
-    .pdf-download-btn {
-      display: inline-flex;
-      align-items: center;
-      background: var(--primary-blue);
-      color: white;
-      padding: 12px 24px;
-      border-radius: 8px;
-      text-decoration: none;
-      font-weight: 600;
-      transition: all 0.3s;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    }
-    
-    .pdf-download-btn:hover {
-      background: var(--secondary-blue);
-      transform: translateY(-2px);
-      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-    }
-    
-    .pdf-download-btn i {
-      margin-right: 8px;
+    .section-divider{height:4px;background:linear-gradient(90deg,var(--primary-blue),var(--secondary-blue));border-radius:2px;margin:0 auto 2rem;width:90px;}
+
+    .container {
+      width: min(1200px, calc(100% - 2rem));
+      margin-inline: auto;
     }
 
-    /* Botón de instrucciones */
-    .btn-instrucciones {
-      display: inline-flex;
-      align-items: center;
-      background: #f59e0b;
-      color: white;
-      padding: 10px 20px;
-      border-radius: 6px;
-      text-decoration: none;
-      font-weight: 600;
-      font-size: 0.95rem;
-      transition: all 0.3s;
-      box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
-      cursor: pointer;
-      border: none;
-    }
-    
-    .btn-instrucciones:hover {
-      background: #d97706;
-      transform: translateY(-1px);
-      box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
-    }
-    
-    .btn-instrucciones i {
-      margin-right: 6px;
-    }
-
-    /* Modal de instrucciones */
-    .modal {
-      display: none;
-      position: fixed;
-      z-index: 10000;
-      left: 0;
+    .topbar {
+      position: sticky;
       top: 0;
+      z-index: 50;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(148, 163, 184, 0.25);
+    }
+
+    .topbar-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      min-height: 78px;
+      gap: 1rem;
+    }
+
+    .brand { display: flex; align-items: center; gap: .9rem; }
+    .brand-mark {
+      width: 58px;
+      height: 58px;
+      border-radius: 12px;
+      overflow: hidden;
+      background: white;
+      box-shadow: 0 4px 12px rgba(0,0,0,.08);
+      display: grid;
+      place-items: center;
+    }
+    .brand-mark img { width:100%; height:100%; object-fit: contain; }
+    .brand-copy h1 { font-size: clamp(1.1rem, 1.8vw, 1.5rem); color: var(--primary-blue); font-weight: 800; }
+    .brand-copy p { font-size: 0.72rem; color: #475569; }
+
+    .nav-desktop ul {
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      font-size: 0.95rem;
+    }
+    .nav-desktop a {
+      color: #374151;
+      transition: color .2s ease;
+      font-weight: 600;
+    }
+    .nav-desktop a:hover { color: var(--primary-blue); }
+
+    .menu-btn {
+      display: none;
+      border: none;
+      background: transparent;
+      color: var(--primary-blue);
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+
+    .mobile-nav {
+      display: none;
+      background: white;
+      border-top: 1px solid #e5e7eb;
+      padding: 0.75rem 1rem 1.1rem;
+    }
+    .mobile-nav a {
+      display: block;
+      padding: 0.7rem 0;
+      color: #374151;
+      font-weight: 600;
+      border-bottom: 1px solid #f3f4f6;
+    }
+
+    .hero {
+      background: linear-gradient(135deg, var(--primary-blue) 0%, var(--secondary-blue) 100%);
+      color: white;
+      padding: 5rem 0 4rem;
+      text-align: center;
+    }
+    .hero h2 { font-size: clamp(2.4rem, 5vw, 4rem); font-weight: 800; margin-bottom: 1rem; }
+    .hero p {
+      max-width: 800px;
+      margin: 0 auto 2rem;
+      font-size: clamp(1rem, 2vw, 1.4rem);
+      color: rgba(255,255,255,0.9);
+      line-height: 1.7;
+    }
+    .hero-video {
+      margin: 0 auto 2rem;
+      width: min(900px, 90%);
+      aspect-ratio: 16 / 9;
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 25px 45px rgba(0,0,0,.2);
+      background: #0f172a;
+    }
+    .hero-video iframe {
       width: 100%;
       height: 100%;
-      background-color: rgba(0, 0, 0, 0.6);
+      border: 0;
+    }
+    .hero-actions {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .btn-primary, .btn-light {
+      display: inline-flex;
       align-items: center;
       justify-content: center;
-    }
-
-    .modal.active {
-      display: flex;
-    }
-
-    .modal-content {
-      background-color: white;
-      padding: 2rem;
+      padding: .9rem 1.8rem;
       border-radius: 12px;
-      max-width: 600px;
-      width: 90%;
-      max-height: 80vh;
-      overflow-y: auto;
-      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
-      animation: slideIn 0.3s ease-out;
+      font-weight: 700;
+      transition: transform .2s ease, box-shadow .2s ease;
+    }
+    .btn-primary {
+      background: white;
+      color: var(--primary-blue);
+      box-shadow: 0 12px 24px rgba(0,0,0,.12);
+    }
+    .btn-light {
+      border: 2px solid rgba(255,255,255,.7);
+      color: white;
+      background: transparent;
+    }
+    .btn-primary:hover, .btn-light:hover { transform: translateY(-2px); }
+
+    .section {
+      padding: 4rem 0;
+    }
+    .section h2 {
+      text-align: center;
+      font-size: clamp(2rem, 3vw, 3rem);
+      font-weight: 800;
+      color: var(--primary-blue);
+      margin-bottom: .5rem;
     }
 
-    @keyframes slideIn {
-      from {
-        transform: translateY(-50px);
-        opacity: 0;
-      }
-      to {
-        transform: translateY(0);
-        opacity: 1;
-      }
+    .gallery-section {
+      background: #f3f4f6;
     }
 
-    .modal-close {
-      float: right;
-      font-size: 28px;
-      font-weight: bold;
-      color: #999;
+    .gallery-accordion {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      gap: 1rem;
+    }
+
+    .gallery-item {
+      background: white;
+      border-radius: 22px;
+      border: 1px solid rgba(148,163,184,0.25);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .gallery-trigger {
+      width: 100%;
+      background: linear-gradient(135deg, rgba(30,58,138,0.04), rgba(59,130,246,0.08));
+      border: 0;
       cursor: pointer;
-      line-height: 20px;
+      padding: 1.1rem 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      text-align: left;
+      color: var(--primary-blue);
+      font: inherit;
     }
 
-    .modal-close:hover {
-      color: #333;
+    .gallery-trigger-main {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      flex: 1;
+    }
+
+    .gallery-trigger-main img {
+      width: 120px;
+      height: 86px;
+      object-fit: cover;
+      border-radius: 14px;
+      border: 2px solid rgba(59,130,246,0.25);
+    }
+
+    .gallery-trigger-main h3 {
+      margin: 0;
+      font-size: clamp(1.1rem, 2vw, 1.5rem);
+      font-weight: 800;
+      color: var(--primary-blue);
+    }
+
+    .gallery-trigger-main span {
+      display: inline-block;
+      background: rgba(59,130,246,0.1);
+      color: var(--secondary-blue);
+      border-radius: 999px;
+      padding: .3rem .7rem;
+      font-size: .78rem;
+      font-weight: 700;
+      margin-bottom: .4rem;
+    }
+
+    .gallery-toggle {
+      display: grid;
+      place-items: center;
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: rgba(30,58,138,0.08);
+      color: var(--primary-blue);
+      font-size: 1.15rem;
+      transition: transform .25s ease;
+    }
+
+    .gallery-item.open .gallery-toggle {
+      transform: rotate(180deg);
+    }
+
+    .gallery-panel {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height .35s ease, padding .35s ease;
+      padding: 0 1.25rem;
+    }
+
+    .gallery-item.open .gallery-panel {
+      max-height: 1200px;
+      padding: 0 1.25rem 1.4rem;
+    }
+
+    .gallery-panel-inner {
+      display: grid;
+      gap: 1rem;
+      padding-top: .5rem;
+    }
+
+    .gallery-copy {
+      color: #4b5563;
+      font-size: 1rem;
+      line-height: 1.7;
+      margin: 0;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 1rem;
+    }
+
+    .gallery-grid img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      display: block;
+      border-radius: 16px;
+      box-shadow: 0 10px 20px rgba(15, 23, 42, 0.08);
+      transition: transform .25s ease, box-shadow .25s ease;
+    }
+
+    .gallery-grid img:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 16px 28px rgba(15, 23, 42, 0.12);
+    }
+
+    @media (max-width: 768px) {
+      .nav-desktop { display: none; }
+      .menu-btn { display: block; }
+      .mobile-nav.open { display: block; }
+      .gallery-trigger { align-items: flex-start; }
+      .gallery-trigger-main { align-items: flex-start; }
+      .gallery-trigger-main img { width: 96px; height: 74px; }
+      .hero { padding-top: 4rem; }
     }
   </style>
 </head>
-<body class="bg-gray-50 font-sans leading-normal tracking-normal">
-
-  <!-- ========== HEADER ========== -->
-  <header class="bg-white shadow-lg sticky top-0 z-40" id="main-header">
-    <div class="container mx-auto flex items-center justify-between p-4">
-      <div class="flex items-center space-x-3">
-        <div class="logo-container">
-          <img src="img/logo-redecol.png" alt="Logo REDECOL" class="w-full h-full object-contain" />
+<body>
+  <header class="topbar" id="main-header">
+    <div class="container topbar-inner">
+      <div class="brand">
+        <div class="brand-mark">
+          <img src="img/logo-redecol.png" alt="Logo REDECOL" />
         </div>
-        <div>
-          <h1 class="text-xl font-bold text-primary-blue">REDECOL E.S.P.</h1>
-          <p class="text-xs text-gray-600">Servicio Público de Aseo</p>
+        <div class="brand-copy">
+          <h1>REDECOL E.S.P.</h1>
+          <p>Servicio Público de Aseo</p>
         </div>
       </div>
 
-      <!-- Menú desktop -->
-      <nav class="hidden md:block">
-        <ul class="flex space-x-6 text-gray-700">
-          <li><a href="#inicio" class="hover:text-primary-blue transition">Inicio</a></li>
-          <li><a href="#servicios" class="hover:text-primary-blue transition">Servicios</a></li>
-          <li><a href="#indicadores" class="hover:text-primary-blue transition">Indicadores</a></li>
-          <li><a href="#galeria" class="hover:text-primary-blue transition">Galería</a></li>
-          <li><a href="#tarifas" class="hover:text-primary-blue transition">Tarifas</a></li>
-          <li><a href="#rutas" class="hover:text-primary-blue transition">Rutas</a></li>
-          <li><a href="#pqr" class="hover:text-primary-blue transition">PQR</a></li>
-          <li><a href="#comercial" class="hover:text-primary-blue transition">Comercial</a></li>
-          <li><a href="#documentos" class="hover:text-primary-blue transition">Documentos</a></li>
-          <li><a href="#app" class="hover:text-primary-blue transition">App</a></li>
-          <li><a href="#contacto" class="hover:text-primary-blue transition">Contacto</a></li>
+      <nav class="nav-desktop" aria-label="Navegación principal">
+        <ul>
+          <li><a href="#inicio">Inicio</a></li>
+          <li><a href="#servicios">Servicios</a></li>
+          <li><a href="#indicadores">Indicadores</a></li>
+          <li><a href="#galeria">Galería</a></li>
+          <li><a href="#tarifas">Tarifas</a></li>
+          <li><a href="#rutas">Rutas</a></li>
+          <li><a href="#pqr">PQR</a></li>
+          <li><a href="#contacto">Contacto</a></li>
         </ul>
       </nav>
 
-      <!-- Botón menú móvil -->
-      <button id="mobileMenuBtn" class="md:hidden text-primary-blue">
-        <i class="fas fa-bars text-xl"></i>
+      <button class="menu-btn" id="mobileMenuBtn" aria-label="Abrir menú">
+        <i class="fas fa-bars"></i>
       </button>
     </div>
 
-   <!-- Menú móvil -->
-<div id="mobileMenu" class="hidden md:hidden bg-white border-t border-gray-200">
-  <nav class="px-4 py-2 space-y-2">
-    <a href="#inicio" class="block py-2 text-gray-700 hover:text-primary-blue transition">Inicio</a>
-    <a href="#servicios" class="block py-2 text-gray-700 hover:text-primary-blue transition">Servicios</a>
-    <a href="#indicadores" class="block py-2 text-gray-700 hover:text-primary-blue transition">Indicadores</a>
-    <a href="#galeria" class="block py-2 text-gray-700 hover:text-primary-blue transition">Galería</a>
-    <a href="#tarifas" class="block py-2 text-gray-700 hover:text-primary-blue transition">Tarifas</a>
-    <a href="#rutas" class="block py-2 text-gray-700 hover:text-primary-blue transition">Rutas</a>
-    <a href="#pqr" class="block py-2 text-gray-700 hover:text-primary-blue transition">PQR</a>
-    <a href="#comercial" class="block py-2 text-gray-700 hover:text-primary-blue transition">Comercial</a>
-    <a href="#documentos" class="block py-2 text-gray-700 hover:text-primary-blue transition">Documentos</a>
-    <a href="#app" class="block py-2 text-gray-700 hover:text-primary-blue transition">App</a>
-    <a href="#contacto" class="block py-2 text-gray-700 hover:text-primary-blue transition">Contacto</a>
-  </nav>
-</div>
+    <div class="mobile-nav" id="mobileMenu">
+      <a href="#inicio">Inicio</a>
+      <a href="#servicios">Servicios</a>
+      <a href="#indicadores">Indicadores</a>
+      <a href="#galeria">Galería</a>
+      <a href="#tarifas">Tarifas</a>
+      <a href="#rutas">Rutas</a>
+      <a href="#pqr">PQR</a>
+      <a href="#contacto">Contacto</a>
+    </div>
   </header>
 
-  <!-- ========== INICIO ========== -->
-  <section id="inicio" class="py-20 hero-gradient text-center">
-  <div class="container mx-auto px-4">
-    <h2 class="text-5xl text-white font-bold mb-6">Bienvenido a REDECOL E.S.P.</h2>
-    <p class="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">Tu prestador oficial de servicios de aseo complementario en aprovechamiento de residuos sólidos en Barrancabermeja, Santander.</p>
-    
-  <!-- Video de YouTube -->
-<div class="flex justify-center mb-8 px-4">
-  <div class="rounded-xl overflow-hidden shadow-2xl" style="position:relative; padding-top:35%; width:60%;">
-    <iframe 
-      src="https://www.youtube.com/embed/gIYazZ7M7W8"" title="Video REDECOL E.S.P."
-      frameborder="0" 
-      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-      allowfullscreen
-      style="position:absolute; top:0; left:0; width:100%; height:100%;">
-    </iframe>
-  </div>
-</div>
+  <section class="hero" id="inicio">
+    <div class="container">
+      <h2>Bienvenido a REDECOL E.S.P.</h2>
+      <p>Tu prestador oficial de servicios de aseo complementario en aprovechamiento de residuos sólidos en Barrancabermeja, Santander.</p>
 
-    <div class="flex flex-wrap justify-center gap-4">
-      <a href="#servicios" class="bg-white text-primary-blue px-6 py-3 rounded-lg font-semibold hover:bg-blue-50 transition">Nuestros servicios</a>
-      <a href="#contacto" class="border-2 border-white text-white px-6 py-3 rounded-lg font-semibold hover:bg-white hover:text-primary-blue transition">Contactar</a>
-    </div>
-  </div>
-</section>
+      <div class="hero-video">
+        <iframe src="https://www.youtube.com/embed/gIYazZ7M7W8" title="Video REDECOL E.S.P." allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
 
-  <!-- ========== QUIÉNES SOMOS ========== -->
-  <section class="py-16 bg-white" id="quienes">
-    <div class="container mx-auto px-4">
-      <h2 class="text-4xl font-bold mb-4 text-center text-primary-blue">Quiénes somos</h2>
-      <div class="section-divider mb-8"></div>
-      <p class="text-lg mb-12 text-gray-700 text-center max-w-4xl mx-auto">REDECOL E.S.P. es una organización de recicladores de oficio, creada en el año 2001 y acogida al decreto 596 de 2016 derrogado por el régimen de regularización (Decreto 1381 de 2024), autorizada por la Superintendencia de Servicios Públicos para prestar el servicio público de aseo complementario – aprovechamiento en Barrancabermeja, Santander.</p>
-
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-        <!-- Misión -->
-        <div class="bg-light-blue p-8 rounded-lg card-hover">
-          <div class="flex items-center mb-4">
-            <i class="fas fa-bullseye text-3xl text-primary-blue mr-4"></i>
-            <h3 class="text-2xl font-bold text-primary-blue">Misión</h3>
-          </div>
-          <p class="text-gray-700">Garantizar un servicio eficiente y sostenible de recolección, separación y aprovechamiento de residuos sólidos en beneficio de la comunidad.</p>
-        </div>
-
-        <!-- Visión -->
-        <div class="bg-light-blue p-8 rounded-lg card-hover">
-          <div class="flex items-center mb-4">
-            <i class="fas fa-eye text-3xl text-primary-blue mr-4"></i>
-            <h3 class="text-2xl font-bold text-primary-blue">Visión</h3>
-          </div>
-          <p class="text-gray-700">Liderar el sector de reciclaje y aprovechamiento en Barrancabermeja, promoviendo prácticas ambientales responsables y la inclusión social de los recicladores de oficio.</p>
-        </div>
+      <div class="hero-actions">
+        <a href="#servicios" class="btn-primary">Nuestros servicios</a>
+        <a href="#contacto" class="btn-light">Contactar</a>
       </div>
     </div>
   </section>
 
-  <!-- ========== NOTICIAS ========== -->
-  <section id="noticias" class="py-16 bg-light-blue">
-    <div class="container mx-auto px-4">
-      <h2 class="text-4xl font-bold mb-4 text-center text-primary-blue">Noticias y Actualizaciones</h2>
-      <div class="section-divider mb-12"></div>
+  <section class="section gallery-section" id="galeria">
+    <div class="container">
+      <h2>Galería ampliada</h2>
+      <div class="section-divider"></div>
 
-      <!-- Contenedor de noticias -->
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-
-        <!-- Noticia 1: Campaña Escolar -->
-        <div class="bg-white rounded-lg shadow-lg overflow-hidden card-hover">
-          <img src="img/noticia1.jpg" alt="Campaña de reciclaje escolar" class="w-full h-56 object-cover">
-          <div class="p-6">
-            <h3 class="text-xl font-bold text-primary-blue mb-2">Campaña de reciclaje escolar 2025</h3>
-            <p class="text-gray-700 mb-4">REDECOL E.S.P. lanza su nueva campaña educativa en colegios para fomentar la separación en la fuente y el aprovechamiento responsable de residuos.</p>
-            <button onclick="abrirModal('modalCampanaEscolar')" class="text-secondary-blue font-semibold hover:underline cursor-pointer">
-              Leer más →
-            </button>
-          </div>
-        </div>
-
-        <!-- Noticia 2: Reconocimiento Ambiental -->
-        <div class="bg-white rounded-lg shadow-lg overflow-hidden card-hover">
-          <img src="img/noticia2.jpg" alt="Reconocimiento ambiental" class="w-full h-56 object-cover">
-          <div class="p-6">
-            <h3 class="text-xl font-bold text-primary-blue mb-2">Reconocimiento ambiental 2025</h3>
-            <p class="text-gray-700 mb-4">El municipio de Barrancabermeja reconoce a REDECOL por su compromiso en la gestión ambiental y el fortalecimiento de los recicladores de oficio.</p>
-            <button onclick="abrirModal('modalReconocimiento')" class="text-secondary-blue font-semibold hover:underline cursor-pointer">
-              Leer más →
-            </button>
-          </div>
-        </div>
-
-        <!-- Noticia 3: Nueva Ruta -->
-        <div class="bg-white rounded-lg shadow-lg overflow-hidden card-hover">
-          <img src="img/noticia3.jpg" alt="Nueva ruta de aprovechamiento" class="w-full h-56 object-cover">
-          <div class="p-6">
-            <h3 class="text-xl font-bold text-primary-blue mb-2">Nueva ruta de aprovechamiento</h3>
-            <p class="text-gray-700 mb-4">Se habilita la nueva ruta de aprovechamiento para la zona nororiental de la ciudad, ampliando la cobertura del servicio público de aseo.</p>
-            <button onclick="abrirModal('modalNuevaRuta')" class="text-secondary-blue font-semibold hover:underline cursor-pointer">
-              Leer más →
-            </button>
-          </div>
-        </div>
-
-      </div>
-
-      <!-- Botón de ver más -->
-      <div class="text-center mt-12">
-        <a href="noticias.html" class="bg-primary-blue text-white px-8 py-3 rounded-lg font-semibold hover:bg-secondary-blue transition">
-          Ver todas las noticias
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- ========== SERVICIOS ========== -->
-  <section id="servicios" class="py-16 bg-gray-50">
-    <div class="container mx-auto px-4">
-      <h2 class="text-4xl font-bold mb-4 text-center text-primary-blue">Nuestros servicios</h2>
-      <div class="section-divider mb-12"></div>
-
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        <!-- Recolección -->
-        <div class="bg-white p-8 rounded-lg shadow-lg card-hover text-center">
-          <i class="fas fa-recycle text-4xl text-secondary-blue mb-4"></i>
-          <h3 class="text-xl font-bold text-primary-blue mb-2">Recolección selectiva</h3>
-          <p class="text-gray-700">Recolección diferenciada de residuos sólidos aprovechables.</p>
-        </div>
-
-        <!-- Sensibilización -->
-        <div class="bg-white p-8 rounded-lg shadow-lg card-hover text-center">
-          <i class="fas fa-chalkboard-teacher text-4xl text-secondary-blue mb-4"></i>
-          <h3 class="text-xl font-bold text-primary-blue mb-2">Sensibilización y capacitación</h3>
-          <p class="text-gray-700">Programas educativos que promueven la separación en la fuente y buenas prácticas ambientales.</p>
-        </div>
-
-        <!-- Certificación -->
-        <div class="bg-white p-8 rounded-lg shadow-lg card-hover text-center">
-          <i class="fas fa-certificate text-4xl text-secondary-blue mb-4"></i>
-          <h3 class="text-xl font-bold text-primary-blue mb-2">Certificación de residuos</h3>
-          <p class="text-gray-700">Clasificación, pesaje y registro de residuos con trazabilidad garantizada.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ========== INDICADORES ========== -->
-  <section id="indicadores" class="py-16 bg-white">
-    <div class="container mx-auto px-4">
-      <h2 class="text-4xl font-bold mb-4 text-center text-green-700">Indicadores de Toneladas Recuperadas</h2>
-      <div class="section-divider mb-12 mx-auto h-1 w-24 bg-green-600"></div>
-
-      <!-- Total recuperado -->
-      <div class="text-center mb-8">
-        <p class="text-lg font-semibold">Total toneladas recuperadas en Barrancabermeja:</p>
-        <p id="totalToneladas" class="text-5xl font-bold text-green-400">0.00 tn</p>
-      </div>
-
-      <!-- Gráfica por material -->
-      <div class="bg-white p-6 rounded shadow mb-10 max-w-5xl mx-auto">
-        <canvas id="graficaMateriales" height="100"></canvas>
-      </div>
-    </div>
-  </section>
-
-  <script>
-    // Datos por material
-    const datosPorMaterial = {
-      "Cartón": 7.5,
-      "PET": 4.2,
-      "Vidrio": 8.7,
-      "Papel": 9.4,
-      "Maderables": 11.1,
-      "Pasta": 10.8,
-      "Plástico": 21.9,
-      "Plegadiza": 3.5,
-      "Tetra Pack": 0.7,
-      "Acrílico": 0.4,
-      "Plastificado": 0.3,
-      "Kraf": 0.2
-    };
-
-    // Sumar total
-    const totalToneladas = Object.values(datosPorMaterial).reduce((a, b) => a + b, 0);
-    document.getElementById('totalToneladas').textContent = totalToneladas.toFixed(2) + ' tn';
-
-    // Crear gráfica
-    const ctx = document.getElementById('graficaMateriales');
-    new Chart(ctx, {
-      type: 'bar',
-      data: {
-        labels: Object.keys(datosPorMaterial),
-        datasets: [{
-          label: 'Toneladas recuperadas por material',
-          data: Object.values(datosPorMaterial),
-          backgroundColor: '#4ade80'
-        }]
-      },
-      options: {
-        responsive: true,
-        maintainAspectRatio: true,
-        plugins: {
-          legend: { display: false },
-          title: {
-            display: true,
-            text: 'Distribución de materiales recuperados'
-          }
-        },
-        scales: {
-          y: {
-            beginAtZero: true,
-            title: {
-              display: true,
-              text: 'Toneladas'
-            }
-          }
-        }
-      }
-    });
-  </script>
-
-  <!-- ========== GALERÍA ========== -->
-  <section id="galeria" class="py-16 bg-gray-100">
-    <div class="container mx-auto px-4">
-      <h2 class="text-4xl font-bold mb-4 text-center text-primary-blue">Galería de Servicios</h2>
-      <div class="section-divider mb-12"></div>
-
-      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 max-w-6xl mx-auto">
-        <div class="rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition bg-white">
-          <img src="img/servicio1.png" alt="Servicio 1" class="w-full object-cover h-64" onerror="this.src='https://via.placeholder.com/400x300?text=Servicio+1'">
-        </div>
-        <div class="rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition bg-white">
-          <img src="img/servicio2.png" alt="Servicio 2" class="w-full object-cover h-64" onerror="this.src='https://via.placeholder.com/400x300?text=Servicio+2'">
-        </div>
-        <div class="rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition bg-white">
-          <img src="img/servicio3.png" alt="Servicio 3" class="w-full object-cover h-64" onerror="this.src='https://via.placeholder.com/400x300?text=Servicio+3'">
-        </div>
-        <div class="rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition bg-white">
-          <img src="img/servicio4.png" alt="Servicio 4" class="w-full object-cover h-64" onerror="this.src='https://via.placeholder.com/400x300?text=Servicio+4'">
-        </div>
-        <div class="rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition bg-white">
-          <img src="img/servicio5.png" alt="Servicio 5" class="w-full object-cover h-64" onerror="this.src='https://via.placeholder.com/400x300?text=Servicio+5'">
-        </div>
-        <div class="rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition bg-white">
-        <img src="img/servicio6.png" alt="Servicio 6" class="w-full object-cover h-64" onerror="this.src='https://via.placeholder.com/400x300?text=Servicio+6'">
-       </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ========== TARIFAS ========== -->
-  <section id="tarifas" class="py-16 bg-white">
-    <div class="container mx-auto px-4">
-      <h2 class="text-4xl font-bold mb-4 text-center text-primary-blue">Tarifas del servicio de aseo</h2>
-      <div class="section-divider mb-12"></div>
-
-      <div class="overflow-x-auto max-w-5xl mx-auto">
-        <table class="min-w-full bg-white rounded-lg shadow-md">
-          <thead class="bg-primary-blue text-white">
-            <tr>
-              <th class="py-3 px-6 text-left">Tipo de usuario</th>
-              <th class="py-3 px-6 text-left">Tarifa mensual (COP)</th>
-              <th class="py-3 px-6 text-left">Incluye</th>
-            </tr>
-          </thead>
-          <tbody class="text-gray-700">
-            <tr class="border-t hover:bg-gray-50 transition">
-              <td class="py-3 px-6 font-semibold">Residencial - Estrato 1</td>
-              <td class="py-3 px-6 text-green-600 font-bold">$1.000</td>
-              <td class="py-3 px-6">Recolección y aprovechamiento</td>
-            </tr>
-            <tr class="border-t hover:bg-gray-50 transition">
-              <td class="py-3 px-6 font-semibold">Residencial - Estrato 2</td>
-              <td class="py-3 px-6 text-green-600 font-bold">$1.010</td>
-              <td class="py-3 px-6">Recolección y aprovechamiento</td>
-            </tr>
-            <tr class="border-t hover:bg-gray-50 transition">
-              <td class="py-3 px-6 font-semibold">Residencial - Estrato 3</td>
-              <td class="py-3 px-6 text-green-600 font-bold">$1.050</td>
-              <td class="py-3 px-6">Recolección y aprovechamiento</td>
-            </tr>
-            <tr class="border-t hover:bg-gray-50 transition">
-              <td class="py-3 px-6 font-semibold">Residencial - Estrato 4</td>
-              <td class="py-3 px-6 text-green-600 font-bold">$1.000</td>
-              <td class="py-3 px-6">Recolección y aprovechamiento</td>
-            </tr>
-            <tr class="border-t hover:bg-gray-50 transition">
-              <td class="py-3 px-6 font-semibold">Comercial</td>
-              <td class="py-3 px-6 text-green-600 font-bold">$1.000</td>
-              <td class="py-3 px-6">Recolección, transporte y aprovechamiento</td>
-            </tr>
-            <tr class="border-t hover:bg-gray-50 transition">
-              <td class="py-3 px-6 font-semibold">Industrial</td>
-              <td class="py-3 px-6 text-blue-600 font-bold">Consultar</td>
-              <td class="py-3 px-6">Servicio personalizado</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </section>
-
-  <!-- ========== RUTAS Y HORARIOS ========== -->
-  <section id="rutas" class="py-16 bg-gray-50">
-    <div class="container mx-auto px-4">
-      <h2 class="text-4xl font-bold mb-4 text-center text-primary-blue">Rutas y horarios</h2>
-      <div class="section-divider mb-12"></div>
-
-      <div class="overflow-x-auto mb-8 max-w-5xl mx-auto">
-        <table class="min-w-full bg-white rounded-lg shadow-md text-center">
-          <thead class="bg-primary-blue text-white">
-            <tr>
-              <th class="py-3 px-4">Ruta</th>
-              <th class="py-3 px-4">Días</th>
-              <th class="py-3 px-4">Hora inicio</th>
-              <th class="py-3 px-4">Zona de cobertura</th>
-            </tr>
-          </thead>
-          <tbody class="text-gray-800">
-            <tr class="border-t hover:bg-gray-50 transition">
-              <td class="py-3 px-4 font-bold text-primary-blue">BA</td>
-              <td class="py-3 px-4">Lun–Mié–Vie</td>
-              <td class="py-3 px-4">07:00 AM</td>
-              <td class="py-3 px-4">Zona Norte</td>
-            </tr>
-            <tr class="border-t hover:bg-gray-50 transition">
-              <td class="py-3 px-4 font-bold text-primary-blue">BB</td>
-              <td class="py-3 px-4">Mar–Jue–Sáb</td>
-              <td class="py-3 px-4">07:00 AM</td>
-              <td class="py-3 px-4">Zona Sur</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-
-      <!-- Botones de descarga -->
-      <div class="text-center mb-8 space-y-4">
-        <div>
-          <a href="docs/FRECUENCIAS_HORARIOS_APROVECHAMIENTO_BARRANCABERMEJA.pdf" download class="pdf-download-btn">
-            <i class="fas fa-file-pdf"></i>
-            Descargar PDF de Frecuencias y Horarios
-          </a>
-        </div>
-      </div>
-
-      <!-- Mapa interactivo funcional -->
-      <div class="bg-white p-6 rounded-lg shadow-lg max-w-5xl mx-auto">
-        <h3 class="text-2xl font-bold text-primary-blue mb-4 text-center">Mapa de Rutas</h3>
-        <div class="relative w-full" style="padding-top: 56.25%;">
-          <iframe src="mapas/BA.html" class="absolute inset-0 w-full h-full border rounded-lg shadow" title="Mapa ruta BA" loading="lazy"></iframe>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ========== PQRS ========== -->
-  <section id="pqr" class="py-16 bg-white">
-    <div class="container mx-auto px-4">
-      <h2 class="text-4xl font-bold mb-4 text-center text-primary-blue">PQRS y reclamos</h2>
-      <div class="section-divider mb-12"></div>
-
-      <div class="max-w-4xl mx-auto">
-        <!-- Botones de instrucciones y protocolo -->
-        <div class="mb-6 text-center space-x-4">
-          <button onclick="abrirModal('modalPQR')" class="btn-instrucciones">
-            <i class="fas fa-info-circle"></i>
-            Ver instrucciones para PQRS
+      <div class="gallery-accordion">
+        <article class="gallery-item open">
+          <button class="gallery-trigger" type="button" aria-expanded="true">
+            <div class="gallery-trigger-main">
+              <img src="img/servicio1.png" alt="Recolección selectiva" onerror="this.src='https://via.placeholder.com/600x400?text=Recolecci%C3%B3n'" />
+              <div>
+                <span>Recolección</span>
+                <h3>Operación de recolección</h3>
+              </div>
+            </div>
+            <span class="gallery-toggle"><i class="fas fa-chevron-down"></i></span>
           </button>
-          <a href="docs/PROTOCOLO_PQR_REDECOL_ESP.pdf" target="_blank" class="btn-instrucciones" style="background: #8b5cf6;">
-            <i class="fas fa-file-contract"></i>
-            Ver Protocolo PQR
-          </a>
-        </div>
-
-        <div class="bg-light-blue p-8 rounded-lg shadow-lg">
-          <h3 class="text-2xl font-bold text-primary-blue mb-6 text-center">
-            <i class="fas fa-comments mr-2"></i>
-            Formulario de PQRS
-          </h3>
-
-          <form id="pqrForm" method="POST" action="https://formsubmit.co/pqr.redecol@outlook.com" class="space-y-6">
-
-            <!-- Configuración oculta de FormSubmit -->
-            <input type="hidden" name="_subject" value="Nueva PQRS desde la web de REDECOL">
-            <input type="hidden" name="_captcha" value="false">
-            <input type="hidden" name="_template" value="table">
-            <input type="hidden" name="_next" value="https://manolo1208.github.io/redecol-web/gracias.html">
-
-            <!-- Código de radicado oculto -->
-            <input type="hidden" name="codigo_radicado" id="codigoOculto">
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div>
-                <label class="block text-sm font-medium text-gray-700 mb-2">Nombre completo *</label>
-                <input type="text" name="nombre" id="nombre" required class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-blue">
-              </div>
-              <div>
-                <label class="block text-sm font-medium text-gray-700 mb-2">Teléfono *</label>
-                <input type="tel" name="telefono" id="telefono" required class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-blue">
+          <div class="gallery-panel">
+            <div class="gallery-panel-inner">
+              <p class="gallery-copy">Nuestra labor diaria incluye la recolección selectiva en barrios, sectores comerciales y zonas de alto impacto ambiental. Cada recorrido se realiza con atención y responsabilidad para fortalecer la separación en la fuente.</p>
+              <div class="gallery-grid">
+                <img src="img/servicio1.png" alt="Recolección 1" onerror="this.src='https://via.placeholder.com/600x400?text=Imagen+1'" />
+                <img src="img/campana2.jpg" alt="Recolección 2" onerror="this.src='https://via.placeholder.com/600x400?text=Imagen+2'" />
+                <img src="img/campana8.jpg" alt="Recolección 3" onerror="this.src='https://via.placeholder.com/600x400?text=Imagen+3'" />
               </div>
             </div>
+          </div>
+        </article>
 
-            <div>
-              <label class="block text-sm font-medium text-gray-700 mb-2">Correo electrónico *</label>
-              <input type="email" name="correo" id="correo" required class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-blue">
+        <article class="gallery-item">
+          <button class="gallery-trigger" type="button" aria-expanded="false">
+            <div class="gallery-trigger-main">
+              <img src="img/campana1.jpg" alt="Campaña escolar" onerror="this.src='https://via.placeholder.com/600x400?text=Campa%C3%B1a'" />
+              <div>
+                <span>Educación</span>
+                <h3>Campañas ambientales</h3>
+              </div>
             </div>
+            <span class="gallery-toggle"><i class="fas fa-chevron-down"></i></span>
+          </button>
+          <div class="gallery-panel">
+            <div class="gallery-panel-inner">
+              <p class="gallery-copy">Impulsamos campañas de sensibilización con comunidades, instituciones educativas y líderes barriales para fomentar hábitos responsables de reciclaje, aprovechamiento y cuidado del entorno.</p>
+              <div class="gallery-grid">
+                <img src="img/campana1.jpg" alt="Campaña escolar 1" onerror="this.src='https://via.placeholder.com/600x400?text=Campa%C3%B1a+1'" />
+                <img src="img/campana3.jpg" alt="Campaña escolar 2" onerror="this.src='https://via.placeholder.com/600x400?text=Campa%C3%B1a+2'" />
+                <img src="img/campana5.jpg" alt="Campaña escolar 3" onerror="this.src='https://via.placeholder.com/600x400?text=Campa%C3%B1a+3'" />
+              </div>
+            </div>
+          </div>
+        </article>
 
-            <div>
-              <label class="block text-sm font-medium text-gray-700 mb-2">Tipo de solicitud *</label>
-              <select name="tipo_solicitud" id="tipoSolicitud" required class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-blue">
-                <option value="">Selecciona una opción</option>
-                <option value="Petición">Petición</option>
-                <option value="Queja">Queja</option>
-                <option value="Reclamo">Reclamo</option>
-                <option value="Sugerencia">Sugerencia</option>
-              </select>
+        <article class="gallery-item">
+          <button class="gallery-trigger" type="button" aria-expanded="false">
+            <div class="gallery-trigger-main">
+              <img src="img/servicio2.png" alt="Aseo urbano" onerror="this.src='https://via.placeholder.com/600x400?text=Aseo+Urbano'" />
+              <div>
+                <span>Servicio</span>
+                <h3>Gestión de residuos</h3>
+              </div>
             </div>
+            <span class="gallery-toggle"><i class="fas fa-chevron-down"></i></span>
+          </button>
+          <div class="gallery-panel">
+            <div class="gallery-panel-inner">
+              <p class="gallery-copy">A través de la clasificación, pesaje y aprovechamiento, convertimos los residuos en valor ambiental y social, apoyando la limpieza del municipio y la formalización del reciclaje.</p>
+              <div class="gallery-grid">
+                <img src="img/servicio2.png" alt="Gestión de residuos 1" onerror="this.src='https://via.placeholder.com/600x400?text=Imagen+4'" />
+                <img src="img/servicio3.png" alt="Gestión de residuos 2" onerror="this.src='https://via.placeholder.com/600x400?text=Imagen+5'" />
+                <img src="img/servicio4.png" alt="Gestión de residuos 3" onerror="this.src='https://via.placeholder.com/600x400?text=Imagen+6'" />
+              </div>
+            </div>
+          </div>
+        </article>
 
-            <div>
-              <label class="block text-sm font-medium text-gray-700 mb-2">Dirección del servicio</label>
-              <input type="text" name="direccion" id="direccion" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-blue">
+        <article class="gallery-item">
+          <button class="gallery-trigger" type="button" aria-expanded="false">
+            <div class="gallery-trigger-main">
+              <img src="img/servicio5.png" alt="Aprovechamiento" onerror="this.src='https://via.placeholder.com/600x400?text=Aprovechamiento'" />
+              <div>
+                <span>Reciclaje</span>
+                <h3>Aprovechamiento responsable</h3>
+              </div>
             </div>
+            <span class="gallery-toggle"><i class="fas fa-chevron-down"></i></span>
+          </button>
+          <div class="gallery-panel">
+            <div class="gallery-panel-inner">
+              <p class="gallery-copy">El aprovechamiento de materiales reciclables permite reducir la generación de residuos, recuperar valor en la cadena productiva y apoyar la sostenibilidad de la ciudad y sus comunidades.</p>
+              <div class="gallery-grid">
+                <img src="img/servicio5.png" alt="Aprovechamiento 1" onerror="this.src='https://via.placeholder.com/600x400?text=Aprovechamiento+1'" />
+                <img src="img/servicio6.png" alt="Aprovechamiento 2" onerror="this.src='https://via.placeholder.com/600x400?text=Aprovechamiento+2'" />
+                <img src="img/campana6.jpg" alt="Aprovechamiento 3" onerror="this.src='https://via.placeholder.com/600x400?text=Aprovechamiento+3'" />
+              </div>
+            </div>
+          </div>
+        </article>
 
-            <div>
-              <label class="block text-sm font-medium text-gray-700 mb-2">Descripción detallada *</label>
-              <textarea name="descripcion" id="descripcion" required rows="5" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-blue" placeholder="Describe tu solicitud de manera detallada..."></textarea>
+        <article class="gallery-item">
+          <button class="gallery-trigger" type="button" aria-expanded="false">
+            <div class="gallery-trigger-main">
+              <img src="img/campana10.jpg" alt="Trabajo en comunidad" onerror="this.src='https://via.placeholder.com/600x400?text=Comunidad'" />
+              <div>
+                <span>Comunidad</span>
+                <h3>Trabajo con la comunidad</h3>
+              </div>
             </div>
+            <span class="gallery-toggle"><i class="fas fa-chevron-down"></i></span>
+          </button>
+          <div class="gallery-panel">
+            <div class="gallery-panel-inner">
+              <p class="gallery-copy">La comunidad es parte fundamental del modelo de REDECOL. Nuestro trabajo se fortalece con la participación vecinal, el acompañamiento institucional y la construcción de conciencia ambiental.</p>
+              <div class="gallery-grid">
+                <img src="img/campana10.jpg" alt="Comunidad 1" onerror="this.src='https://via.placeholder.com/600x400?text=Comunidad+1'" />
+                <img src="img/169635730_825056531695442_5294946513348635481_n_825056528362109.jpg" alt="Comunidad 2" onerror="this.src='https://via.placeholder.com/600x400?text=Comunidad+2'" />
+                <img src="img/171297926_825056445028784_9012091557347237975_n_825056441695451.jpg" alt="Comunidad 3" onerror="this.src='https://via.placeholder.com/600x400?text=Comunidad+3'" />
+              </div>
+            </div>
+          </div>
+        </article>
 
-            <!-- Código visible de radicado -->
-            <div class="bg-white text-center py-4 px-6 rounded-lg shadow border">
-              <p class="text-gray-600">Código de Radicación:</p>
-              <strong id="codigoRadicacion" class="text-lg font-mono bg-gray-200 px-3 py-1 inline-block rounded">PENDIENTE</strong>
+        <article class="gallery-item">
+          <button class="gallery-trigger" type="button" aria-expanded="false">
+            <div class="gallery-trigger-main">
+              <img src="img/285725139_1086544588879967_7680036642517624471_n_1086544592213300.png" alt="Impacto ambiental" onerror="this.src='https://via.placeholder.com/600x400?text=Impacto+Ambiental'" />
+              <div>
+                <span>Impacto</span>
+                <h3>Impacto ambiental y social</h3>
+              </div>
             </div>
-
-            <!-- Confirmación visual -->
-            <div id="mensajeConfirmacion" class="hidden bg-green-100 text-green-700 text-center p-4 rounded">
-              ✅ Su solicitud ha sido enviada exitosamente. <br>
-              <strong>Código:</strong> <span id="confirmacionCodigo"></span>
+            <span class="gallery-toggle"><i class="fas fa-chevron-down"></i></span>
+          </button>
+          <div class="gallery-panel">
+            <div class="gallery-panel-inner">
+              <p class="gallery-copy">Cada acción de limpieza, separación y aprovechamiento contribuye a mejorar la calidad de vida de la comunidad, reducir la contaminación y fortalecer la inclusión de los recicladores de oficio.</p>
+              <div class="gallery-grid">
+                <img src="img/285725139_1086544588879967_7680036642517624471_n_1086544592213300.png" alt="Impacto 1" onerror="this.src='https://via.placeholder.com/600x400?text=Impacto+1'" />
+                <img src="img/178383053_834496357418126_641695337994067930_n_834496354084793.jpg" alt="Impacto 2" onerror="this.src='https://via.placeholder.com/600x400?text=Impacto+2'" />
+                <img src="img/171458125_825073765027052_756546494001437575_n_825073761693719.jpg" alt="Impacto 3" onerror="this.src='https://via.placeholder.com/600x400?text=Impacto+3'" />
+              </div>
             </div>
-
-            <div class="text-center">
-              <button type="submit" class="bg-primary-blue hover:bg-secondary-blue text-white font-bold py-3 px-8 rounded-lg transition">
-                <i class="fas fa-paper-plane mr-2"></i>
-                Enviar solicitud
-              </button>
-            </div>
-          </form>
-        </div>
+          </div>
+        </article>
       </div>
     </div>
   </section>
 
-  <!-- ========== ENCUESTA DE SATISFACCIÓN ========== -->
-  <section id="satisfaccion" class="py-16 bg-gray-50">
-    <div class="container mx-auto px-4">
-      <h2 class="text-3xl font-bold text-primary-blue mb-4 text-center">Medición del Nivel de Satisfacción</h2>
-      <div class="section-divider mb-8"></div>
-      
-      <!-- Botón de instrucciones -->
-      <div class="mb-6 text-center">
-        <button onclick="abrirModal('modalEncuesta')" class="btn-instrucciones">
-          <i class="fas fa-info-circle"></i>
-          Ver instrucciones para la encuesta
-        </button>
-      </div>
-
-      <div class="max-w-3xl mx-auto text-center">
-        <p class="text-lg text-gray-700 mb-6">
-          Para cumplir con los lineamientos de la Superintendencia y mejorar nuestros servicios, lo invitamos a diligenciar el formulario oficial del SUI y nuestra encuesta interna.
-        </p>
-
-        <!-- Botón para encuesta del SUI -->
-        <a href="https://sui.superservicios.gov.co/" target="_blank" class="pdf-download-btn mb-10 inline-flex">
-          <i class="fas fa-poll"></i> Diligenciar encuesta oficial del SUI
-        </a>
-
-        <!-- Formulario interno -->
-        <form action="https://formsubmit.co/adm.redecol@outlook.com" method="POST" class="mt-10 space-y-6 text-left bg-white p-8 rounded-lg shadow-lg">
-
-          <!-- Configuración FormSubmit -->
-          <input type="hidden" name="_subject" value="Encuesta de Satisfacción REDECOL">
-          <input type="hidden" name="_template" value="table">
-          <input type="hidden" name="_captcha" value="false">
-          <input type="hidden" name="_next" value="https://manolo1208.github.io/redecol-web/gracias.html">
-
-          <div>
-            <label class="block font-semibold mb-1 text-gray-700">¿Cómo califica el servicio recibido?</label>
-            <select name="calificacion" required class="w-full border border-gray-300 px-4 py-2 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-blue">
-              <option value="">Seleccione una opción</option>
-              <option value="Excelente">Excelente</option>
-              <option value="Bueno">Bueno</option>
-              <option value="Regular">Regular</option>
-              <option value="Deficiente">Deficiente</option>
-            </select>
-          </div>
-
-          <div>
-            <label class="block font-semibold mb-1 text-gray-700">¿Recomendaría nuestro servicio a otras personas?</label>
-            <select name="recomendacion" required class="w-full border border-gray-300 px-4 py-2 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-blue">
-              <option value="">Seleccione una opción</option>
-              <option value="Sí">Sí</option>
-              <option value="No">No</option>
-            </select>
-          </div>
-
-          <div>
-            <label class="block font-semibold mb-1 text-gray-700">Comentarios adicionales</label>
-            <textarea name="comentarios" rows="4" class="w-full border border-gray-300 px-4 py-2 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-blue" placeholder="Escriba sus observaciones aquí..."></textarea>
-          </div>
-
-          <div class="text-center">
-            <button type="submit" class="bg-primary-blue text-white font-bold py-3 px-6 rounded-lg hover:bg-secondary-blue transition">
-              <i class="fas fa-paper-plane mr-2"></i> Enviar respuesta
-            </button>
-          </div>
-        </form>
-      </div>
-    </div>
-  </section>
-
-  <!-- ========== COMERCIAL ========== -->
-  <section id="comercial" class="py-16 bg-white">
-    <div class="container mx-auto px-4">
-      <h2 class="text-4xl font-bold mb-4 text-center text-primary-blue">Sección Comercial</h2>
-      <div class="section-divider mb-12"></div>
-
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-
-        <!-- Contrato de Condiciones Uniformes -->
-        <div class="bg-white p-6 rounded-lg shadow-lg card-hover text-center border border-gray-200">
-          <div class="mb-4">
-            <i class="fas fa-file-contract text-5xl text-primary-blue"></i>
-          </div>
-          <h3 class="text-2xl font-bold text-primary-blue mb-4">Contrato de Condiciones Uniformes</h3>
-          <p class="text-gray-600 mb-4">Consulta el documento oficial con los términos y condiciones del servicio público de aseo.</p>
-          <a href="docs/CONTRATO_DE_CONDICIONES_UNIFORME_CCU.pdf" target="_blank" class="pdf-download-btn">
-            <i class="fas fa-file-pdf"></i> Ver Contrato PDF
-          </a>
-        </div>
-
-        <!-- Portafolio REDECOL 2026 -->
-        <div class="bg-white p-6 rounded-lg shadow-lg card-hover text-center border border-gray-200">
-          <div class="mb-4">
-            <i class="fas fa-briefcase text-5xl text-primary-blue"></i>
-          </div>
-          <h3 class="text-2xl font-bold text-primary-blue mb-4">Portafolio REDECOL 2026</h3>
-          <p class="text-gray-600 mb-4">Conoce nuestra oferta de servicios, objetivos y alcance institucional actualizado.</p>
-          <a href="docs/PORTAFOLIO_REDECOL_ESP.pdf" download class="pdf-download-btn">
-            <i class="fas fa-file-pdf"></i> Descargar Portafolio PDF
-          </a>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- ========== DOCUMENTOS INSTITUCIONALES ========== -->
-  <section id="documentos" class="py-16 bg-gray-50">
-    <div class="container mx-auto px-4">
-      <h2 class="text-4xl font-bold mb-4 text-center text-primary-blue">Documentos Institucionales</h2>
-      <div class="section-divider mb-12"></div>
-
-      <div class="max-w-5xl mx-auto">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-
-          <!-- Supervisión y Control Operativo -->
-          <div class="bg-white p-6 rounded-lg shadow-lg card-hover border border-gray-200">
-            <div class="flex items-center mb-4">
-              <i class="fas fa-clipboard-check text-4xl text-purple-600 mr-4"></i>
-              <h3 class="text-xl font-bold text-primary-blue">Supervisión y Control Operativo</h3>
-            </div>
-            <p class="text-gray-600 mb-4">Decreto 1381 de 2024 - Supervisión y control de operaciones de aprovechamiento.</p>
-            <a href="docs/REDECOL_Supervision_Control_Operativo_Decreto_1381_2024.pdf" target="_blank" class="text-secondary-blue hover:text-primary-blue font-semibold">
-              <i class="fas fa-file-pdf mr-2"></i>Ver documento →
-            </a>
-          </div>
-
-          <!-- Sistema Completo 193 Barrios -->
-          <div class="bg-white p-6 rounded-lg shadow-lg card-hover border border-gray-200">
-            <div class="flex items-center mb-4">
-              <i class="fas fa-map-marked-alt text-4xl text-green-600 mr-4"></i>
-              <h3 class="text-xl font-bold text-primary-blue">Sistema Completo - 193 Barrios</h3>
-            </div>
-            <p class="text-gray-600 mb-4">Listado completo de los 193 barrios atendidos por REDECOL en Barrancabermeja.</p>
-            <a href="docs/SISTEMA_COMPLETO_193_BARRIOS_Barrancabermeja.pdf" target="_blank" class="text-secondary-blue hover:text-primary-blue font-semibold">
-              <i class="fas fa-file-pdf mr-2"></i>Ver documento →
-            </a>
-          </div>
-
-        </div>
-
-        <!-- Sección de archivos KML para mapas -->
-        <div class="mt-8 bg-blue-50 p-6 rounded-lg border border-blue-200">
-          <h3 class="text-2xl font-bold text-primary-blue mb-4 flex items-center">
-            <i class="fas fa-globe text-3xl mr-3"></i>
-            Archivos de Mapas (KML)
-          </h3>
-          <p class="text-gray-700 mb-4">Descarga los archivos KML para visualizar las rutas en Google Earth o aplicaciones de mapas.</p>
-          
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div class="bg-white p-4 rounded shadow">
-              <h4 class="font-bold text-primary-blue mb-2">Ruta BA (Zona Norte)</h4>
-              <a href="docs/BA.kml" download class="text-secondary-blue hover:text-primary-blue font-semibold text-sm">
-                <i class="fas fa-download mr-2"></i>Descargar BA.kml
-              </a>
-            </div>
-            
-            <div class="bg-white p-4 rounded shadow">
-              <h4 class="font-bold text-primary-blue mb-2">Ruta BB (Zona Sur)</h4>
-              <a href="docs/BB.kml" download class="text-secondary-blue hover:text-primary-blue font-semibold text-sm">
-                <i class="fas fa-download mr-2"></i>Descargar BB.kml
-              </a>
-            </div>
-          </div>
-
-          <div class="mt-4 bg-white p-4 rounded border border-blue-100">
-            <p class="text-sm text-gray-600">
-              <i class="fas fa-info-circle text-blue-500 mr-2"></i>
-              <strong>Nota:</strong> Los archivos KML pueden abrirse con Google Earth, Google Maps, o cualquier aplicación compatible con este formato.
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ========== SECCIÓN APP RECICLAPP ========== -->
-  <section id="app" class="py-16 bg-gradient-to-br from-green-50 to-blue-50">
-    <div class="container mx-auto px-4">
-      <h2 class="text-4xl font-bold mb-4 text-center text-primary-blue">
-        <i class="fas fa-mobile-alt mr-3"></i>
-        App ReciclApp
-      </h2>
-      <div class="section-divider mb-12"></div>
-
-      <div class="max-w-6xl mx-auto">
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
-          
-          <!-- Información de la App -->
-          <div class="space-y-6">
-            <div class="bg-white p-8 rounded-lg shadow-lg">
-              <h3 class="text-3xl font-bold text-green-600 mb-4">
-                Descarga nuestra App
-              </h3>
-              <p class="text-lg text-gray-700 mb-6">
-                ReciclApp es la aplicación móvil oficial de REDECOL E.S.P. que permite a nuestros recicladores 
-                de oficio gestionar sus rutas, registrar puntos GPS y optimizar la recolección de residuos aprovechables.
-              </p>
-
-              <!-- Características -->
-              <div class="space-y-4 mb-6">
-                <div class="flex items-start">
-                  <i class="fas fa-check-circle text-green-500 text-2xl mr-3 mt-1"></i>
-                  <div>
-                    <h4 class="font-bold text-gray-800">Seguimiento GPS en tiempo real</h4>
-                    <p class="text-gray-600">Registra tu recorrido y puntos de recolección</p>
-                  </div>
-                </div>
-
-                <div class="flex items-start">
-                  <i class="fas fa-check-circle text-green-500 text-2xl mr-3 mt-1"></i>
-                  <div>
-                    <h4 class="font-bold text-gray-800">Panel del reciclador</h4>
-                    <p class="text-gray-600">Consulta tus estadísticas y rutas asignadas</p>
-                  </div>
-                </div>
-
-                <div class="flex items-start">
-                  <i class="fas fa-check-circle text-green-500 text-2xl mr-3 mt-1"></i>
-                  <div>
-                    <h4 class="font-bold text-gray-800">Exportación de datos</h4>
-                    <p class="text-gray-600">Genera reportes en formato CSV</p>
-                  </div>
-                </div>
-
-                <div class="flex items-start">
-                  <i class="fas fa-check-circle text-green-500 text-2xl mr-3 mt-1"></i>
-                  <div>
-                    <h4 class="font-bold text-gray-800">Inicio y fin de ruta</h4>
-                    <p class="text-gray-600">Control completo de tus jornadas de trabajo</p>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Requisitos -->
-              <div class="bg-blue-50 p-4 rounded-lg mb-6">
-                <h4 class="font-bold text-primary-blue mb-2">
-                  <i class="fas fa-info-circle mr-2"></i>
-                  Requisitos
-                </h4>
-                <ul class="text-sm text-gray-700 space-y-1">
-                  <li>• Android 5.0 o superior</li>
-                  <li>• GPS activado</li>
-                  <li>• Conexión a Internet (para sincronización)</li>
-                  <li>• 50 MB de espacio disponible</li>
-                </ul>
-              </div>
-
-              <!-- Botones de descarga -->
-              <div class="space-y-3">
-                <!-- IMPORTANTE: Descarga directa APK - Debes colocar tu archivo ReciclApp.apk en la carpeta /app/ -->
-                <a href="app/ReciclApp.apk" download class="flex items-center justify-center bg-green-600 hover:bg-green-700 text-white font-bold py-4 px-6 rounded-lg transition shadow-lg w-full">
-                  <i class="fab fa-android text-2xl mr-3"></i>
-                  <div class="text-left">
-                    <div class="text-xs">Descargar para Android</div>
-                    <div class="text-lg">ReciclApp.apk</div>
-                  </div>
-                </a>
-
-                <!-- Manual de usuario - Debes colocar tu PDF del manual en la carpeta /app/ -->
-                <a href="app/manual-usuario-reciclapp.pdf" target="_blank" rel="noopener" class="flex items-center justify-center bg-primary-blue hover:bg-secondary-blue text-white font-bold py-3 px-6 rounded-lg transition w-full">
-                  <i class="fas fa-book mr-2"></i>
-                  Manual de Usuario
-                </a>
-
-                <!-- Video tutorial (opcional) -->
-                <button onclick="abrirModal('modalTutorialApp')" class="flex items-center justify-center bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 px-6 rounded-lg transition w-full">
-                  <i class="fas fa-play-circle mr-2"></i>
-                  Ver Tutorial
-                </button>
-              </div>
-            </div>
-
-            <!-- Nota importante -->
-            <div class="bg-yellow-50 border-l-4 border-yellow-400 p-4 rounded">
-              <div class="flex">
-                <i class="fas fa-exclamation-triangle text-yellow-600 text-xl mr-3"></i>
-                <div>
-                  <h4 class="font-bold text-yellow-800">Importante</h4>
-                  <p class="text-sm text-yellow-700">
-                    Esta aplicación es exclusiva para recicladores registrados en REDECOL E.S.P. 
-                    Necesitas credenciales de acceso para iniciar sesión.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Screenshots de la App -->
-          <div class="space-y-6">
-            <div class="bg-white p-6 rounded-lg shadow-lg">
-              <h3 class="text-2xl font-bold text-primary-blue mb-6 text-center">
-                Capturas de pantalla
-              </h3>
-
-              <!-- Carrusel de screenshots -->
-              <!-- IMPORTANTE: Debes colocar tus imágenes de la app en la carpeta /img/ -->
-              <div class="grid grid-cols-2 gap-4">
-                <div class="rounded-lg overflow-hidden shadow-md hover:shadow-xl transition">
-                  <img src="img/reciclapp-captura%20de%20pantalla1.jpg" alt="Login ReciclApp" class="w-full h-64 object-cover" onerror="this.src='https://via.placeholder.com/300x500/22c55e/ffffff?text=Login+Screen'">
-                  <div class="bg-gray-100 p-2 text-center">
-                    <p class="text-sm font-semibold text-gray-700">Inicio de sesión</p>
-                  </div>
-                </div>
-
-                <div class="rounded-lg overflow-hidden shadow-md hover:shadow-xl transition">
-                  <img src="img/reciclapp-captura%20de%20pantalla2.jpg" alt="Panel Reciclador" class="w-full h-64 object-cover" onerror="this.src='https://via.placeholder.com/300x500/3b82f6/ffffff?text=Panel+GPS'">
-                  <div class="bg-gray-100 p-2 text-center">
-                    <p class="text-sm font-semibold text-gray-700">Panel del reciclador</p>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Estadísticas de la app -->
-              <div class="mt-6 grid grid-cols-3 gap-4 text-center">
-                <div class="bg-green-50 p-4 rounded-lg">
-                  <div class="text-2xl font-bold text-green-600">50+</div>
-                  <div class="text-xs text-gray-600">Recicladores activos</div>
-                </div>
-                <div class="bg-blue-50 p-4 rounded-lg">
-                  <div class="text-2xl font-bold text-blue-600">1.2K</div>
-                  <div class="text-xs text-gray-600">Puntos GPS registrados</div>
-                </div>
-                <div class="bg-purple-50 p-4 rounded-lg">
-                  <div class="text-2xl font-bold text-purple-600">4.8</div>
-                  <div class="text-xs text-gray-600">Calificación</div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Testimonios -->
-            <div class="bg-white p-6 rounded-lg shadow-lg">
-              <h3 class="text-xl font-bold text-primary-blue mb-4">
-                <i class="fas fa-comments mr-2"></i>
-                Lo que dicen nuestros recicladores
-              </h3>
-              <div class="space-y-4">
-                <div class="bg-gray-50 p-4 rounded-lg">
-                  <div class="flex items-start mb-2">
-                    <div class="text-yellow-400 mr-2">★★★★★</div>
-                  </div>
-                  <p class="text-sm text-gray-700 italic mb-2">
-                    "Muy fácil de usar, ahora puedo registrar todos mis recorridos y llevar un control mejor de mi trabajo."
-                  </p>
-                  <p class="text-xs font-semibold text-gray-600">- María, Recicladora Zona Norte</p>
-                </div>
-
-                <div class="bg-gray-50 p-4 rounded-lg">
-                  <div class="flex items-start mb-2">
-                    <div class="text-yellow-400 mr-2">★★★★★</div>
-                  </div>
-                  <p class="text-sm text-gray-700 italic mb-2">
-                    "La aplicación es excelente, me ayuda a optimizar mis rutas y a tener todo organizado."
-                  </p>
-                  <p class="text-xs font-semibold text-gray-600">- José, Reciclador Zona Sur</p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-        </div>
-
-        <!-- Sección de ayuda -->
-        <div class="mt-12 bg-white p-8 rounded-lg shadow-lg">
-          <h3 class="text-2xl font-bold text-primary-blue mb-6 text-center">
-            <i class="fas fa-question-circle mr-2"></i>
-            ¿Necesitas ayuda con la app?
-          </h3>
-          <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div class="text-center">
-              <div class="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                <i class="fas fa-headset text-2xl text-primary-blue"></i>
-              </div>
-              <h4 class="font-bold text-gray-800 mb-2">Soporte técnico</h4>
-              <p class="text-sm text-gray-600">320 268 6047</p>
-            </div>
-
-            <div class="text-center">
-              <div class="bg-green-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                <i class="fas fa-envelope text-2xl text-green-600"></i>
-              </div>
-              <h4 class="font-bold text-gray-800 mb-2">Email</h4>
-              <p class="text-sm text-gray-600">adm.redecol@outlook.com</p>
-            </div>
-
-            <div class="text-center">
-              <div class="bg-purple-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                <i class="fas fa-book-open text-2xl text-purple-600"></i>
-              </div>
-              <h4 class="font-bold text-gray-800 mb-2">Documentación</h4>
-              <a href="app/manual-usuario-reciclapp.pdf" target="_blank" class="text-sm text-secondary-blue hover:underline">Ver manual completo</a>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- ========== CONTACTO ========== -->
-  <section id="contacto" class="py-16 bg-primary-blue">
-    <div class="container mx-auto px-4 text-white">
-      <h2 class="text-4xl font-bold mb-4 text-center">Información de contacto</h2>
-      <div class="w-20 h-1 bg-white mx-auto mb-12"></div>
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-        <div class="bg-white p-8 rounded-lg shadow-lg text-gray-800">
-          <div class="flex items-center mb-6">
-            <i class="fas fa-envelope text-3xl text-primary-blue mr-4"></i>
-            <h3 class="text-2xl font-bold text-primary-blue">Correos electrónicos</h3>
-          </div>
-          <div class="space-y-3">
-            <p class="flex items-center">
-              <i class="fas fa-at text-secondary-blue mr-2"></i>
-              <a href="mailto:pqr.redecol@outlook.com" class="text-secondary-blue hover:text-primary-blue transition">pqr.redecol@outlook.com</a>
-            </p>
-            <p class="flex items-center">
-              <i class="fas fa-at text-secondary-blue mr-2"></i>
-              <a href="mailto:adm.redecol@outlook.com" class="text-secondary-blue hover:text-primary-blue transition">adm.redecol@outlook.com</a>
-            </p>
-          </div>
-        </div>
-        <div class="bg-white p-8 rounded-lg shadow-lg text-gray-800">
-          <div class="flex items-center mb-6">
-            <i class="fas fa-phone text-3xl text-primary-blue mr-4"></i>
-            <h3 class="text-2xl font-bold text-primary-blue">Teléfonos</h3>
-          </div>
-          <div class="space-y-3 mb-6">
-            <p class="flex items-center">
-              <i class="fas fa-mobile-alt text-secondary-blue mr-2"></i>
-              <span class="text-gray-700">320 268 6047</span>
-            </p>
-            <p class="flex items-center">
-              <i class="fas fa-mobile-alt text-secondary-blue mr-2"></i>
-              <span class="text-gray-700">312 338 7813</span>
-            </p>
-          </div>
-          <h3 class="text-2xl font-bold text-primary-blue mb-2">Oficina de atención</h3>
-          <p>Carrera 33 # 32‑21, Barrio Belén<br>Barrancabermeja – Santander</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ========== FOOTER ========== -->
-  <footer class="bg-gray-800 text-white py-8">
-    <div class="container mx-auto px-4 flex flex-col md:flex-row justify-between items-center">
-      <p class="text-gray-300 mb-4 md:mb-0">© 2026 REDECOL E.S.P. – Todos los derechos reservados</p>
-      <div class="flex space-x-6">
-        <a href="#" class="text-gray-300 hover:text-white transition">Términos y condiciones</a>
-        <a href="#" class="text-gray-300 hover:text-white transition">Política de privacidad</a>
-      </div>
-    </div>
-  </footer>
-
-  <!-- ========== MODALES DE INSTRUCCIONES ========== -->
-
-  <!-- Modal PQR -->
-  <div id="modalPQR" class="modal">
-    <div class="modal-content">
-      <span class="modal-close" onclick="cerrarModal('modalPQR')">&times;</span>
-      <h2 class="text-2xl font-bold text-primary-blue mb-4">
-        <i class="fas fa-info-circle mr-2"></i>
-        Instrucciones para PQRS
-      </h2>
-      <div class="text-gray-700 space-y-3">
-        <p><strong>1.</strong> Complete todos los campos marcados con asterisco (*)</p>
-        <p><strong>2.</strong> Seleccione el tipo de solicitud que corresponda a su caso</p>
-        <p><strong>3.</strong> Describa su solicitud de manera clara y detallada</p>
-        <p><strong>4.</strong> Al enviar el formulario, recibirá un código de radicación</p>
-        <p><strong>5.</strong> Guarde su código de radicación para seguimiento</p>
-        <p><strong>6.</strong> Recibirá una respuesta en un plazo máximo de 15 días hábiles</p>
-        <div class="bg-blue-50 p-4 rounded mt-4">
-          <p class="font-semibold text-primary-blue">
-            <i class="fas fa-lightbulb mr-2"></i>
-            Consejo:
-          </p>
-          <p class="text-sm">Sea específico en su descripción e incluya detalles como fechas, direcciones y cualquier información relevante.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Modal Encuesta -->
-  <div id="modalEncuesta" class="modal">
-    <div class="modal-content">
-      <span class="modal-close" onclick="cerrarModal('modalEncuesta')">&times;</span>
-      <h2 class="text-2xl font-bold text-primary-blue mb-4">
-        <i class="fas fa-info-circle mr-2"></i>
-        Instrucciones para la Encuesta
-      </h2>
-      <div class="text-gray-700 space-y-3">
-        <p><strong>1.</strong> Puede responder la encuesta oficial del SUI o nuestra encuesta interna</p>
-        <p><strong>2.</strong> Califique honestamente el servicio recibido</p>
-        <p><strong>3.</strong> Sus comentarios son importantes para mejorar</p>
-        <p><strong>4.</strong> La encuesta es anónima y confidencial</p>
-        <p><strong>5.</strong> Solo tomará 2-3 minutos completarla</p>
-        <div class="bg-green-50 p-4 rounded mt-4">
-          <p class="font-semibold text-green-700">
-            <i class="fas fa-thumbs-up mr-2"></i>
-            Importante:
-          </p>
-          <p class="text-sm">Su opinión nos ayuda a mejorar el servicio para toda la comunidad.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Modal Tutorial de la App -->
-  <div id="modalTutorialApp" class="modal">
-    <div class="modal-content" style="max-width: 800px;">
-      <span class="modal-close" onclick="cerrarModal('modalTutorialApp')">&times;</span>
-      
-      <h2 class="text-3xl font-bold text-primary-blue mb-4">
-        <i class="fas fa-play-circle mr-2"></i>
-        Tutorial de uso - ReciclApp
-      </h2>
-      
-      <div class="text-gray-700 space-y-4">
-        <div class="bg-blue-50 p-6 rounded-lg">
-          <h3 class="font-bold text-primary-blue text-xl mb-4">Cómo usar ReciclApp</h3>
-          
-          <div class="space-y-4">
-            <div class="flex items-start">
-              <div class="bg-green-500 text-white rounded-full w-8 h-8 flex items-center justify-center font-bold mr-4 flex-shrink-0">1</div>
-              <div>
-                <h4 class="font-bold text-gray-800 mb-1">Descarga e instala la app</h4>
-                <p class="text-sm">Descarga el archivo APK y permite la instalación desde fuentes desconocidas en tu Android.</p>
-              </div>
-            </div>
-
-            <div class="flex items-start">
-              <div class="bg-green-500 text-white rounded-full w-8 h-8 flex items-center justify-center font-bold mr-4 flex-shrink-0">2</div>
-              <div>
-                <h4 class="font-bold text-gray-800 mb-1">Inicia sesión</h4>
-                <p class="text-sm">Usa tu nombre y número de cédula proporcionados por REDECOL E.S.P.</p>
-              </div>
-            </div>
-
-            <div class="flex items-start">
-              <div class="bg-green-500 text-white rounded-full w-8 h-8 flex items-center justify-center font-bold mr-4 flex-shrink-0">3</div>
-              <div>
-                <h4 class="font-bold text-gray-800 mb-1">Activa el GPS</h4>
-                <p class="text-sm">Permite que la app acceda a tu ubicación para registrar los puntos de recolección.</p>
-              </div>
-            </div>
-
-            <div class="flex items-start">
-              <div class="bg-green-500 text-white rounded-full w-8 h-8 flex items-center justify-center font-bold mr-4 flex-shrink-0">4</div>
-              <div>
-                <h4 class="font-bold text-gray-800 mb-1">Inicia tu ruta</h4>
-                <p class="text-sm">Presiona "Iniciar ruta" cuando comiences tu jornada de trabajo.</p>
-              </div>
-            </div>
-
-            <div class="flex items-start">
-              <div class="bg-green-500 text-white rounded-full w-8 h-8 flex items-center justify-center font-bold mr-4 flex-shrink-0">5</div>
-              <div>
-                <h4 class="font-bold text-gray-800 mb-1">Registra puntos GPS</h4>
-                <p class="text-sm">La app registrará automáticamente tu recorrido. También puedes marcar puntos manualmente.</p>
-              </div>
-            </div>
-
-            <div class="flex items-start">
-              <div class="bg-green-500 text-white rounded-full w-8 h-8 flex items-center justify-center font-bold mr-4 flex-shrink-0">6</div>
-              <div>
-                <h4 class="font-bold text-gray-800 mb-1">Finaliza y exporta</h4>
-                <p class="text-sm">Al terminar, presiona "Finalizar ruta" y exporta tus datos en formato CSV si es necesario.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Video placeholder -->
-        <div class="bg-gray-200 rounded-lg p-8 text-center">
-          <i class="fas fa-video text-6xl text-gray-400 mb-4"></i>
-          <p class="text-gray-600">Video tutorial próximamente disponible</p>
-        </div>
-      </div>
-
-      <div class="text-center mt-6">
-        <button onclick="cerrarModal('modalTutorialApp')" 
-                class="bg-primary-blue text-white px-6 py-2 rounded-lg hover:bg-secondary-blue transition">
-          Cerrar
-        </button>
-      </div>
-    </div>
-  </div>
-
-  <!-- ========== MODALES DE NOTICIAS ========== -->
-
-  <!-- Modal 1: Campaña Escolar con Galería -->
-  <div id="modalCampanaEscolar" class="modal">
-    <div class="modal-content" style="max-width: 900px;">
-      <span class="modal-close" onclick="cerrarModal('modalCampanaEscolar')">&times;</span>
-      
-      <h2 class="text-3xl font-bold text-primary-blue mb-4">
-        <i class="fas fa-graduation-cap mr-2"></i>
-        Campaña de Reciclaje Escolar 2025
-      </h2>
-      
-      <div class="text-gray-700 space-y-4 mb-6">
-        <p class="text-lg">
-          REDECOL E.S.P. ha lanzado su campaña educativa 2025 en instituciones educativas de Barrancabermeja, 
-          con el objetivo de crear conciencia ambiental desde temprana edad.
-        </p>
-        
-        <div class="bg-blue-50 p-4 rounded">
-          <h3 class="font-bold text-primary-blue mb-2">Objetivos de la campaña:</h3>
-          <ul class="list-disc list-inside space-y-1">
-            <li>Educar sobre separación en la fuente</li>
-            <li>Promover la cultura del reciclaje</li>
-            <li>Reducir residuos en colegios</li>
-            <li>Involucrar a la comunidad educativa</li>
-          </ul>
-        </div>
-      </div>
-
-      <h3 class="text-2xl font-bold text-primary-blue mb-4">Galería de la Campaña</h3>
-      
-      <!-- Galería de imágenes -->
-      <div class="grid grid-cols-2 md:grid-cols-3 gap-4 mb-6">
-        <div class="rounded overflow-hidden shadow-lg">
-          <img src="img/campana1.jpg" alt="Campaña escolar 1" class="w-full h-48 object-cover" 
-               onerror="this.src='https://via.placeholder.com/400x300/3b82f6/ffffff?text=Campaña+Escolar+1'">
-        </div>
-        <div class="rounded overflow-hidden shadow-lg">
-          <img src="img/campana2.jpg" alt="Campaña escolar 2" class="w-full h-48 object-cover"
-               onerror="this.src='https://via.placeholder.com/400x300/3b82f6/ffffff?text=Campaña+Escolar+2'">
-        </div>
-        <div class="rounded overflow-hidden shadow-lg">
-          <img src="img/campana3.jpg" alt="Campaña escolar 3" class="w-full h-48 object-cover"
-               onerror="this.src='https://via.placeholder.com/400x300/3b82f6/ffffff?text=Campaña+Escolar+3'">
-        </div>
-        <div class="rounded overflow-hidden shadow-lg">
-          <img src="img/campana4.jpg" alt="Campaña escolar 4" class="w-full h-48 object-cover"
-               onerror="this.src='https://via.placeholder.com/400x300/3b82f6/ffffff?text=Campaña+Escolar+4'">
-        </div>
-        <div class="rounded overflow-hidden shadow-lg">
-          <img src="img/campana5.jpg" alt="Campaña escolar 5" class="w-full h-48 object-cover"
-               onerror="this.src='https://via.placeholder.com/400x300/3b82f6/ffffff?text=Campaña+Escolar+5'">
-        </div>
-        <div class="rounded overflow-hidden shadow-lg">
-          <img src="img/campana6.jpg" alt="Campaña escolar 6" class="w-full h-48 object-cover"
-               onerror="this.src='https://via.placeholder.com/400x300/3b82f6/ffffff?text=Campaña+Escolar+6'">
-        </div>
-      </div>
-
-      <div class="text-center">
-        <button onclick="cerrarModal('modalCampanaEscolar')" 
-                class="bg-primary-blue text-white px-6 py-2 rounded-lg hover:bg-secondary-blue transition">
-          Cerrar
-        </button>
-      </div>
-    </div>
-  </div>
-
-  <!-- Modal 2: Reconocimiento Ambiental -->
-  <div id="modalReconocimiento" class="modal">
-    <div class="modal-content" style="max-width: 800px;">
-      <span class="modal-close" onclick="cerrarModal('modalReconocimiento')">&times;</span>
-      
-      <h2 class="text-3xl font-bold text-primary-blue mb-4">
-        <i class="fas fa-award mr-2"></i>
-        Reconocimiento Ambiental 2025
-      </h2>
-      
-      <div class="text-gray-700 space-y-4 mb-6">
-        <p class="text-lg">
-          El municipio de Barrancabermeja ha otorgado un reconocimiento especial a REDECOL E.S.P. 
-          por su destacado compromiso en la gestión ambiental y el fortalecimiento de los recicladores de oficio.
-        </p>
-        
-        <div class="bg-green-50 p-6 rounded-lg">
-          <h3 class="font-bold text-green-700 text-xl mb-3">Logros Destacados</h3>
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div class="flex items-start">
-              <i class="fas fa-check-circle text-green-600 mt-1 mr-2"></i>
-              <div>
-                <strong>78.7 toneladas</strong> de material reciclado en 2024
-              </div>
-            </div>
-            <div class="flex items-start">
-              <i class="fas fa-check-circle text-green-600 mt-1 mr-2"></i>
-              <div>
-                <strong>50+ recicladores</strong> formalizados
-              </div>
-            </div>
-            <div class="flex items-start">
-              <i class="fas fa-check-circle text-green-600 mt-1 mr-2"></i>
-              <div>
-                <strong>15 colegios</strong> participantes en campañas
-              </div>
-            </div>
-            <div class="flex items-start">
-              <i class="fas fa-check-circle text-green-600 mt-1 mr-2"></i>
-              <div>
-                <strong>98%</strong> de satisfacción de usuarios
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Imagen del reconocimiento -->
-        <div class="mt-6">
-          <img src="img/reconocimiento2025.jpg" alt="Reconocimiento 2025" 
-               class="w-full rounded-lg shadow-lg"
-               onerror="this.src='https://via.placeholder.com/800x400/22c55e/ffffff?text=Reconocimiento+Ambiental+2025'">
-        </div>
-
-        <div class="bg-blue-50 p-4 rounded mt-4">
-          <p class="font-semibold text-primary-blue mb-2">
-            <i class="fas fa-quote-left mr-2"></i>
-            Palabras del Director
-          </p>
-          <p class="text-gray-700 italic">
-            "Este reconocimiento es un reflejo del trabajo conjunto con nuestra comunidad de recicladores 
-            y el compromiso de Barrancabermeja con un futuro más sostenible. Seguiremos trabajando 
-            para consolidar la economía circular en nuestra región."
-          </p>
-        </div>
-      </div>
-
-      <div class="text-center mt-6">
-        <button onclick="cerrarModal('modalReconocimiento')" 
-                class="bg-primary-blue text-white px-6 py-2 rounded-lg hover:bg-secondary-blue transition">
-          Cerrar
-        </button>
-      </div>
-    </div>
-  </div>
-
-  <!-- Modal 3: Nueva Ruta de Aprovechamiento -->
-  <div id="modalNuevaRuta" class="modal">
-    <div class="modal-content" style="max-width: 900px;">
-      <span class="modal-close" onclick="cerrarModal('modalNuevaRuta')">&times;</span>
-      
-      <h2 class="text-3xl font-bold text-primary-blue mb-4">
-        <i class="fas fa-route mr-2"></i>
-        Nueva Ruta de Aprovechamiento - Zona Nororiental
-      </h2>
-      
-      <div class="text-gray-700 space-y-4 mb-6">
-        <p class="text-lg">
-          REDECOL E.S.P. amplía su cobertura con la habilitación de una nueva ruta de aprovechamiento 
-          para la zona nororiental de Barrancabermeja, beneficiando a más de 5,000 hogares.
-        </p>
-        
-        <div class="bg-blue-50 p-6 rounded-lg">
-          <h3 class="font-bold text-primary-blue text-xl mb-3">Detalles de la Nueva Ruta</h3>
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div>
-              <p><strong>Código de Ruta:</strong> BA-NOR-01</p>
-              <p><strong>Días de servicio:</strong> Martes y Viernes</p>
-              <p><strong>Horario:</strong> 6:00 AM - 2:00 PM</p>
-            </div>
-            <div>
-              <p><strong>Zona de cobertura:</strong> Zona Nororiental</p>
-              <p><strong>Barrios cubiertos:</strong> 12 barrios</p>
-              <p><strong>Inicio de operación:</strong> 15 de febrero 2026</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Mapa de la ruta -->
-        <div class="mt-6">
-          <h3 class="text-xl font-bold text-primary-blue mb-3">Mapa de la Ruta</h3>
-          <div class="relative w-full bg-gray-200 rounded-lg overflow-hidden" style="padding-top: 56.25%;">
-            <iframe src="mapas/BA-NOR-01.html" 
-                    class="absolute inset-0 w-full h-full border-0" 
-                    title="Mapa nueva ruta nororiental" 
-                    loading="lazy">
-            </iframe>
-          </div>
-        </div>
-
-        <!-- Barrios cubiertos -->
-        <div class="mt-6">
-          <h3 class="font-bold text-primary-blue mb-3">Barrios Cubiertos por la Ruta</h3>
-          <div class="grid grid-cols-2 md:grid-cols-3 gap-3">
-            <div class="bg-white p-3 rounded shadow flex items-center">
-              <i class="fas fa-map-marker-alt text-secondary-blue mr-2"></i>
-              <span>Villa Hermosa</span>
-            </div>
-            <div class="bg-white p-3 rounded shadow flex items-center">
-              <i class="fas fa-map-marker-alt text-secondary-blue mr-2"></i>
-              <span>El Progreso</span>
-            </div>
-            <div class="bg-white p-3 rounded shadow flex items-center">
-              <i class="fas fa-map-marker-alt text-secondary-blue mr-2"></i>
-              <span>San Rafael</span>
-            </div>
-            <div class="bg-white p-3 rounded shadow flex items-center">
-              <i class="fas fa-map-marker-alt text-secondary-blue mr-2"></i>
-              <span>Galán</span>
-            </div>
-            <div class="bg-white p-3 rounded shadow flex items-center">
-              <i class="fas fa-map-marker-alt text-secondary-blue mr-2"></i>
-              <span>La Floresta</span>
-            </div>
-            <div class="bg-white p-3 rounded shadow flex items-center">
-              <i class="fas fa-map-marker-alt text-secondary-blue mr-2"></i>
-              <span>Versalles</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Instrucciones para residentes -->
-        <div class="mt-6 bg-green-50 p-4 rounded">
-          <h3 class="font-bold text-green-700 mb-3">
-            <i class="fas fa-info-circle mr-2"></i>
-            Instrucciones para Residentes
-          </h3>
-          <ol class="list-decimal list-inside space-y-2 text-gray-700">
-            <li>Separe sus residuos aprovechables (plástico, papel, cartón, vidrio, metal)</li>
-            <li>Coloque los materiales en una bolsa o recipiente aparte</li>
-            <li>Saque sus residuos antes de las 6:00 AM los días martes y viernes</li>
-            <li>Asegúrese de que los materiales estén limpios y secos</li>
-            <li>No mezcle residuos aprovechables con residuos ordinarios</li>
-          </ol>
-        </div>
-      </div>
-
-      <div class="text-center mt-6">
-        <button onclick="cerrarModal('modalNuevaRuta')" 
-                class="bg-primary-blue text-white px-6 py-2 rounded-lg hover:bg-secondary-blue transition">
-          Cerrar
-        </button>
-      </div>
-    </div>
-  </div>
-
-  <!-- ========== SCRIPTS ========== -->
   <script>
-    // Script para generar código de radicación
-    document.getElementById("pqrForm").addEventListener("submit", function () {
-      const codigo = generarCodigoRadicacion();
-      document.getElementById("codigoRadicacion").textContent = codigo;
-      document.getElementById("codigoOculto").value = codigo;
-      document.getElementById("confirmacionCodigo").textContent = codigo;
-      document.getElementById("mensajeConfirmacion").classList.remove("hidden");
+    const menuBtn = document.getElementById('mobileMenuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    menuBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('open');
     });
 
-    function generarCodigoRadicacion() {
-      const f = new Date();
-      return `PQR-${f.getFullYear().toString().slice(-2)}${String(f.getMonth() + 1).padStart(2, '0')}${String(f.getDate()).padStart(2, '0')}-${String(f.getHours()).padStart(2, '0')}${String(f.getMinutes()).padStart(2, '0')}${String(f.getSeconds()).padStart(2, '0')}`;
-    }
+    const galleryItems = document.querySelectorAll('.gallery-item');
+    galleryItems.forEach((item) => {
+      const trigger = item.querySelector('.gallery-trigger');
+      trigger.addEventListener('click', () => {
+        const isOpen = item.classList.contains('open');
 
-    // Menú móvil
-    document.getElementById('mobileMenuBtn').addEventListener('click', () => {
-      document.getElementById('mobileMenu').classList.toggle('hidden');
-    });
+        galleryItems.forEach((galleryItem) => {
+          galleryItem.classList.remove('open');
+          galleryItem.querySelector('.gallery-trigger').setAttribute('aria-expanded', 'false');
+        });
 
-    // Funciones de modal
-    function abrirModal(idModal) {
-      document.getElementById(idModal).classList.add('active');
-      document.body.style.overflow = 'hidden';
-    }
-
-    function cerrarModal(idModal) {
-      document.getElementById(idModal).classList.remove('active');
-      document.body.style.overflow = 'auto';
-    }
-
-    // Cerrar modal al hacer clic fuera
-    window.addEventListener('click', function(event) {
-      if (event.target.classList.contains('modal')) {
-        event.target.classList.remove('active');
-        document.body.style.overflow = 'auto';
-      }
+        if (!isOpen) {
+          item.classList.add('open');
+          trigger.setAttribute('aria-expanded', 'true');
+        }
+      });
     });
   </script>
-
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
