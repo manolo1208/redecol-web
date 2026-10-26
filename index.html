@@ -6,322 +6,501 @@
   <title>REDECOL E.S.P. – Servicio Público de Aseo</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <style>
-    :root{
-      --primary-blue:#1e3a8a;
-      --secondary-blue:#3b82f6;
-      --light-blue:#eff6ff;
-      --green-primary:#15803d;
-      --green-secondary:#22c55e;
-      --gray-100:#f3f4f6;
-      --gray-200:#e5e7eb;
-      --gray-700:#374151;
-      --shadow:0 12px 30px rgba(15, 23, 42, 0.12);
+    :root {
+      --primary-blue: #1e3a8a;
+      --secondary-blue: #3b82f6;
+      --light-blue: #eff6ff;
+      --green-primary: #15803d;
+      --green-secondary: #22c55e;
+      --gray-bg: #f3f4f6;
+      --dark-text: #1f2937;
+      --muted: #6b7280;
+      --soft-border: rgba(148, 163, 184, 0.4);
+      --shadow: 0 14px 34px rgba(15, 23, 42, 0.12);
     }
 
-    * { box-sizing: border-box; }
     html { scroll-behavior: smooth; }
-    body { font-family: Arial, Helvetica, sans-serif; background: #f8fafc; color: #111827; }
+    body {
+      margin: 0;
+      background: #f8fafc;
+      color: var(--dark-text);
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
     a { text-decoration: none; }
+    img { max-width: 100%; display: block; }
 
-    .bg-primary-blue{background:var(--primary-blue)}
-    .bg-secondary-blue{background:var(--secondary-blue)}
-    .bg-light-blue{background:var(--light-blue)}
-    .text-primary-blue{color:var(--primary-blue)}
-    .border-primary-blue{border-color:var(--primary-blue)}
-
-    .section-divider{height:4px;background:linear-gradient(90deg,var(--primary-blue),var(--secondary-blue));border-radius:2px;margin:0 auto 2rem;width:90px;}
-
-    .container {
-      width: min(1200px, calc(100% - 2rem));
-      margin-inline: auto;
+    .container { width: min(1180px, calc(100% - 2rem)); margin: 0 auto; }
+    .section { padding: 5rem 0; }
+    .section-title {
+      text-align: center;
+      color: var(--primary-blue);
+      font-size: clamp(2rem, 3vw, 3rem);
+      font-weight: 800;
+      margin-bottom: .75rem;
+    }
+    .section-divider {
+      width: 110px;
+      height: 4px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--primary-blue), var(--secondary-blue));
+      margin: 0 auto 2.25rem;
     }
 
     .topbar {
       position: sticky;
       top: 0;
       z-index: 50;
-      background: rgba(255,255,255,0.92);
-      backdrop-filter: blur(10px);
-      border-bottom: 1px solid rgba(148, 163, 184, 0.25);
+      background: rgba(255,255,255,0.94);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid rgba(148,163,184,0.18);
     }
-
     .topbar-inner {
+      min-height: 79px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      min-height: 78px;
       gap: 1rem;
     }
-
-    .brand { display: flex; align-items: center; gap: .9rem; }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: .85rem;
+    }
     .brand-mark {
       width: 58px;
       height: 58px;
       border-radius: 12px;
       overflow: hidden;
       background: white;
-      box-shadow: 0 4px 12px rgba(0,0,0,.08);
+      box-shadow: 0 4px 14px rgba(30,58,138,0.12);
       display: grid;
       place-items: center;
     }
-    .brand-mark img { width:100%; height:100%; object-fit: contain; }
-    .brand-copy h1 { font-size: clamp(1.1rem, 1.8vw, 1.5rem); color: var(--primary-blue); font-weight: 800; }
-    .brand-copy p { font-size: 0.72rem; color: #475569; }
+    .brand-mark img { width: 100%; height: 100%; object-fit: contain; }
+    .brand h1 {
+      margin: 0;
+      color: var(--primary-blue);
+      font-size: clamp(1.1rem, 1.7vw, 1.5rem);
+      font-weight: 800;
+    }
+    .brand p {
+      margin: 0;
+      color: #475569;
+      font-size: .72rem;
+      line-height: 1.15;
+    }
 
     .nav-desktop ul {
+      list-style: none;
       display: flex;
       align-items: center;
-      gap: 1.25rem;
-      list-style: none;
+      gap: 1.2rem;
       margin: 0;
       padding: 0;
-      font-size: 0.95rem;
     }
     .nav-desktop a {
       color: #374151;
+      font-weight: 700;
+      font-size: .96rem;
       transition: color .2s ease;
-      font-weight: 600;
     }
     .nav-desktop a:hover { color: var(--primary-blue); }
 
     .menu-btn {
       display: none;
-      border: none;
+      border: 0;
       background: transparent;
       color: var(--primary-blue);
       font-size: 1.5rem;
       cursor: pointer;
     }
 
-    .mobile-nav {
+    .mobile-menu {
       display: none;
       background: white;
       border-top: 1px solid #e5e7eb;
-      padding: 0.75rem 1rem 1.1rem;
+      padding: 0.7rem 1rem 1rem;
     }
-    .mobile-nav a {
+    .mobile-menu a {
       display: block;
-      padding: 0.7rem 0;
+      padding: .75rem 0;
       color: #374151;
-      font-weight: 600;
+      font-weight: 700;
       border-bottom: 1px solid #f3f4f6;
     }
 
     .hero {
       background: linear-gradient(135deg, var(--primary-blue) 0%, var(--secondary-blue) 100%);
       color: white;
-      padding: 5rem 0 4rem;
-      text-align: center;
+      padding: 4.5rem 0 4rem;
     }
-    .hero h2 { font-size: clamp(2.4rem, 5vw, 4rem); font-weight: 800; margin-bottom: 1rem; }
+    .hero-inner {
+      display: grid;
+      grid-template-columns: 1.2fr .8fr;
+      align-items: center;
+      gap: 2rem;
+    }
+    .hero h2 {
+      margin: 0 0 1rem;
+      font-size: clamp(2.4rem, 5vw, 4rem);
+      line-height: 1.05;
+      letter-spacing: -.05em;
+      font-weight: 900;
+    }
     .hero p {
-      max-width: 800px;
-      margin: 0 auto 2rem;
-      font-size: clamp(1rem, 2vw, 1.4rem);
+      margin: 0 0 2rem;
       color: rgba(255,255,255,0.9);
+      font-size: clamp(1.02rem, 2vw, 1.35rem);
       line-height: 1.7;
-    }
-    .hero-video {
-      margin: 0 auto 2rem;
-      width: min(900px, 90%);
-      aspect-ratio: 16 / 9;
-      border-radius: 18px;
-      overflow: hidden;
-      box-shadow: 0 25px 45px rgba(0,0,0,.2);
-      background: #0f172a;
-    }
-    .hero-video iframe {
-      width: 100%;
-      height: 100%;
-      border: 0;
+      max-width: 750px;
     }
     .hero-actions {
       display: flex;
-      justify-content: center;
-      gap: 1rem;
       flex-wrap: wrap;
+      gap: 1rem;
+      margin-top: 1rem;
     }
-    .btn-primary, .btn-light {
+    .btn-primary, .btn-secondary {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      padding: .9rem 1.8rem;
+      padding: .9rem 1.5rem;
       border-radius: 12px;
-      font-weight: 700;
+      font-weight: 800;
       transition: transform .2s ease, box-shadow .2s ease;
     }
     .btn-primary {
       background: white;
       color: var(--primary-blue);
-      box-shadow: 0 12px 24px rgba(0,0,0,.12);
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12);
     }
-    .btn-light {
-      border: 2px solid rgba(255,255,255,.7);
+    .btn-secondary {
       color: white;
+      border: 2px solid rgba(255,255,255,0.8);
       background: transparent;
     }
-    .btn-primary:hover, .btn-light:hover { transform: translateY(-2px); }
+    .btn-primary:hover, .btn-secondary:hover { transform: translateY(-2px); }
 
-    .section {
-      padding: 4rem 0;
+    .hero-video {
+      background: rgba(15, 23, 42, 0.2);
+      border-radius: 24px;
+      padding: .4rem;
+      box-shadow: 0 25px 50px rgba(15, 23, 42, .24);
+      overflow: hidden;
+      aspect-ratio: 16 / 10;
     }
-    .section h2 {
-      text-align: center;
-      font-size: clamp(2rem, 3vw, 3rem);
-      font-weight: 800;
-      color: var(--primary-blue);
-      margin-bottom: .5rem;
-    }
-
-    .gallery-section {
-      background: #f3f4f6;
-    }
-
-    .gallery-accordion {
-      max-width: 1100px;
-      margin: 0 auto;
-      display: grid;
-      gap: 1rem;
+    .hero-video iframe {
+      width: 100%;
+      height: 100%;
+      border: 0;
+      border-radius: 18px;
     }
 
-    .gallery-item {
+    .who-we-are {
       background: white;
-      border-radius: 22px;
-      border: 1px solid rgba(148,163,184,0.25);
+    }
+    .stats-grid, .services-grid, .news-grid, .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.4rem;
+    }
+    .card {
+      background: white;
+      border: 1px solid var(--soft-border);
+      border-radius: 18px;
       box-shadow: var(--shadow);
       overflow: hidden;
     }
-
-    .gallery-trigger {
-      width: 100%;
-      background: linear-gradient(135deg, rgba(30,58,138,0.04), rgba(59,130,246,0.08));
-      border: 0;
-      cursor: pointer;
-      padding: 1.1rem 1.25rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 1rem;
-      text-align: left;
-      color: var(--primary-blue);
-      font: inherit;
+    .stat-card {
+      padding: 1.7rem 1.3rem;
+      text-align: center;
+      background: linear-gradient(180deg, #ffffff, #f8fbff);
     }
-
-    .gallery-trigger-main {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      flex: 1;
-    }
-
-    .gallery-trigger-main img {
-      width: 120px;
-      height: 86px;
-      object-fit: cover;
-      border-radius: 14px;
-      border: 2px solid rgba(59,130,246,0.25);
-    }
-
-    .gallery-trigger-main h3 {
-      margin: 0;
-      font-size: clamp(1.1rem, 2vw, 1.5rem);
-      font-weight: 800;
-      color: var(--primary-blue);
-    }
-
-    .gallery-trigger-main span {
-      display: inline-block;
-      background: rgba(59,130,246,0.1);
-      color: var(--secondary-blue);
-      border-radius: 999px;
-      padding: .3rem .7rem;
-      font-size: .78rem;
-      font-weight: 700;
-      margin-bottom: .4rem;
-    }
-
-    .gallery-toggle {
-      display: grid;
+    .stat-card .icon {
+      display: inline-grid;
       place-items: center;
-      width: 42px;
-      height: 42px;
-      border-radius: 50%;
-      background: rgba(30,58,138,0.08);
+      width: 64px;
+      height: 64px;
+      font-size: 1.7rem;
       color: var(--primary-blue);
-      font-size: 1.15rem;
-      transition: transform .25s ease;
+      background: rgba(59,130,246,0.08);
+      border-radius: 16px;
+      margin-bottom: .8rem;
     }
-
-    .gallery-item.open .gallery-toggle {
-      transform: rotate(180deg);
+    .stat-card h3 {
+      margin: .3rem 0;
+      color: var(--primary-blue);
+      font-size: 2rem;
+      font-weight: 800;
     }
-
-    .gallery-panel {
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height .35s ease, padding .35s ease;
-      padding: 0 1.25rem;
-    }
-
-    .gallery-item.open .gallery-panel {
-      max-height: 1200px;
-      padding: 0 1.25rem 1.4rem;
-    }
-
-    .gallery-panel-inner {
-      display: grid;
-      gap: 1rem;
-      padding-top: .5rem;
-    }
-
-    .gallery-copy {
-      color: #4b5563;
-      font-size: 1rem;
-      line-height: 1.7;
+    .stat-card p {
       margin: 0;
+      color: var(--muted);
+      font-weight: 600;
     }
 
-    .gallery-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
-      gap: 1rem;
+    .services {
+      background: var(--gray-bg);
+    }
+    .service-card {
+      padding: 1.6rem 1.2rem;
+      text-align: center;
+    }
+    .service-card .icon {
+      font-size: 2.2rem;
+      color: var(--secondary-blue);
+      margin-bottom: .9rem;
+    }
+    .service-card h3 {
+      margin: 0 0 .75rem;
+      color: var(--primary-blue);
+      font-size: 1.4rem;
+      font-weight: 800;
+    }
+    .service-card p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.7;
     }
 
-    .gallery-grid img {
+    .news-card {
+      background: white;
+      border-radius: 18px;
+      overflow: hidden;
+      border: 1px solid var(--soft-border);
+      box-shadow: var(--shadow);
+    }
+    .news-card img {
       width: 100%;
       height: 220px;
       object-fit: cover;
-      display: block;
+    }
+    .news-card-content { padding: 1.2rem; }
+    .news-card-content h3 {
+      margin: 0 0 .6rem;
+      font-size: 1.35rem;
+      color: var(--primary-blue);
+      font-weight: 800;
+    }
+    .news-card-content p { margin: 0 0 1rem; color: var(--muted); line-height: 1.7; }
+    .link-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      background: var(--primary-blue);
+      color: white;
+      padding: .7rem 1rem;
+      border-radius: 10px;
+      font-weight: 700;
+    }
+
+    .gallery-section {
+      background: linear-gradient(180deg, #f3f4f6 0%, #eef6ff 100%);
+    }
+    .gallery-tabs {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: .75rem;
+      margin: 0 auto 2rem;
+      max-width: 1100px;
+    }
+    .gallery-tab {
+      border: 0;
+      background: rgba(30,58,138,0.08);
+      color: var(--primary-blue);
+      border-radius: 12px 12px 0 0;
+      padding: .9rem 1.2rem;
+      font-weight: 800;
+      cursor: pointer;
+      transition: all .2s ease;
+    }
+    .gallery-tab.active {
+      background: var(--primary-blue);
+      color: white;
+      box-shadow: 0 10px 20px rgba(30,58,138,0.2);
+    }
+    .gallery-panel {
+      display: none;
+      max-width: 1100px;
+      margin: 0 auto;
+      background: white;
+      border: 1px solid var(--soft-border);
+      border-radius: 18px;
+      padding: 1.25rem;
+      box-shadow: var(--shadow);
+    }
+    .gallery-panel.active { display: block; }
+    .gallery-panel-inner {
+      display: grid;
+      gap: 1rem;
+    }
+    .gallery-panel p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.7;
+      font-size: 1rem;
+    }
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1rem;
+    }
+    .gallery-grid img {
+      width: 100%;
+      height: 240px;
+      object-fit: cover;
       border-radius: 16px;
-      box-shadow: 0 10px 20px rgba(15, 23, 42, 0.08);
-      transition: transform .25s ease, box-shadow .25s ease;
+      box-shadow: 0 8px 18px rgba(15, 23, 42, 0.08);
+      transition: transform .2s ease;
+    }
+    .gallery-grid img:hover { transform: translateY(-2px); }
+
+    .tariff-table-wrap {
+      overflow-x: auto;
+      border-radius: 18px;
+      border: 1px solid var(--soft-border);
+      box-shadow: var(--shadow);
+      background: white;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 640px;
+    }
+    thead th {
+      background: var(--primary-blue);
+      color: white;
+      padding: 1rem;
+      text-align: left;
+      font-size: .96rem;
+    }
+    tbody td {
+      padding: 1rem;
+      border-bottom: 1px solid #e5e7eb;
+      color: #374151;
+    }
+    tbody tr:nth-child(even) { background: #f9fafb; }
+
+    .map-box {
+      background: white;
+      border: 1px solid var(--soft-border);
+      border-radius: 18px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+    .map-box iframe {
+      width: 100%;
+      height: 520px;
+      border: 0;
+      display: block;
     }
 
-    .gallery-grid img:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 16px 28px rgba(15, 23, 42, 0.12);
+    .pqr {
+      background: white;
+    }
+    .form-box {
+      background: white;
+      border-radius: 18px;
+      border: 1px solid var(--soft-border);
+      box-shadow: var(--shadow);
+      padding: 1.2rem;
+    }
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1rem;
+    }
+    label {
+      display: block;
+      color: #374151;
+      font-weight: 700;
+      margin-bottom: .4rem;
+    }
+    input, select, textarea {
+      width: 100%;
+      border: 1px solid #d1d5db;
+      border-radius: 10px;
+      padding: .8rem .9rem;
+      font: inherit;
+      background: #fff;
+      color: #111827;
+    }
+    textarea { min-height: 130px; resize: vertical; }
+    .full { grid-column: 1 / -1; }
+    .submit-btn {
+      border: 0;
+      background: var(--primary-blue);
+      color: white;
+      padding: .9rem 1.2rem;
+      border-radius: 12px;
+      font-weight: 800;
+      cursor: pointer;
+      margin-top: .7rem;
     }
 
-    @media (max-width: 768px) {
+    .contact-card {
+      background: linear-gradient(135deg, #eff6ff, #ffffff);
+      border: 1px solid var(--soft-border);
+      border-radius: 18px;
+      box-shadow: var(--shadow);
+      padding: 1.5rem;
+    }
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: .9rem;
+      margin: 1rem 0;
+      color: #374151;
+    }
+    .contact-item i {
+      width: 42px;
+      height: 42px;
+      background: rgba(59,130,246,0.08);
+      border-radius: 12px;
+      display: grid;
+      place-items: center;
+      color: var(--primary-blue);
+    }
+
+    footer {
+      background: #0f172a;
+      color: #cbd5e1;
+      padding: 2rem 0;
+    }
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    @media (max-width: 900px) {
+      .hero-inner { grid-template-columns: 1fr; }
       .nav-desktop { display: none; }
       .menu-btn { display: block; }
-      .mobile-nav.open { display: block; }
-      .gallery-trigger { align-items: flex-start; }
-      .gallery-trigger-main { align-items: flex-start; }
-      .gallery-trigger-main img { width: 96px; height: 74px; }
-      .hero { padding-top: 4rem; }
+      .mobile-menu.open { display: block; }
+    }
+
+    @media (max-width: 640px) {
+      .form-grid { grid-template-columns: 1fr; }
+      .gallery-tab { width: 100%; }
+      .section { padding: 4rem 0; }
     }
   </style>
 </head>
 <body>
-  <header class="topbar" id="main-header">
+  <header class="topbar">
     <div class="container topbar-inner">
       <div class="brand">
         <div class="brand-mark">
           <img src="img/logo-redecol.png" alt="Logo REDECOL" />
         </div>
-        <div class="brand-copy">
+        <div>
           <h1>REDECOL E.S.P.</h1>
           <p>Servicio Público de Aseo</p>
         </div>
@@ -340,12 +519,12 @@
         </ul>
       </nav>
 
-      <button class="menu-btn" id="mobileMenuBtn" aria-label="Abrir menú">
+      <button id="mobileMenuBtn" class="menu-btn" aria-label="Abrir menú">
         <i class="fas fa-bars"></i>
       </button>
     </div>
 
-    <div class="mobile-nav" id="mobileMenu">
+    <div id="mobileMenu" class="mobile-menu">
       <a href="#inicio">Inicio</a>
       <a href="#servicios">Servicios</a>
       <a href="#indicadores">Indicadores</a>
@@ -357,192 +536,323 @@
     </div>
   </header>
 
-  <section class="hero" id="inicio">
-    <div class="container">
-      <h2>Bienvenido a REDECOL E.S.P.</h2>
-      <p>Tu prestador oficial de servicios de aseo complementario en aprovechamiento de residuos sólidos en Barrancabermeja, Santander.</p>
+  <section id="inicio" class="hero">
+    <div class="container hero-inner">
+      <div>
+        <h2>Tu servicio de aseo, más responsable y cercano.</h2>
+        <p>REDECOL E.S.P. impulsa la limpieza, la recolección selectiva y el aprovechamiento de residuos para mejorar la calidad de vida de la comunidad en Barrancabermeja.</p>
+        <div class="hero-actions">
+          <a href="#servicios" class="btn-primary">Nuestros servicios</a>
+          <a href="#pqr" class="btn-secondary">PQR</a>
+        </div>
+      </div>
 
       <div class="hero-video">
-        <iframe src="https://www.youtube.com/embed/gIYazZ7M7W8" title="Video REDECOL E.S.P." allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-      </div>
-
-      <div class="hero-actions">
-        <a href="#servicios" class="btn-primary">Nuestros servicios</a>
-        <a href="#contacto" class="btn-light">Contactar</a>
+        <iframe src="https://www.youtube.com/embed/gIYazZ7M7W8" title="Video REDECOL" allowfullscreen></iframe>
       </div>
     </div>
   </section>
 
-  <section class="section gallery-section" id="galeria">
+  <section class="section who-we-are">
     <div class="container">
-      <h2>Galería ampliada</h2>
+      <h2 class="section-title">¿Quiénes somos?</h2>
+      <div class="section-divider"></div>
+      <div class="stats-grid">
+        <div class="card stat-card">
+          <div class="icon"><i class="fas fa-recycle"></i></div>
+          <h3>+78.7</h3>
+          <p>Toneladas recolectadas</p>
+        </div>
+        <div class="card stat-card">
+          <div class="icon"><i class="fas fa-users"></i></div>
+          <h3>50+</h3>
+          <p>Recicladores activos</p>
+        </div>
+        <div class="card stat-card">
+          <div class="icon"><i class="fas fa-map-marked-alt"></i></div>
+          <h3>193</h3>
+          <p>Barrios atendidos</p>
+        </div>
+        <div class="card stat-card">
+          <div class="icon"><i class="fas fa-award"></i></div>
+          <h3>98%</h3>
+          <p>Satisfacción del servicio</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="servicios" class="section services">
+    <div class="container">
+      <h2 class="section-title">Nuestros servicios</h2>
+      <div class="section-divider"></div>
+      <div class="services-grid">
+        <div class="card service-card">
+          <div class="icon"><i class="fas fa-trash-alt"></i></div>
+          <h3>Recolección selectiva</h3>
+          <p>Separación y retiro de residuos aprovechables en hogares, comercio y sectores estratégicos.</p>
+        </div>
+        <div class="card service-card">
+          <div class="icon"><i class="fas fa-seedling"></i></div>
+          <h3>Sensibilización</h3>
+          <p>Programas educativos para fomentar buenas prácticas ambientales y la participación comunitaria.</p>
+        </div>
+        <div class="card service-card">
+          <div class="icon"><i class="fas fa-certificate"></i></div>
+          <h3>Certificación</h3>
+          <p>Control y registro de residuos con trazabilidad, cumplimiento y acompañamiento técnico.</p>
+        </div>
+        <div class="card service-card">
+          <div class="icon"><i class="fas fa-route"></i></div>
+          <h3>Rutas y logística</h3>
+          <p>Optimización de recorridos para mejorar la cobertura, tiempos y calidad del servicio.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="indicadores" class="section">
+    <div class="container">
+      <h2 class="section-title">Indicadores de toneladas recuperadas</h2>
+      <div class="section-divider"></div>
+      <div class="card" style="padding:1.2rem;">
+        <canvas id="graficaMateriales" height="120"></canvas>
+      </div>
+    </div>
+  </section>
+
+  <section id="galeria" class="section gallery-section">
+    <div class="container">
+      <h2 class="section-title">Galería</h2>
       <div class="section-divider"></div>
 
-      <div class="gallery-accordion">
-        <article class="gallery-item open">
-          <button class="gallery-trigger" type="button" aria-expanded="true">
-            <div class="gallery-trigger-main">
-              <img src="img/servicio1.png" alt="Recolección selectiva" onerror="this.src='https://via.placeholder.com/600x400?text=Recolecci%C3%B3n'" />
-              <div>
-                <span>Recolección</span>
-                <h3>Operación de recolección</h3>
-              </div>
-            </div>
-            <span class="gallery-toggle"><i class="fas fa-chevron-down"></i></span>
-          </button>
-          <div class="gallery-panel">
-            <div class="gallery-panel-inner">
-              <p class="gallery-copy">Nuestra labor diaria incluye la recolección selectiva en barrios, sectores comerciales y zonas de alto impacto ambiental. Cada recorrido se realiza con atención y responsabilidad para fortalecer la separación en la fuente.</p>
-              <div class="gallery-grid">
-                <img src="img/servicio1.png" alt="Recolección 1" onerror="this.src='https://via.placeholder.com/600x400?text=Imagen+1'" />
-                <img src="img/campana2.jpg" alt="Recolección 2" onerror="this.src='https://via.placeholder.com/600x400?text=Imagen+2'" />
-                <img src="img/campana8.jpg" alt="Recolección 3" onerror="this.src='https://via.placeholder.com/600x400?text=Imagen+3'" />
-              </div>
-            </div>
-          </div>
-        </article>
+      <div class="gallery-tabs" role="tablist" aria-label="Categorías de la galería">
+        <button class="gallery-tab active" type="button" data-tab="recoleccion">Recolección</button>
+        <button class="gallery-tab" type="button" data-tab="campanas">Campañas</button>
+        <button class="gallery-tab" type="button" data-tab="aseo">Aseo urbano</button>
+        <button class="gallery-tab" type="button" data-tab="comunidad">Comunidad</button>
+      </div>
 
-        <article class="gallery-item">
-          <button class="gallery-trigger" type="button" aria-expanded="false">
-            <div class="gallery-trigger-main">
-              <img src="img/campana1.jpg" alt="Campaña escolar" onerror="this.src='https://via.placeholder.com/600x400?text=Campa%C3%B1a'" />
-              <div>
-                <span>Educación</span>
-                <h3>Campañas ambientales</h3>
-              </div>
-            </div>
-            <span class="gallery-toggle"><i class="fas fa-chevron-down"></i></span>
-          </button>
-          <div class="gallery-panel">
-            <div class="gallery-panel-inner">
-              <p class="gallery-copy">Impulsamos campañas de sensibilización con comunidades, instituciones educativas y líderes barriales para fomentar hábitos responsables de reciclaje, aprovechamiento y cuidado del entorno.</p>
-              <div class="gallery-grid">
-                <img src="img/campana1.jpg" alt="Campaña escolar 1" onerror="this.src='https://via.placeholder.com/600x400?text=Campa%C3%B1a+1'" />
-                <img src="img/campana3.jpg" alt="Campaña escolar 2" onerror="this.src='https://via.placeholder.com/600x400?text=Campa%C3%B1a+2'" />
-                <img src="img/campana5.jpg" alt="Campaña escolar 3" onerror="this.src='https://via.placeholder.com/600x400?text=Campa%C3%B1a+3'" />
-              </div>
-            </div>
+      <div class="gallery-panel active" id="panel-recoleccion">
+        <div class="gallery-panel-inner">
+          <p>Operaciones diarias de recolección y separación en la fuente para fortalecer la limpieza y la sostenibilidad del municipio.</p>
+          <div class="gallery-grid">
+            <img src="img/servicio1.png" alt="Recolección 1" onerror="this.src='https://via.placeholder.com/800x600?text=Recolecci%C3%B3n+1'" />
+            <img src="img/campana2.jpg" alt="Recolección 2" onerror="this.src='https://via.placeholder.com/800x600?text=Recolecci%C3%B3n+2'" />
+            <img src="img/campana8.jpg" alt="Recolección 3" onerror="this.src='https://via.placeholder.com/800x600?text=Recolecci%C3%B3n+3'" />
+            <img src="img/servicio2.png" alt="Recolección 4" onerror="this.src='https://via.placeholder.com/800x600?text=Recolecci%C3%B3n+4'" />
           </div>
-        </article>
+        </div>
+      </div>
 
-        <article class="gallery-item">
-          <button class="gallery-trigger" type="button" aria-expanded="false">
-            <div class="gallery-trigger-main">
-              <img src="img/servicio2.png" alt="Aseo urbano" onerror="this.src='https://via.placeholder.com/600x400?text=Aseo+Urbano'" />
-              <div>
-                <span>Servicio</span>
-                <h3>Gestión de residuos</h3>
-              </div>
-            </div>
-            <span class="gallery-toggle"><i class="fas fa-chevron-down"></i></span>
-          </button>
-          <div class="gallery-panel">
-            <div class="gallery-panel-inner">
-              <p class="gallery-copy">A través de la clasificación, pesaje y aprovechamiento, convertimos los residuos en valor ambiental y social, apoyando la limpieza del municipio y la formalización del reciclaje.</p>
-              <div class="gallery-grid">
-                <img src="img/servicio2.png" alt="Gestión de residuos 1" onerror="this.src='https://via.placeholder.com/600x400?text=Imagen+4'" />
-                <img src="img/servicio3.png" alt="Gestión de residuos 2" onerror="this.src='https://via.placeholder.com/600x400?text=Imagen+5'" />
-                <img src="img/servicio4.png" alt="Gestión de residuos 3" onerror="this.src='https://via.placeholder.com/600x400?text=Imagen+6'" />
-              </div>
-            </div>
+      <div class="gallery-panel" id="panel-campanas">
+        <div class="gallery-panel-inner">
+          <p>Campañas de sensibilización y educación ambiental en colegios, barrios y organizaciones comunitarias para promover la separación y el reciclaje.</p>
+          <div class="gallery-grid">
+            <img src="img/campana1.jpg" alt="Campaña 1" onerror="this.src='https://via.placeholder.com/800x600?text=Campa%C3%B1a+1'" />
+            <img src="img/campana3.jpg" alt="Campaña 2" onerror="this.src='https://via.placeholder.com/800x600?text=Campa%C3%B1a+2'" />
+            <img src="img/campana5.jpg" alt="Campaña 3" onerror="this.src='https://via.placeholder.com/800x600?text=Campa%C3%B1a+3'" />
+            <img src="img/campana6.jpg" alt="Campaña 4" onerror="this.src='https://via.placeholder.com/800x600?text=Campa%C3%B1a+4'" />
           </div>
-        </article>
+        </div>
+      </div>
 
-        <article class="gallery-item">
-          <button class="gallery-trigger" type="button" aria-expanded="false">
-            <div class="gallery-trigger-main">
-              <img src="img/servicio5.png" alt="Aprovechamiento" onerror="this.src='https://via.placeholder.com/600x400?text=Aprovechamiento'" />
-              <div>
-                <span>Reciclaje</span>
-                <h3>Aprovechamiento responsable</h3>
-              </div>
-            </div>
-            <span class="gallery-toggle"><i class="fas fa-chevron-down"></i></span>
-          </button>
-          <div class="gallery-panel">
-            <div class="gallery-panel-inner">
-              <p class="gallery-copy">El aprovechamiento de materiales reciclables permite reducir la generación de residuos, recuperar valor en la cadena productiva y apoyar la sostenibilidad de la ciudad y sus comunidades.</p>
-              <div class="gallery-grid">
-                <img src="img/servicio5.png" alt="Aprovechamiento 1" onerror="this.src='https://via.placeholder.com/600x400?text=Aprovechamiento+1'" />
-                <img src="img/servicio6.png" alt="Aprovechamiento 2" onerror="this.src='https://via.placeholder.com/600x400?text=Aprovechamiento+2'" />
-                <img src="img/campana6.jpg" alt="Aprovechamiento 3" onerror="this.src='https://via.placeholder.com/600x400?text=Aprovechamiento+3'" />
-              </div>
-            </div>
+      <div class="gallery-panel" id="panel-aseo">
+        <div class="gallery-panel-inner">
+          <p>Gestión integral de residuos, aprovechamiento y limpieza urbana para mantener una ciudad más ordenada, saludable y responsable.</p>
+          <div class="gallery-grid">
+            <img src="img/servicio3.png" alt="Aseo urbano 1" onerror="this.src='https://via.placeholder.com/800x600?text=Aseo+1'" />
+            <img src="img/servicio4.png" alt="Aseo urbano 2" onerror="this.src='https://via.placeholder.com/800x600?text=Aseo+2'" />
+            <img src="img/servicio5.png" alt="Aseo urbano 3" onerror="this.src='https://via.placeholder.com/800x600?text=Aseo+3'" />
+            <img src="img/servicio6.png" alt="Aseo urbano 4" onerror="this.src='https://via.placeholder.com/800x600?text=Aseo+4'" />
           </div>
-        </article>
+        </div>
+      </div>
 
-        <article class="gallery-item">
-          <button class="gallery-trigger" type="button" aria-expanded="false">
-            <div class="gallery-trigger-main">
-              <img src="img/campana10.jpg" alt="Trabajo en comunidad" onerror="this.src='https://via.placeholder.com/600x400?text=Comunidad'" />
-              <div>
-                <span>Comunidad</span>
-                <h3>Trabajo con la comunidad</h3>
-              </div>
-            </div>
-            <span class="gallery-toggle"><i class="fas fa-chevron-down"></i></span>
-          </button>
-          <div class="gallery-panel">
-            <div class="gallery-panel-inner">
-              <p class="gallery-copy">La comunidad es parte fundamental del modelo de REDECOL. Nuestro trabajo se fortalece con la participación vecinal, el acompañamiento institucional y la construcción de conciencia ambiental.</p>
-              <div class="gallery-grid">
-                <img src="img/campana10.jpg" alt="Comunidad 1" onerror="this.src='https://via.placeholder.com/600x400?text=Comunidad+1'" />
-                <img src="img/169635730_825056531695442_5294946513348635481_n_825056528362109.jpg" alt="Comunidad 2" onerror="this.src='https://via.placeholder.com/600x400?text=Comunidad+2'" />
-                <img src="img/171297926_825056445028784_9012091557347237975_n_825056441695451.jpg" alt="Comunidad 3" onerror="this.src='https://via.placeholder.com/600x400?text=Comunidad+3'" />
-              </div>
-            </div>
+      <div class="gallery-panel" id="panel-comunidad">
+        <div class="gallery-panel-inner">
+          <p>Trabajo conjunto con la comunidad, líderes barriales y organizaciones para construir conciencia ambiental y fortalecer la cultura del reciclaje.</p>
+          <div class="gallery-grid">
+            <img src="img/campana10.jpg" alt="Comunidad 1" onerror="this.src='https://via.placeholder.com/800x600?text=Comunidad+1'" />
+            <img src="img/169635730_825056531695442_5294946513348635481_n_825056528362109.jpg" alt="Comunidad 2" onerror="this.src='https://via.placeholder.com/800x600?text=Comunidad+2'" />
+            <img src="img/171297926_825056445028784_9012091557347237975_n_825056441695451.jpg" alt="Comunidad 3" onerror="this.src='https://via.placeholder.com/800x600?text=Comunidad+3'" />
+            <img src="img/178383053_834496357418126_641695337994067930_n_834496354084793.jpg" alt="Comunidad 4" onerror="this.src='https://via.placeholder.com/800x600?text=Comunidad+4'" />
           </div>
-        </article>
-
-        <article class="gallery-item">
-          <button class="gallery-trigger" type="button" aria-expanded="false">
-            <div class="gallery-trigger-main">
-              <img src="img/285725139_1086544588879967_7680036642517624471_n_1086544592213300.png" alt="Impacto ambiental" onerror="this.src='https://via.placeholder.com/600x400?text=Impacto+Ambiental'" />
-              <div>
-                <span>Impacto</span>
-                <h3>Impacto ambiental y social</h3>
-              </div>
-            </div>
-            <span class="gallery-toggle"><i class="fas fa-chevron-down"></i></span>
-          </button>
-          <div class="gallery-panel">
-            <div class="gallery-panel-inner">
-              <p class="gallery-copy">Cada acción de limpieza, separación y aprovechamiento contribuye a mejorar la calidad de vida de la comunidad, reducir la contaminación y fortalecer la inclusión de los recicladores de oficio.</p>
-              <div class="gallery-grid">
-                <img src="img/285725139_1086544588879967_7680036642517624471_n_1086544592213300.png" alt="Impacto 1" onerror="this.src='https://via.placeholder.com/600x400?text=Impacto+1'" />
-                <img src="img/178383053_834496357418126_641695337994067930_n_834496354084793.jpg" alt="Impacto 2" onerror="this.src='https://via.placeholder.com/600x400?text=Impacto+2'" />
-                <img src="img/171458125_825073765027052_756546494001437575_n_825073761693719.jpg" alt="Impacto 3" onerror="this.src='https://via.placeholder.com/600x400?text=Impacto+3'" />
-              </div>
-            </div>
-          </div>
-        </article>
+        </div>
       </div>
     </div>
   </section>
 
+  <section id="tarifas" class="section">
+    <div class="container">
+      <h2 class="section-title">Tarifas del servicio</h2>
+      <div class="section-divider"></div>
+      <div class="tariff-table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Tipo de usuario</th>
+              <th>Tarifa mensual</th>
+              <th>Incluye</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Residencial - Estrato 1</td>
+              <td>$1.000</td>
+              <td>Recolección y aprovechamiento</td>
+            </tr>
+            <tr>
+              <td>Residencial - Estrato 2</td>
+              <td>$1.150</td>
+              <td>Recolección y aprovechamiento</td>
+            </tr>
+            <tr>
+              <td>Residencial - Estrato 3</td>
+              <td>$1.300</td>
+              <td>Recolección y aprovechamiento</td>
+            </tr>
+            <tr>
+              <td>Comercial</td>
+              <td>$1.500</td>
+              <td>Servicio especializado</td>
+            </tr>
+            <tr>
+              <td>Industrial</td>
+              <td>Consultar</td>
+              <td>Plan personalizado</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section id="rutas" class="section" style="background:#f3f4f6;">
+    <div class="container">
+      <h2 class="section-title">Rutas y horarios</h2>
+      <div class="section-divider"></div>
+      <div class="map-box">
+        <iframe src="mapas/BA.html" title="Mapa de rutas BA"></iframe>
+      </div>
+    </div>
+  </section>
+
+  <section id="pqr" class="section pqr">
+    <div class="container">
+      <h2 class="section-title">PQR y reclamos</h2>
+      <div class="section-divider"></div>
+      <div class="form-box">
+        <form action="https://formsubmit.co/pqr.redecol@outlook.com" method="POST">
+          <input type="hidden" name="_subject" value="Nueva PQR desde la web de REDECOL" />
+          <input type="hidden" name="_captcha" value="false" />
+          <div class="form-grid">
+            <div>
+              <label>Nombre completo</label>
+              <input type="text" name="nombre" placeholder="Nombre completo" required>
+            </div>
+            <div>
+              <label>Teléfono</label>
+              <input type="tel" name="telefono" placeholder="Teléfono" required>
+            </div>
+            <div>
+              <label>Correo electrónico</label>
+              <input type="email" name="correo" placeholder="Correo" required>
+            </div>
+            <div>
+              <label>Tipo de solicitud</label>
+              <select name="tipo_solicitud">
+                <option value="">Seleccione una opción</option>
+                <option value="Petición">Petición</option>
+                <option value="Queja">Queja</option>
+                <option value="Reclamo">Reclamo</option>
+                <option value="Sugerencia">Sugerencia</option>
+              </select>
+            </div>
+            <div class="full">
+              <label>Dirección</label>
+              <input type="text" name="direccion" placeholder="Dirección del servicio">
+            </div>
+            <div class="full">
+              <label>Descripción detallada</label>
+              <textarea name="descripcion" placeholder="Describa su solicitud..." required></textarea>
+            </div>
+          </div>
+          <button type="submit" class="submit-btn">Enviar solicitud</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <section id="contacto" class="section" style="background:linear-gradient(180deg, #f8fafc, #eff6ff);">
+    <div class="container">
+      <h2 class="section-title">Contáctanos</h2>
+      <div class="section-divider"></div>
+      <div class="contact-grid">
+        <div class="contact-card">
+          <div class="contact-item"><i class="fas fa-phone"></i><span>320 268 6047</span></div>
+          <div class="contact-item"><i class="fas fa-mobile-alt"></i><span>312 338 7813</span></div>
+          <div class="contact-item"><i class="fas fa-envelope"></i><span>adm.redecol@outlook.com</span></div>
+          <div class="contact-item"><i class="fas fa-map-marker-alt"></i><span>Carrera 33 # 33-12, Barrio Belén</span></div>
+        </div>
+        <div class="card" style="padding:1.4rem;">
+          <h3 style="margin-top:0; color:var(--primary-blue); font-size:1.7rem; font-weight:800;">Nuestra misión</h3>
+          <p style="color:#4b5563; line-height:1.8; margin:0;">Brindar servicios de aseo complementario con calidad, responsabilidad ambiental y compromiso con la comunidad de Barrancabermeja, fortaleciendo la cultura del reciclaje y la sostenibilidad.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container footer-inner">
+      <p>© 2026 REDECOL E.S.P. Todos los derechos reservados.</p>
+      <div>
+        <a href="#inicio" style="color:#cbd5e1; margin-right:1rem;">Inicio</a>
+        <a href="#pqr" style="color:#cbd5e1;">PQR</a>
+      </div>
+    </div>
+  </footer>
+
   <script>
-    const menuBtn = document.getElementById('mobileMenuBtn');
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
     const mobileMenu = document.getElementById('mobileMenu');
-    menuBtn.addEventListener('click', () => {
+    mobileMenuBtn.addEventListener('click', () => {
       mobileMenu.classList.toggle('open');
     });
 
-    const galleryItems = document.querySelectorAll('.gallery-item');
-    galleryItems.forEach((item) => {
-      const trigger = item.querySelector('.gallery-trigger');
-      trigger.addEventListener('click', () => {
-        const isOpen = item.classList.contains('open');
+    const tabs = document.querySelectorAll('.gallery-tab');
+    const panels = document.querySelectorAll('.gallery-panel');
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        const target = tab.dataset.tab;
 
-        galleryItems.forEach((galleryItem) => {
-          galleryItem.classList.remove('open');
-          galleryItem.querySelector('.gallery-trigger').setAttribute('aria-expanded', 'false');
+        tabs.forEach(btn => btn.classList.toggle('active', btn === tab));
+        panels.forEach(panel => {
+          panel.classList.toggle('active', panel.id === `panel-${target}`);
         });
-
-        if (!isOpen) {
-          item.classList.add('open');
-          trigger.setAttribute('aria-expanded', 'true');
-        }
       });
+    });
+
+    const materiales = {
+      labels: ['Cartón', 'PET', 'Vidrio', 'Papel', 'Metales', 'Plástico', 'Tetra Pak'],
+      datasets: [{
+        label: 'Toneladas recuperadas por material',
+        data: [7.5, 4.2, 8.7, 9.4, 11.1, 10.8, 21.9],
+        backgroundColor: '#4f46e5'
+      }]
+    };
+
+    new Chart(document.getElementById('graficaMateriales'), {
+      type: 'bar',
+      data: materiales,
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: { legend: { display: false } },
+        scales: {
+          y: { beginAtZero: true, title: { display: true, text: 'Toneladas' } }
+        }
+      }
     });
   </script>
 </body>
