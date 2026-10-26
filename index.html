@@ -202,7 +202,7 @@
     .who-we-are {
       background: white;
     }
-    .stats-grid, .services-grid, .news-grid, .contact-grid {
+    .stats-grid, .services-grid, .news-grid, .contact-grid, .document-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
       gap: 1.4rem;
@@ -266,6 +266,29 @@
       line-height: 1.7;
     }
 
+    .document-card {
+      padding: 1.6rem 1.2rem;
+      text-align: left;
+      display: flex;
+      flex-direction: column;
+      gap: .8rem;
+    }
+    .document-card .icon {
+      font-size: 2rem;
+      color: var(--secondary-blue);
+    }
+    .document-card h3 {
+      margin: 0;
+      color: var(--primary-blue);
+      font-size: 1.3rem;
+      font-weight: 800;
+    }
+    .document-card p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
     .news-card {
       background: white;
       border-radius: 18px;
@@ -295,6 +318,7 @@
       padding: .7rem 1rem;
       border-radius: 10px;
       font-weight: 700;
+      width: fit-content;
     }
 
     .gallery-section {
@@ -514,6 +538,8 @@
           <li><a href="#galeria">Galería</a></li>
           <li><a href="#tarifas">Tarifas</a></li>
           <li><a href="#rutas">Rutas</a></li>
+          <li><a href="#documentos">Documentos</a></li>
+          <li><a href="#app">App</a></li>
           <li><a href="#pqr">PQR</a></li>
           <li><a href="#contacto">Contacto</a></li>
         </ul>
@@ -531,6 +557,8 @@
       <a href="#galeria">Galería</a>
       <a href="#tarifas">Tarifas</a>
       <a href="#rutas">Rutas</a>
+      <a href="#documentos">Documentos</a>
+      <a href="#app">App</a>
       <a href="#pqr">PQR</a>
       <a href="#contacto">Contacto</a>
     </div>
@@ -735,6 +763,68 @@
       <div class="map-box">
         <iframe src="mapas/BA.html" title="Mapa de rutas BA"></iframe>
       </div>
+      <div style="margin-top: 1.25rem; display:flex; flex-wrap:wrap; gap: .75rem;">
+        <a class="link-btn" href="docs/FRECUENCIAS_HORARIOS_APROVECHAMIENTO_BARRANCABERMEJA.pdf" target="_blank" rel="noopener noreferrer">Ver frecuencias y horarios</a>
+        <a class="link-btn" href="docs/SISTEMA_COMPLETO_193_BARRIOS_Barrancabermeja.pdf" target="_blank" rel="noopener noreferrer">Descargar sistema de barrios</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="documentos" class="section" style="background: #f8fafc;">
+    <div class="container">
+      <h2 class="section-title">Documentos y protocolos</h2>
+      <div class="section-divider"></div>
+      <div class="document-grid">
+        <div class="card document-card">
+          <div class="icon"><i class="fas fa-file-pdf"></i></div>
+          <h3>Portafolio de servicios</h3>
+          <p>Información general del portafolio institucional, alcance operativo y servicios ofrecidos por REDECOL.</p>
+          <a class="link-btn" href="docs/PORTAFOLIO_REDECOL_ESP.pdf" target="_blank" rel="noopener noreferrer">Ver documento</a>
+        </div>
+        <div class="card document-card">
+          <div class="icon"><i class="fas fa-clock"></i></div>
+          <h3>Frecuencias y horarios</h3>
+          <p>Documentación de horarios de aprovechamiento y frecuencia de recolección por zonas y rutas del municipio.</p>
+          <a class="link-btn" href="docs/FRECUENCIAS_HORARIOS_APROVECHAMIENTO_BARRANCABERMEJA.pdf" target="_blank" rel="noopener noreferrer">Abrir documento</a>
+        </div>
+        <div class="card document-card">
+          <div class="icon"><i class="fas fa-file-contract"></i></div>
+          <h3>Protocolo PQR</h3>
+          <p>Manual del proceso de atención a peticiones, quejas, reclamos y sugerencias de la ciudadanía.</p>
+          <a class="link-btn" href="docs/PROTOCOLO_PQR_REDECOL_ESP.pdf" target="_blank" rel="noopener noreferrer">Consultar protocolo</a>
+        </div>
+        <div class="card document-card">
+          <div class="icon"><i class="fas fa-map-location-dot"></i></div>
+          <h3>Sistema barrios y logística</h3>
+          <p>Documento con la relación de barrios, rutas y logística del sistema de gestión urbana para Barrancabermeja.</p>
+          <a class="link-btn" href="docs/SISTEMA_COMPLETO_193_BARRIOS_Barrancabermeja.pdf" target="_blank" rel="noopener noreferrer">Abrir sistema</a>
+        </div>
+        <div class="card document-card">
+          <div class="icon"><i class="fas fa-mobile-alt"></i></div>
+          <h3>Aplicación móvil</h3>
+          <p>Acceso directo a la aplicación ReciclApp para consulta, seguimiento y uso del servicio desde dispositivos móviles.</p>
+          <a class="link-btn" href="app/ReciclApp.apk" target="_blank" rel="noopener noreferrer">Descargar APK</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="app" class="section" style="background:linear-gradient(180deg, #edf6ff, #fff);">
+    <div class="container">
+      <h2 class="section-title">ReciclApp</h2>
+      <div class="section-divider"></div>
+      <div class="contact-grid">
+        <div class="contact-card">
+          <div class="contact-item"><i class="fas fa-download"></i><span><a href="app/ReciclApp.apk" target="_blank" rel="noopener noreferrer" style="color:inherit;">Descargar la app ReciclApp</a></span></div>
+          <div class="contact-item"><i class="fas fa-mobile-screen-button"></i><span>Aplicación para seguimiento, información y acceso a servicios relacionados con la recolección.</span></div>
+          <div class="contact-item"><i class="fas fa-shield-alt"></i><span>Versión disponible para Android y uso institucional.</span></div>
+        </div>
+        <div class="card" style="padding:1.4rem;">
+          <h3 style="margin-top:0; color:var(--primary-blue); font-size:1.7rem; font-weight:800;">Nuestra app</h3>
+          <p style="color:#4b5563; line-height:1.8; margin:0 0 1rem;">ReciclApp es una herramienta orientada a fortalecer la relación entre la comunidad y el servicio de aseo, con información útil, acceso a canales de atención y apoyo en la gestión del servicio.</p>
+          <img src="app/reciclapp-screenshot1.jpg" alt="Pantallazo de ReciclApp" style="border-radius: 14px; box-shadow: 0 12px 20px rgba(15,23,42,0.12);" onerror="this.src='https://via.placeholder.com/800x600?text=ReciclApp'" />
+        </div>
+      </div>
     </div>
   </section>
 
@@ -743,6 +833,10 @@
       <h2 class="section-title">PQR y reclamos</h2>
       <div class="section-divider"></div>
       <div class="form-box">
+        <p style="margin:0 0 1rem; color:#4b5563; line-height:1.7;">
+          Para conocer el procedimiento de atención, descarga el
+          <a href="docs/PROTOCOLO_PQR_REDECOL_ESP.pdf" target="_blank" rel="noopener noreferrer" style="color: var(--primary-blue); font-weight:700;">protocolo de PQR</a>.
+        </p>
         <form action="https://formsubmit.co/pqr.redecol@outlook.com" method="POST">
           <input type="hidden" name="_subject" value="Nueva PQR desde la web de REDECOL" />
           <input type="hidden" name="_captcha" value="false" />
@@ -797,7 +891,7 @@
         </div>
         <div class="card" style="padding:1.4rem;">
           <h3 style="margin-top:0; color:var(--primary-blue); font-size:1.7rem; font-weight:800;">Nuestra misión</h3>
-          <p style="color:#4b5563; line-height:1.8; margin:0;">Brindar servicios de aseo complementario con calidad, responsabilidad ambiental y compromiso con la comunidad de Barrancabermeja, fortaleciendo la cultura del reciclaje y la sostenibilidad.</p>
+          <p style="color:#4b5563; line-height:1.8; margin:0;">Brindar servicios de aseo complementario con calidad, responsabilidad ambiental y compromiso con la comunidad de Barrancabermeja, fortaleciendo la cultura del reciclaje y la limpieza ciudadana.</p>
         </div>
       </div>
     </div>
