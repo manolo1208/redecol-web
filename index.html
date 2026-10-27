@@ -199,9 +199,7 @@
       border-radius: 18px;
     }
 
-    .who-we-are {
-      background: white;
-    }
+    .who-we-are { background: white; }
     .stats-grid, .services-grid, .news-grid, .contact-grid, .document-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -242,9 +240,7 @@
       font-weight: 600;
     }
 
-    .services {
-      background: var(--gray-bg);
-    }
+    .services { background: var(--gray-bg); }
     .service-card {
       padding: 1.6rem 1.2rem;
       text-align: center;
@@ -268,10 +264,10 @@
 
     .document-card {
       padding: 1.6rem 1.2rem;
-      text-align: left;
       display: flex;
       flex-direction: column;
       gap: .8rem;
+      text-align: left;
     }
     .document-card .icon {
       font-size: 2rem;
@@ -321,9 +317,7 @@
       width: fit-content;
     }
 
-    .gallery-section {
-      background: linear-gradient(180deg, #f3f4f6 0%, #eef6ff 100%);
-    }
+    .gallery-section { background: linear-gradient(180deg, #f3f4f6 0%, #eef6ff 100%); }
     .gallery-tabs {
       display: flex;
       flex-wrap: wrap;
@@ -358,10 +352,7 @@
       box-shadow: var(--shadow);
     }
     .gallery-panel.active { display: block; }
-    .gallery-panel-inner {
-      display: grid;
-      gap: 1rem;
-    }
+    .gallery-panel-inner { display: grid; gap: 1rem; }
     .gallery-panel p {
       margin: 0;
       color: var(--muted);
@@ -423,9 +414,7 @@
       display: block;
     }
 
-    .pqr {
-      background: white;
-    }
+    .pqr { background: white; }
     .form-box {
       background: white;
       border-radius: 18px;
@@ -490,6 +479,41 @@
       color: var(--primary-blue);
     }
 
+    .whatsapp-float {
+      position: fixed;
+      right: 20px;
+      bottom: 20px;
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      background: #25d366;
+      color: white;
+      display: grid;
+      place-items: center;
+      font-size: 2rem;
+      box-shadow: 0 16px 28px rgba(37, 211, 102, 0.35);
+      z-index: 999;
+      transition: transform .2s ease, box-shadow .2s ease;
+    }
+    .whatsapp-float:hover {
+      transform: translateY(-2px) scale(1.03);
+      box-shadow: 0 20px 32px rgba(37, 211, 102, 0.45);
+    }
+    .whatsapp-tooltip {
+      position: fixed;
+      right: 92px;
+      bottom: 34px;
+      background: #111827;
+      color: #fff;
+      padding: .65rem .9rem;
+      border-radius: 999px;
+      font-size: .8rem;
+      font-weight: 700;
+      box-shadow: 0 8px 20px rgba(15, 23, 42, 0.18);
+      z-index: 998;
+      white-space: nowrap;
+    }
+
     footer {
       background: #0f172a;
       color: #cbd5e1;
@@ -514,6 +538,7 @@
       .form-grid { grid-template-columns: 1fr; }
       .gallery-tab { width: 100%; }
       .section { padding: 4rem 0; }
+      .whatsapp-tooltip { display: none; }
     }
   </style>
 </head>
@@ -906,6 +931,11 @@
       </div>
     </div>
   </footer>
+
+  <a class="whatsapp-float" href="https://wa.me/573202686047?text=Hola%20REDECOL%20E.S.P.%2C%20quiero%20informaci%C3%B3n%20sobre%20sus%20servicios." target="_blank" rel="noopener noreferrer" aria-label="Chatear por WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+  <div class="whatsapp-tooltip">Chatea con REDECOL</div>
 
   <script>
     const mobileMenuBtn = document.getElementById('mobileMenuBtn');
