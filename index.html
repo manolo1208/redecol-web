@@ -479,29 +479,178 @@
       color: var(--primary-blue);
     }
 
-    .whatsapp-float {
+    .assistant-launcher {
       position: fixed;
       right: 20px;
       bottom: 20px;
-      width: 64px;
-      height: 64px;
+      width: 66px;
+      height: 66px;
+      border: none;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
+      color: white;
+      display: grid;
+      place-items: center;
+      font-size: 1.8rem;
+      box-shadow: 0 20px 38px rgba(30, 58, 138, 0.32);
+      z-index: 1000;
+      cursor: pointer;
+      transition: transform .2s ease, box-shadow .2s ease;
+    }
+    .assistant-launcher:hover {
+      transform: translateY(-2px) scale(1.03);
+      box-shadow: 0 22px 42px rgba(30, 58, 138, 0.4);
+    }
+    .assistant-panel {
+      position: fixed;
+      right: 24px;
+      bottom: 98px;
+      width: min(360px, calc(100vw - 28px));
+      background: #fff;
+      border: 1px solid rgba(148, 163, 184, 0.48);
+      border-radius: 22px;
+      box-shadow: 0 26px 55px rgba(15, 23, 42, 0.18);
+      display: none;
+      z-index: 1001;
+      overflow: hidden;
+    }
+    .assistant-panel.open { display: block; }
+    .assistant-header {
+      background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
+      color: white;
+      padding: 1rem 1rem .9rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+    }
+    .assistant-header h3 {
+      margin: 0;
+      font-size: 1.05rem;
+      font-weight: 800;
+    }
+    .assistant-close {
+      border: none;
+      background: rgba(255,255,255,0.15);
+      color: white;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 1.1rem;
+    }
+    .assistant-body {
+      padding: 1rem;
+      background: #f8fafc;
+      max-height: 400px;
+      overflow: auto;
+    }
+    .assistant-message {
+      margin-bottom: .9rem;
+      display: flex;
+      flex-direction: column;
+      gap: .35rem;
+    }
+    .assistant-message.bot .bubble {
+      align-self: flex-start;
+      background: white;
+      color: #111827;
+      border: 1px solid rgba(148,163,184,0.26);
+    }
+    .assistant-message.user .bubble {
+      align-self: flex-end;
+      background: linear-gradient(135deg, var(--primary-blue), #2563eb);
+      color: white;
+    }
+    .bubble {
+      max-width: 88%;
+      border-radius: 16px;
+      padding: .75rem .85rem;
+      line-height: 1.55;
+      font-size: .93rem;
+      box-shadow: 0 8px 18px rgba(15, 23, 42, 0.06);
+    }
+    .assistant-quick {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .5rem;
+      margin-top: .4rem;
+    }
+    .quick-btn {
+      border: 1px solid rgba(30, 58, 138, 0.18);
+      background: white;
+      color: var(--primary-blue);
+      border-radius: 999px;
+      padding: .5rem .8rem;
+      font-size: .78rem;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .assistant-footer {
+      display: flex;
+      gap: .5rem;
+      padding: .8rem 1rem 1rem;
+      background: white;
+      border-top: 1px solid #eef2f7;
+    }
+    .assistant-input {
+      flex: 1;
+      border: 1px solid #d1d5db;
+      border-radius: 999px;
+      padding: .72rem .9rem;
+      font-size: .92rem;
+      outline: none;
+    }
+    .assistant-send {
+      border: none;
+      background: linear-gradient(135deg, var(--green-primary), var(--green-secondary));
+      color: white;
+      border-radius: 999px;
+      width: 42px;
+      height: 42px;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+    .assistant-cta {
+      margin-top: .8rem;
+      display: flex;
+      gap: .5rem;
+      flex-wrap: wrap;
+    }
+    .assistant-cta a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: #25d366;
+      color: white;
+      border-radius: 999px;
+      padding: .55rem .8rem;
+      font-size: .76rem;
+      font-weight: 800;
+    }
+
+    .whatsapp-float {
+      position: fixed;
+      right: 96px;
+      bottom: 22px;
+      width: 58px;
+      height: 58px;
       border-radius: 50%;
       background: #25d366;
       color: white;
       display: grid;
       place-items: center;
-      font-size: 2rem;
+      font-size: 1.6rem;
       box-shadow: 0 16px 28px rgba(37, 211, 102, 0.35);
       z-index: 999;
-      transition: transform .2s ease, box-shadow .2s ease;
+      transition: transform .2s ease;
     }
     .whatsapp-float:hover {
       transform: translateY(-2px) scale(1.03);
-      box-shadow: 0 20px 32px rgba(37, 211, 102, 0.45);
     }
     .whatsapp-tooltip {
       position: fixed;
-      right: 92px;
+      right: 160px;
       bottom: 34px;
       background: #111827;
       color: #fff;
@@ -539,6 +688,9 @@
       .gallery-tab { width: 100%; }
       .section { padding: 4rem 0; }
       .whatsapp-tooltip { display: none; }
+      .assistant-panel { right: 10px; bottom: 86px; width: calc(100vw - 20px); }
+      .whatsapp-float { right: 12px; bottom: 18px; }
+      .assistant-launcher { right: 12px; bottom: 18px; }
     }
   </style>
 </head>
@@ -597,6 +749,7 @@
         <div class="hero-actions">
           <a href="#servicios" class="btn-primary">Nuestros servicios</a>
           <a href="#pqr" class="btn-secondary">PQR</a>
+          <button type="button" class="btn-secondary assistant-open-button" style="border: 2px solid rgba(255,255,255,0.8); background: transparent; cursor:pointer;">Asistente virtual</button>
         </div>
       </div>
 
@@ -932,10 +1085,37 @@
     </div>
   </footer>
 
+  <button id="assistantLauncher" class="assistant-launcher" aria-label="Abrir asistente virtual">
+    <i class="fas fa-robot"></i>
+  </button>
+
   <a class="whatsapp-float" href="https://wa.me/573202686047?text=Hola%20REDECOL%20E.S.P.%2C%20quiero%20informaci%C3%B3n%20sobre%20sus%20servicios." target="_blank" rel="noopener noreferrer" aria-label="Chatear por WhatsApp">
     <i class="fab fa-whatsapp"></i>
   </a>
   <div class="whatsapp-tooltip">Chatea con REDECOL</div>
+
+  <div id="assistantPanel" class="assistant-panel" aria-live="polite">
+    <div class="assistant-header">
+      <h3>Asistente REDECOL</h3>
+      <button id="assistantClose" class="assistant-close" aria-label="Cerrar asistente">×</button>
+    </div>
+    <div class="assistant-body" id="assistantBody">
+      <div class="assistant-message bot">
+        <div class="bubble">Hola 👋 Soy el asistente virtual de REDECOL. ¿En qué puedo ayudarte hoy?</div>
+      </div>
+      <div class="assistant-quick">
+        <button class="quick-btn" data-key="servicios">Servicios</button>
+        <button class="quick-btn" data-key="horarios">Horarios</button>
+        <button class="quick-btn" data-key="pqr">PQR</button>
+        <button class="quick-btn" data-key="rutas">Rutas</button>
+        <button class="quick-btn" data-key="app">App</button>
+      </div>
+    </div>
+    <div class="assistant-footer">
+      <input id="assistantInput" class="assistant-input" type="text" placeholder="Escribe tu pregunta..." />
+      <button id="assistantSend" class="assistant-send" aria-label="Enviar mensaje"><i class="fas fa-paper-plane"></i></button>
+    </div>
+  </div>
 
   <script>
     const mobileMenuBtn = document.getElementById('mobileMenuBtn');
@@ -977,6 +1157,100 @@
           y: { beginAtZero: true, title: { display: true, text: 'Toneladas' } }
         }
       }
+    });
+
+    const assistantPanel = document.getElementById('assistantPanel');
+    const assistantLauncher = document.getElementById('assistantLauncher');
+    const assistantClose = document.getElementById('assistantClose');
+    const assistantInput = document.getElementById('assistantInput');
+    const assistantSend = document.getElementById('assistantSend');
+    const assistantBody = document.getElementById('assistantBody');
+    const assistantButtons = document.querySelectorAll('.quick-btn');
+    const assistantOpenButtons = document.querySelectorAll('.assistant-open-button');
+
+    function addMessage(sender, text) {
+      const message = document.createElement('div');
+      message.className = `assistant-message ${sender}`;
+      const bubble = document.createElement('div');
+      bubble.className = 'bubble';
+      bubble.innerHTML = text;
+      message.appendChild(bubble);
+      assistantBody.appendChild(message);
+      assistantBody.scrollTop = assistantBody.scrollHeight;
+    }
+
+    function openAssistant() {
+      assistantPanel.classList.add('open');
+      assistantInput.focus();
+    }
+
+    function closeAssistant() {
+      assistantPanel.classList.remove('open');
+    }
+
+    assistantLauncher.addEventListener('click', () => {
+      assistantPanel.classList.toggle('open');
+      if (assistantPanel.classList.contains('open')) assistantInput.focus();
+    });
+
+    assistantClose.addEventListener('click', closeAssistant);
+    assistantOpenButtons.forEach(btn => btn.addEventListener('click', openAssistant));
+
+    function getBotReply(input) {
+      const text = input.toLowerCase();
+      if (text.includes('servicio') || text.includes('servicios') || text.includes('qué hacen') || text.includes('que hacen')) {
+        return 'REDECOL ofrece recolección selectiva, sensibilización, certificación, rutas y logística para la gestión de residuos en Barrancabermeja. <div class="assistant-cta"><a href="#servicios">Ver servicios</a><a href="https://wa.me/573202686047?text=Hola%20quiero%20conocer%20los%20servicios%20de%20REDECOL" target="_blank">Hablar por WhatsApp</a></div>';
+      }
+      if (text.includes('horario') || text.includes('horarios') || text.includes('frecuencia') || text.includes('cuando')) {
+        return 'Puedes revisar la información oficial de frecuencias y horarios en este enlace: <a href="docs/FRECUENCIAS_HORARIOS_APROVECHAMIENTO_BARRANCABERMEJA.pdf" target="_blank" rel="noopener noreferrer" style="color: var(--primary-blue); font-weight:700;">Frecuencias y horarios</a>.';
+      }
+      if (text.includes('pqr') || text.includes('queja') || text.includes('reclamo') || text.includes('sugerencia')) {
+        return 'Puedes enviar tu solicitud a través del formulario de PQR o consultar el protocolo oficial: <a href="docs/PROTOCOLO_PQR_REDECOL_ESP.pdf" target="_blank" rel="noopener noreferrer" style="color: var(--primary-blue); font-weight:700;">Protocolo PQR</a>.';
+      }
+      if (text.includes('ruta') || text.includes('rutas') || text.includes('logistica') || text.includes('mapa')) {
+        return 'Consulta las rutas y la logística del servicio aquí: <a href="#rutas" style="color: var(--primary-blue); font-weight:700;">Ver rutas</a> y también el documento de barrios: <a href="docs/SISTEMA_COMPLETO_193_BARRIOS_Barrancabermeja.pdf" target="_blank" rel="noopener noreferrer" style="color: var(--primary-blue); font-weight:700;">Sistema de barrios</a>.';
+      }
+      if (text.includes('app') || text.includes('reciclapp') || text.includes('apk')) {
+        return 'Puedes descargar la app de REDECOL en este enlace: <a href="app/ReciclApp.apk" target="_blank" rel="noopener noreferrer" style="color: var(--primary-blue); font-weight:700;">Descargar ReciclApp</a>.';
+      }
+      if (text.includes('precio') || text.includes('tarifa') || text.includes('costo')) {
+        return 'Puedes consultar nuestras tarifas en la sección <a href="#tarifas" style="color: var(--primary-blue); font-weight:700;">Tarifas del servicio</a>.';
+      }
+      if (text.includes('contacto') || text.includes('telefono') || text.includes('llamar') || text.includes('whatsapp')) {
+        return 'Puedes comunicarte directamente con REDECOL a través de WhatsApp: <a href="https://wa.me/573202686047?text=Hola%20REDECOL%20E.S.P.%2C%20quiero%20informaci%C3%B3n" target="_blank" rel="noopener noreferrer" style="color: var(--primary-blue); font-weight:700;">Contactar ahora</a>.';
+      }
+      if (text.includes('hola') || text.includes('buenas') || text.includes('adios') || text.includes('gracias')) {
+        return '¡Claro! Estoy aquí para ayudarte con servicios, rutas, horarios, PQR y la aplicación. ¿Quieres saber algo específico?';
+      }
+      return 'Puedo ayudarte con horarios, rutas, PQR, tarifas, servicios y la app. También puedes hablar directamente con un asesor por WhatsApp.';
+    }
+
+    function handleAssistantInput() {
+      const value = assistantInput.value.trim();
+      if (!value) return;
+      addMessage('user', value);
+      assistantInput.value = '';
+      setTimeout(() => addMessage('bot', getBotReply(value)), 280);
+    }
+
+    assistantSend.addEventListener('click', handleAssistantInput);
+    assistantInput.addEventListener('keydown', (event) => {
+      if (event.key === 'Enter') handleAssistantInput();
+    });
+
+    assistantButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        const key = button.dataset.key;
+        const prompts = {
+          servicios: 'Quiero información sobre los servicios de REDECOL.',
+          horarios: 'Necesito saber los horarios y frecuencias de recolección.',
+          pqr: 'Quiero hacer una PQR o reclamo.',
+          rutas: 'Necesito consultar las rutas y logística.',
+          app: 'Quiero descargar la app ReciclApp.'
+        };
+        assistantInput.value = prompts[key] || '';
+        handleAssistantInput();
+      });
     });
   </script>
 </body>
