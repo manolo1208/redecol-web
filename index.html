@@ -663,6 +663,41 @@
       white-space: nowrap;
     }
 
+    .survey-card {
+      background: linear-gradient(135deg, #ffffff, #eef6ff);
+      border: 1px solid var(--soft-border);
+      border-radius: 18px;
+      box-shadow: var(--shadow);
+      padding: 1.4rem;
+    }
+    .survey-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1rem;
+    }
+    .rating-options {
+      display: flex;
+      gap: .75rem;
+      flex-wrap: wrap;
+      margin-top: .4rem;
+    }
+    .rating-options label {
+      margin: 0;
+      display: inline-flex;
+      align-items: center;
+      gap: .45rem;
+      background: #f8fafc;
+      border: 1px solid #dbe4f0;
+      border-radius: 10px;
+      padding: .5rem .75rem;
+      font-weight: 700;
+      color: #374151;
+    }
+    .rating-options input[type="radio"] {
+      width: auto;
+      margin: 0;
+    }
+
     footer {
       background: #0f172a;
       color: #cbd5e1;
@@ -684,7 +719,7 @@
     }
 
     @media (max-width: 640px) {
-      .form-grid { grid-template-columns: 1fr; }
+      .form-grid, .survey-grid { grid-template-columns: 1fr; }
       .gallery-tab { width: 100%; }
       .section { padding: 4rem 0; }
       .whatsapp-tooltip { display: none; }
@@ -717,6 +752,7 @@
           <li><a href="#rutas">Rutas</a></li>
           <li><a href="#documentos">Documentos</a></li>
           <li><a href="#app">App</a></li>
+          <li><a href="#encuesta">Encuesta</a></li>
           <li><a href="#pqr">PQR</a></li>
           <li><a href="#contacto">Contacto</a></li>
         </ul>
@@ -736,6 +772,7 @@
       <a href="#rutas">Rutas</a>
       <a href="#documentos">Documentos</a>
       <a href="#app">App</a>
+      <a href="#encuesta">Encuesta</a>
       <a href="#pqr">PQR</a>
       <a href="#contacto">Contacto</a>
     </div>
@@ -1002,6 +1039,70 @@
           <p style="color:#4b5563; line-height:1.8; margin:0 0 1rem;">ReciclApp es una herramienta orientada a fortalecer la relación entre la comunidad y el servicio de aseo, con información útil, acceso a canales de atención y apoyo en la gestión del servicio.</p>
           <img src="app/reciclapp-screenshot1.jpg" alt="Pantallazo de ReciclApp" style="border-radius: 14px; box-shadow: 0 12px 20px rgba(15,23,42,0.12);" onerror="this.src='https://via.placeholder.com/800x600?text=ReciclApp'" />
         </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="encuesta" class="section" style="background:#f8fafc;">
+    <div class="container">
+      <h2 class="section-title">Encuesta de satisfacción</h2>
+      <div class="section-divider"></div>
+
+      <div class="survey-card">
+        <p style="margin:0 0 1rem; color:#4b5563; line-height:1.7;">
+          Queremos conocer tu experiencia con REDECOL. Esta encuesta nos ayuda a mejorar la calidad del servicio y la atención al ciudadano.
+        </p>
+
+        <form action="https://formsubmit.co/pqr.redecol@outlook.com" method="POST">
+          <input type="hidden" name="_subject" value="Nueva encuesta de satisfacción REDECOL" />
+          <input type="hidden" name="_captcha" value="false" />
+
+          <div class="survey-grid">
+            <div>
+              <label>Nombre completo</label>
+              <input type="text" name="nombre" placeholder="Nombre completo" required>
+            </div>
+            <div>
+              <label>Correo electrónico</label>
+              <input type="email" name="correo" placeholder="Correo electrónico" required>
+            </div>
+            <div>
+              <label>Servicio recibido</label>
+              <select name="servicio">
+                <option value="">Seleccione una opción</option>
+                <option value="Recolección selectiva">Recolección selectiva</option>
+                <option value="Sensibilización">Sensibilización</option>
+                <option value="Rutas y logística">Rutas y logística</option>
+                <option value="App ReciclApp">App ReciclApp</option>
+                <option value="Atención PQR">Atención PQR</option>
+              </select>
+            </div>
+            <div>
+              <label>¿Cómo calificaría el servicio?</label>
+              <div class="rating-options">
+                <label><input type="radio" name="calificacion" value="1" /> 1</label>
+                <label><input type="radio" name="calificacion" value="2" /> 2</label>
+                <label><input type="radio" name="calificacion" value="3" /> 3</label>
+                <label><input type="radio" name="calificacion" value="4" /> 4</label>
+                <label><input type="radio" name="calificacion" value="5" /> 5</label>
+              </div>
+            </div>
+            <div class="full">
+              <label>¿Recomendaría REDECOL a otra persona?</label>
+              <div class="rating-options">
+                <label><input type="radio" name="recomienda" value="Sí" /> Sí</label>
+                <label><input type="radio" name="recomienda" value="No" /> No</label>
+                <label><input type="radio" name="recomienda" value="Tal vez" /> Tal vez</label>
+              </div>
+            </div>
+            <div class="full">
+              <label>Comentarios o sugerencias</label>
+              <textarea name="comentarios" placeholder="Cuéntenos su experiencia..."></textarea>
+            </div>
+          </div>
+
+          <button type="submit" class="submit-btn">Enviar encuesta</button>
+        </form>
       </div>
     </div>
   </section>
